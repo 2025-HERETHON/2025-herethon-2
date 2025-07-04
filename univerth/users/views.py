@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .forms import SignupForm
 from .models import Univ
-from django.views.decorators.csrf import csrf_exempt
+#from django.views.decorators.csrf import csrf_exempt
 
-@csrf_exempt
+#@csrf_exempt
 def signup(request):
     if request.method == "POST":
         data = request.POST.copy()
@@ -36,3 +36,19 @@ def signup(request):
     else:
         form = SignupForm()
         return render(request, "signup.html", {'form':form})
+
+
+def univ_search(request):
+    query = request.GET.get('q', '')
+
+    if not query:
+        return JsonResponse([], safe=False)
+    
+    universities = Univ.objects.filter(univ_name__contains=query)[:10]
+
+    data = []
+    for univ in universities:
+        data.append({"id" : univ.id, "name": univ.univ_name})
+    
+    return JsonResponse(data, safe=False)
+
