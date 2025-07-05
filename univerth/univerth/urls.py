@@ -24,4 +24,5 @@ urlpatterns = [
     path('signup/', signup),
     path('univ/', univ_search),
     path('quiz/', quiz_show),
+    path('quiz/check/', check_answer)
 ]
