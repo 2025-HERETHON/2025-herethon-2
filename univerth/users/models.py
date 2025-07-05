@@ -4,7 +4,8 @@ from django.contrib.auth.models import AbstractUser
 class Univ(models.Model):
     univ_name=models.CharField(max_length=20)
     point=models.IntegerField(default=0)
-    rank=models.IntegerField(default=417)
+    rank=models.IntegerField(default=435)
+    email_domain=models.CharField(max_length=20)
 
 class User(AbstractUser):
     email=models.CharField(max_length=30, unique=True, null=False, blank=False)
