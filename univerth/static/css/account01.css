@@ -1,0 +1,92 @@
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NPSfontBold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body{
+    background-color: #000;
+}
+
+#Account01_wrap{
+    position: relative;
+    width: 393px;
+    height: 852px;
+    background-color: #fff;
+    border: solid 1px #000;
+    margin: 0 auto;
+    text-align: left;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.title{
+    margin-top: 114px;
+    font-family: 'NPSfontBold';
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.step{
+    margin-top: 29px;
+    font-family: 'NPSfontBold';
+    font-weight: bold;
+    font-size: 25px;
+    color: #2CD7A6;
+}
+
+.input_univ{
+    margin-top: 93px;
+}
+
+.input_univ>.text{
+    font-family: 'SUIT-Regular';
+    font-size: 15px;
+    font-weight: 500;
+    padding-left: 7px;
+}
+
+.input_univ>input{
+    width: 353px;
+    height: 55px;
+    border: solid 1.5px #9E9E9E;
+    border-radius: 10px;
+    padding-left: 17px;
+    padding-top: 5px;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+
+.univ:focus{
+    outline: none;
+    border: solid 1px #9E9E9E;
+}
+
+.input_univ>.search_btn{
+    background: none;
+    border: none;
+    position: absolute; 
+    padding: 0 0; 
+    top: 323px;
+    left: 334px;
+}
+
+.step_btn{
+    margin-top: 323px;
+    width: 353px;
+    height: 55px;
+    background: linear-gradient(#2CD7A6,#59D385);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+}
