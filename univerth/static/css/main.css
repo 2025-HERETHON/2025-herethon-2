@@ -1,21 +1,35 @@
 /*공통 스타일*/
 @font-face {
-    font-family: 'NPSfontBold';
+    font-family: 'NPSfont-Bold';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'SUIT-Regular';
+    font-family: 'NPSfont-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontRegular.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SUIT';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'MangoDdobak-L';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/MangoDdobak-L.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
 * {
     box-sizing: border-box;
-    font-family: 'NPSfontBold', 'Inter', 'SUIT-Regular';
+    font-family: 'NPSfont', 'Inter', 'SUIT';
 }
 
 :root {
