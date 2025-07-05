@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from users.views import signup, univ_search
+from quiz.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/', signup),
     path('univ/', univ_search),
+    path('quiz/', quiz_show),
 ]
