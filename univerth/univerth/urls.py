@@ -19,6 +19,7 @@ from django.urls import path, include
 from users.views import *
 from quiz.views import *
 from challenges.views import *
+from users.views_home import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,4 +33,5 @@ urlpatterns = [
     path('quiz/', quiz_show, name='quiz_show'),
     path('quiz/check/', check_answer, name='check_answer'),
     path('challenges/', include('challenges.urls', namespace='challenges')),
+    path("ranks/", ranks, name='ranks'),
 ]
