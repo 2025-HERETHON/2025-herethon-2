@@ -12,7 +12,7 @@ def upload_filepath(instance, filename):
 
 class Challenge(models.Model):
     challenge_name=models.CharField(max_length=50)
-    participant_num = models.IntegerField(default=0)
+    participant_num = models.IntegerField(default=1)
     creator = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="challenge_creator")
     description = models.TextField()
     participants = models.ManyToManyField(to=User, related_name="challenge_participants")
