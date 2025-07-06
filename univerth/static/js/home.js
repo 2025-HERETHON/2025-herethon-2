@@ -1,5 +1,53 @@
 import { loadNavbar } from "./main.js"; //화면 공통 요소
 
+//캘린더 아이콘 표시를 위한 더미 데이터---------------------------
+const quizStatusByDate = {
+    "2025-07-12": {
+        isAnswered: true,
+        isCorrect: false,
+        quizId: 1
+    },
+    "2025-07-14": {
+        isAnswered: true,
+        isCorrect: true,
+        quizId: 2
+    },
+    "2025-07-16": {
+        isAnswered: false,
+        quizId: 3
+    }
+}
+
+// 데이터에 따른 아이콘 구별
+const dayIconStatus = {};
+Object.entries(quizStatusByDate).forEach(([date, data]) => {
+    if (!data.isAnswered) {
+        dayIconStatus[date] = "default";
+    } else if (data.isCorrect) {
+        dayIconStatus[date] = "correct";
+    } else {
+        dayIconStatus[date] = "wrong";
+    }
+});
+//일별 모달창 불러오기를 위한 더미데이터
+const quizHistory = [
+    {
+        date: "2025-07-06",
+        question: "다음 중 실제로는 재활용이 어렵지만...",
+        is_correct: true, //문제 맞았는지/틀렸는지
+        description: "우유팩은 특수 코팅이 되어 있어...",
+        recommend_activity: "불필요한 이메일 삭제하기",
+    },
+    {
+        date: "2025-07-05",
+        question: "다 쓴 건전지를 버리는 올바른 방법은?",
+        answer: "전용 수거함",
+        is_correct: false,
+        description: "건전지는 일반 쓰레기가 아니라...",
+        recommend_activity: "불필요한 이메일 삭제하기",
+    }
+];
+
 //--------------------------- 캘린더 불러오기------------------------------------
 window.addEventListener("DOMContentLoaded", async () => {
 
@@ -53,7 +101,7 @@ window.addEventListener("DOMContentLoaded", async () => {
             }[iconType];
 
             liTag += `
-                 <li class="${isToday}">
+                 <li class="${isToday}" data-date="${dateKey}">
                      ${i}
                      <img src="${iconPath}" class="calendar-icon"/>
                   </li>`;
@@ -67,6 +115,16 @@ window.addEventListener("DOMContentLoaded", async () => {
 
         daysTag.innerHTML = liTag;
         currentDate.innerText = `${currYear}년 ${months[currMonth]}월`;
+
+        //날짜 클릭시에 모달 열기
+        document.querySelectorAll(".days li").forEach(li => {
+            li.addEventListener("click", () => {
+                const clickDate = li.dataset.date;
+                if (!clickDate) return;
+                openQuizModal(clickDate);
+            })
+        })
+
     };
 
     renderCalendar();
@@ -90,38 +148,8 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     //-------------------랭킹 불러오기------------------------
     renderRanking();
-    
-});
-//캘린더 아이콘 표시를 위한 더미 데이터
-const quizStatusByDate = {
-    "2025-07-12": {
-        isAnswered: true,
-        isCorrect: false,
-        quizId: 1
-    },
-    "2025-07-14": {
-        isAnswered: true,
-        isCorrect: true,
-        quizId: 2
-    },
-    "2025-07-16": {
-        isAnswered: false,
-        quizId: 3
-    }
-}
 
-// 데이터에 따른 아이콘 구별
-const dayIconStatus = {};
-Object.entries(quizStatusByDate).forEach(([date, data]) => {
-    if (!data.isAnswered) {
-        dayIconStatus[date] = "default";
-    } else if (data.isCorrect) {
-        dayIconStatus[date] = "correct";
-    } else {
-        dayIconStatus[date] = "wrong";
-    }
 });
-
 
 //---------------------------날짜별로 모달창 띄위기-------------------------
 
@@ -232,5 +260,84 @@ function renderRanking() {
       `;
         }
     }
+}
 
+// 모달 외부 클릭 시 닫기
+document.querySelector(".modal-overlay").addEventListener("click", (e) => {
+    const modal = document.querySelector(".modal");
+    if (!modal.contains(e.target)) {
+        closeModal();
+    }
+});
+
+//일별 클릭시 퀴즈 현황 모달창을 위한 함수
+function openQuizModal(date) {
+    const quiz = quizHistory.find(q => q.date === date);
+    const overlay = document.querySelector(".modal-overlay");
+    const modal = document.querySelector(".modal");
+
+    if (!quiz) {
+        modal.innerHTML = `
+      <div class="modal-question"><p>${date}에는 퀴즈 기록이 없습니다.</p></div>
+      <div class="modal-buttons">
+        <button class="cancel-btn">닫기</button>
+      </div>
+    `;
+        overlay.classList.remove("hidden");
+        modal.classList.remove("hidden");
+        const cancelBtn = modal.querySelector(".cancel-btn");
+        if (cancelBtn) {
+            cancelBtn.addEventListener("click", closeModal);
+        }
+
+        return;
+    }
+
+    const d = new Date(date);
+    const formatted = `${d.getMonth() + 1}월 ${d.getDate()}일`;
+    const weekday = d.getDay();
+    const categoryMap = [
+        "사회인식/트렌드", "소비습관", "식생활", "이동 수단", "캠퍼스 생활", "디지털 습관", "재사용/재활용"
+    ];
+
+    // 모달 내용 전체 재구성
+    modal.innerHTML = `
+    <div class="modal-header">
+      <div class="modal-title">
+        <p>${formatted}<br>유니버스 퀴즈</p>
+      </div>
+      <div class="modal-title-right">
+        <div class="modal-buttons">
+          <button class="cancel-btn">X</button>
+        </div>
+        <div class="category-round">
+          <p class="quiz-days-category">${categoryMap[weekday]}</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-question">
+      <p>Q. ${quiz.question}</p>
+    </div>
+    <div class="modal-answer">
+      <p>A. ${quiz.description}</p>
+    </div>
+    <div class="description-line"></div>
+    <div class="recommend-activity-icon">
+      <img src="../static/images/quiz/recommend-icon.png" class="priority-icon" alt="추천활동" />
+    </div>
+    <div class="recommend-activity">
+      <p>${quiz.recommend_activity}</p>
+    </div>
+  `;
+
+    overlay.classList.remove("hidden");
+    modal.classList.remove("hidden");
+    modal.querySelector(".cancel-btn").addEventListener("click", closeModal);
+}
+
+
+// 닫기 함수
+function closeModal() {
+    document.querySelector(".modal-overlay").classList.add("hidden"); //모달창 이외 공간 클릭시 닫기
+    document.querySelector(".modal").classList.add("hidden"); //모달창 숨기기
 }
