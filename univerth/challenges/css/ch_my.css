@@ -1,0 +1,188 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: flex-start;
+}
+
+.wrap {
+    width: 393px;
+    min-height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 0 20px;
+    position: relative;
+}
+
+.ch-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px 10px 0px;
+}
+
+.ch-header .ch {
+    font-family: "NPS font-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 25px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.btn-group {
+    font-family: "NPS font-ExtraBold", Helvetica;
+    font-weight: 800;
+    color: #0000004c;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-my {
+    background: linear-gradient(
+    180deg,
+    rgba(44, 215, 166, 1) 0%,
+    rgba(89, 211, 133, 1) 100%
+    );
+    -webkit-background-clip: text !important;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: "NPS font-ExtraBold", Helvetica;
+    font-weight: 800;
+    color: transparent;
+    font-size: 20px;
+    letter-spacing: 0;
+    line-height: normal;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.ch-order {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.ch-order .ch-group-count {
+    font-family: "SUIT-Medium", Helvetica;
+    font-weight: 500;
+    color: #000000;
+    font-size: 15px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+#joining_challenges {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card {
+    width: 353px;
+    height: 110px;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-shadow: 0px 0px 1px 0.1px #00000033;
+    background: linear-gradient(
+        180deg,
+        rgba(44, 215, 166, 0.1) 0%,
+        rgba(89, 211, 133, 0.1)100%
+    );
+    box-sizing: border-box;
+}
+
+.card-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: -20px;
+}
+
+.card-title {
+    margin-top: 0px;
+    font-family: "NPS font-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 20px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.img1 {
+    width: 18px;
+    height: 21px;
+    vertical-align: middle;
+}
+
+.card-pn {
+    font-family: "NPS font-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.cn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: -30px;
+}
+
+.img2 {
+    width: 25px;
+    height: 22px;
+    vertical-align: middle;
+}
+
+.btn_add {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.img3 {
+    position: absolute;
+    top: 600px;
+    right: 15px;
+    width: 70px;
+    height: 70px;
+    display: block;
+    z-index: 1;
+}
+
+.img4 {
+    position: absolute;
+    top: 617px;
+    right: 35px;
+    width: 30px;
+    height: 33px;
+    z-index: 2;
+}
