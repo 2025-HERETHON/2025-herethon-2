@@ -1,12 +1,10 @@
+import { loadNavbar } from "./main.js"; //화면 공통 요소
+
 //--------------------------- 캘린더 불러오기------------------------------------
 window.addEventListener("DOMContentLoaded", async () => {
 
-    //-----------------header-nav-bar 불러오기------------------------
-    const navRes = await fetch("../templates/navbar.html");
-    const navHtml = await navRes.text();
-    document.querySelector(".home-container").insertAdjacentHTML("afterbegin", navHtml);    //-----------------bottom-nav-bar 불러오기------------------------
-    //----------------bottom-nav-bar 불러오기-----------------------
-    document.querySelector(".home-container").insertAdjacentHTML("beforeend", navHtml);
+    //-----------------top/bottom nav-bar 불러오기------------------------
+    await loadNavbar(".home-container");
 
     //-----------------캘린더 불러오기--------------------------------
     const daysTag = document.querySelector(".days"),
@@ -28,27 +26,23 @@ window.addEventListener("DOMContentLoaded", async () => {
         // 이번 달의 마지막 날짜
         let lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate();
 
-        // 지난달의 마지막 날짜
-        let lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
+        let totalDays = firstDayofMonth + lastDateofMonth;
+        let rows = Math.ceil(totalDays / 7); // 필요한 주 수 계산
 
         let liTag = "";
 
-        // 지난달 날짜 채우기
+        // 지난달 날짜
         for (let i = firstDayofMonth; i > 0; i--) {
-            liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+            liTag += `<li class="inactive">${new Date(currYear, currMonth, -i + 1).getDate()}</li>`;
         }
 
         // 이번 달 날짜 채우기
         for (let i = 1; i <= lastDateofMonth; i++) {
-            const today = new Date();
             const dateKey = `${currYear}-${String(currMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
 
-            let isToday =
-                i === today.getDate() &&
-                    currMonth === today.getMonth() &&
-                    currYear === today.getFullYear()
-                    ? "active"
-                    : "";
+            let isToday = (i === new Date().getDate() &&
+                currMonth === new Date().getMonth() &&
+                currYear === new Date().getFullYear()) ? "active" : "";
 
             let iconType = dayIconStatus[dateKey] || "default";
 
@@ -59,24 +53,20 @@ window.addEventListener("DOMContentLoaded", async () => {
             }[iconType];
 
             liTag += `
-      <li class="${isToday}">
-        ${i}
-        <img src="${iconPath}" alt="${iconType}" class="calendar-icon" />
-      </li>`;
+                 <li class="${isToday}">
+                     ${i}
+                     <img src="${iconPath}" class="calendar-icon"/>
+                  </li>`;
         }
 
-        // 다음달 날짜로 나머지 칸 채우기 (총 42칸으로 맞추기)
-        let totalFilled = firstDayofMonth + lastDateofMonth;
-        let nextDays = 42 - totalFilled;
+        // 다음달 날짜 채우기 (필요한 칸만큼만)
+        let nextDays = (rows * 7) - totalDays;
         for (let i = 1; i <= nextDays; i++) {
             liTag += `<li class="inactive">${i}</li>`;
         }
 
-        // 상단 현재 연/월 텍스트 표시
-        currentDate.innerText = `${currYear}년 ${months[currMonth]}월`;
-
-        // 캘린더에 날짜 삽입
         daysTag.innerHTML = liTag;
+        currentDate.innerText = `${currYear}년 ${months[currMonth]}월`;
     };
 
     renderCalendar();
@@ -100,7 +90,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     //-------------------랭킹 불러오기------------------------
     renderRanking();
-
+    
 });
 //캘린더 아이콘 표시를 위한 더미 데이터
 const quizStatusByDate = {
