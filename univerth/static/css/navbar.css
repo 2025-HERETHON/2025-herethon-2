@@ -21,6 +21,10 @@
     height: 40px;
 }
 
+img.user-img{
+    width: 30px;
+    height: 30px;
+}
 
 /*------------------ 2.bottom-nav------------------*/
 .bottom-nav {
