@@ -147,24 +147,3 @@ function showToast(message) {
         setTimeout(() => toast.remove(), 800); // 애니메이션 후 완전 제거
     }, 1000);
 }
-
-
-//일별 클릭시 퀴즈 현황 모달창을 위한 함수
-//삭제를 위한 모달창 함수
-function openConfirmModal(message, onConfirm) {
-  const overlay = document.querySelector(".modal-overlay");
-  const modal = document.querySelector(".modal");
-  modal.querySelector("p").textContent = message;
-  overlay.classList.remove("hidden");
-  modal.classList.remove("hidden");
-  const cancelBtn = modal.querySelector(".cancel-btn2");
-  const confirmBtn = modal.querySelector(".confirm-delete-btn");
-  const close = () => {
-    overlay.classList.add("hidden");
-    modal.classList.add("hidden");
-    cancelBtn.onclick = null;
-    confirmBtn.onclick = null;
-  };
-  cancelBtn.onclick = close;
-  confirmBtn.onclick = () => { onConfirm(); close(); };
-}
