@@ -14,8 +14,6 @@ class Challenge(models.Model):
     challenge_name=models.CharField(max_length=50)
     participant_num = models.IntegerField(default=0)
     creator = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="challenge_creator")
-    start_at = models.DateField()
-    end_at = models.DateField()
     description = models.TextField()
     participants = models.ManyToManyField(to=User, related_name="challenge_participants")
 
