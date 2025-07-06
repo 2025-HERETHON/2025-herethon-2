@@ -8,6 +8,7 @@ from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 import hashlib
 import base64
+from django.contrib.auth import authenticate, login as auth_login
 
 @csrf_exempt
 def signup_step1(request):
@@ -24,7 +25,7 @@ def signup_step1(request):
         univ_id = int(univ_id)
         request.session['univ_id'] = univ_id
 
-        return render(request, 'account02.html', {'message': '세션에 학교를 저장했습니다.'})
+        return redirect("signup_step2")
     else:
         return render(request, "account01.html")
 
@@ -111,12 +112,13 @@ def activate_email(request, token, email):
     generated_token = base64.urlsafe_b64encode(hashlib.sha256(decoded_email.encode()).digest()).decode()
 
     try:
-        email_verification = EmailVerification.objects.get(email=decoded_email).is_verified
+        email_verification = EmailVerification.objects.get(email=decoded_email)
     except:
         return JsonResponse({'error': '이메일 인증 객체가 존재하지 않습니다.'})
 
     if token == generated_token and not User.objects.filter(email=decoded_email).exists():
-        email_verification = True
+        email_verification.is_verified = True
+        email_verification.save()
         return JsonResponse({'message': '이메일이 성공적으로 인증되었습니다. 회원가입을 계속 진행해주세요.'})
     else:
         return JsonResponse({'error': '유효하지 않은 인증 요청입니다.'}, status=400)
@@ -126,6 +128,22 @@ def check_verification(request):
     email = request.session.get('email')
     email_verification = EmailVerification.objects.get(email=email).is_verified
     if email_verification:
-        return render(request, 'account03.html', {'message': '이메일 인증 완료'})
+        return JsonResponse({'message': '이메일 인증 완료', 'redirect_url': '/signup/step3/'})
     else:
         return JsonResponse({'error': '이메일 인증을 완료하세요.'})
+
+@csrf_exempt
+def login(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            #return redirect("home")
+            return render(request, "home.html")
+        else:
+            return JsonResponse({'error': '잘못된 아이디 혹은 비밀번호입니다.'})
+    else:
+        return render(request, "login.html")

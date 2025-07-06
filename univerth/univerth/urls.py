@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from users.views import signup_step1, signup_step2, signup_step3, univ_search, activate_email, check_verification
+from users.views import *
 from quiz.views import *
 from challenges.views import *
 
@@ -28,6 +28,7 @@ urlpatterns = [
     path('activate_email/<token>/<email>/', activate_email, name='activate_email'),
     path('check-verification/', check_verification, name='check_verification'),
     path('univ/', univ_search, name='univ_search'),
+    path('login/', login, name='login'),
     path('quiz/', quiz_show, name='quiz_show'),
     path('quiz/check/', check_answer, name='check_answer'),
     path('challenges/challenge-detail/<int:id>/', challenge_detail, name='challenge_detail'),
