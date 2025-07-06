@@ -35,7 +35,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 999;
+    z-index: 9999;
     padding: 15px 34px 11px 34px;
 }
 
