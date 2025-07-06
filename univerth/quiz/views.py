@@ -27,7 +27,8 @@ def check_answer(request):
             'is_correct': is_correct,
             'answer': quiz.answer,
             'description': quiz.description,
-            'is_answered': True
+            'is_answered': True,
+            'mission':quiz.mission,
         })
 
     return JsonResponse({'error': 'Invalid request'})
