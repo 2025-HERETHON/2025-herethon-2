@@ -10,10 +10,13 @@
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
+    margin: 0;
+
 }
 
 body{
     background-color: #000;
+    margin-top: 0;
 }
 
 #Account02_wrap{
@@ -79,42 +82,26 @@ body{
     position: absolute; 
     padding: 0 0; 
     left: 260px;
-    top: 35px;
+    top: 39px;
     color: #9E9E9E;
     font-family: 'SUIT-Regular';
 }
 
-/* 인증 번호 입력칸 - 인증 하기 버튼 클릭시*/
+/* 타이머 */
 
-.input_vertification{
-    margin-top: 14px;
-    position: absolute;
-    display: none;
+.input_email>.info{
+    display: flex;
+    justify-content: left;
+    gap: 243px;
+    align-items: center;
 }
 
-.input_vertification>input{
-    width: 353px;
-    height: 55px;
-    padding-top: 5px;
-    border: solid 1.5px #9E9E9E;
-    border-radius: 10px;
-    padding-left: 17px;
-    padding-right: 17px;
-    box-sizing: border-box;
-    font-size: 20px;
-}
-
-.input_vertification>.time{
-    position: absolute;
+.time{    
     color: #2CD7A6;
     left: 305px;
     top: 15px;
 }
 
-.input_vertification>input:focus{
-    outline: none;
-    border: 1.5px solid #2CD7A6;
-}
 
 /* 인증 완료 버튼 */
 
@@ -133,7 +120,7 @@ body{
 /* 인증번호 에러시 */
 
 .error{
-    top: 440px;
+    top: 360px;
     position: absolute;
     display: flex;
     flex-direction: row;
