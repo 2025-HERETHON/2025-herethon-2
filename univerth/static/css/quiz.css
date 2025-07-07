@@ -49,7 +49,7 @@ div .quiz-title {
 .quiz-days-category {
     color: #FFF;
     text-align: center;
-    font-family: "NPSfont";
+    font-family: "NPSfont-Regular";
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
@@ -61,7 +61,7 @@ div .quiz-title {
     width: auto;
     height: 30px;
     border-radius: 20px;
-    background: #59D385;
+    background: linear-gradient(180deg, #2CD7A6 0%, #59D385 100%);
     z-index: 1;
     text-align: center;
     align-items: center;
@@ -269,7 +269,7 @@ div .quiz-title {
 /*toast*/
 .toast-message {
     position: fixed;
-    bottom: 130px;
+    bottom: 210px;
     left: 50%;
     transform: translateX(-50%);
     color: #fff;
