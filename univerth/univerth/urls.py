@@ -34,5 +34,6 @@ urlpatterns = [
     path('quiz/check/', check_answer, name='check_answer'),
     path('challenges/', include('challenges.urls', namespace='challenges')),
     path("home/", home, name='home'),
-    path("home/quiz/", home_quiz, name='home_quiz'),
+    path("home/quiz/", home_detail_quiz, name='home_quiz'),
+    path("home/calendar/", calendar, name='calendar'),
 ]
