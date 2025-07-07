@@ -31,6 +31,7 @@ def exit_challenge(request, challenge_id):
         challenge.save()
         return redirect('challenges:challenge_detail', id=challenge.id)
     
+#좋아요 & 좋아요 취소 데이터
 @require_POST
 def toggle_like(request, feed_id):
     feed = get_object_or_404(Feed, id=feed_id)
