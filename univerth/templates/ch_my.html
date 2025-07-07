@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>challenge_my</title>
+    <link rel="stylesheet" href="../static/css/ch_my.css" />
+</head>
+<body>
+    <div class="wrap">
+        <div class="ch-header">
+            <span class="ch">챌린지</span>
+            <div class="ch-button">
+                <button class="btn-group" onclick="location.href='ch_group.html'">그룹</button>
+                <button class="btn-my" onclick="location.href='ch_my.html'">MY</button>
+            </div>
+        </div>
+
+        <div class="ch-order">
+            <span id="card-count"></span>
+        </div>
+    
+        <div id="joining_challenges"></div>
+
+        <div id="choutmodal" class="modal-overlay" style="display:none;">
+            <div class="modal-content">
+                <span class="choutmodaltext1">'캠퍼스 내 플로깅' 그룹을</span>
+                <span class="choutmodaltext2">탈퇴하시겠습니까?</span>
+
+                <div class="mdoutbtn">
+                    <button class="okbtn"><div class="oktext">확인</div></button>
+                    <button class="ccbtn" onclick="closeModal()"><div class="cctext">취소</div></button>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn_add" onclick="location.href='ch_add.html'">
+            <img src="../static/images/challenges/img3.svg" class="img3" />
+            <img src="../static/images/challenges/img4.svg" class="img4" />
+        </button>
+
+        <script src="../static/js/ch_my.js"></script>
+    </div>
+</body>
+</html>

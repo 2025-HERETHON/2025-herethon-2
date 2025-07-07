@@ -23,13 +23,16 @@ data.forEach(challenge => {
         <div class="card-top">
             <h3 class="card-title">${challenge.name}</h3>
             <div class="pn">
-                <div><img class="img1" src="../images/img1.svg" /></div>
+                <div><img class="img1" src="../static/images/challenges/img1.svg" /></div>
                 <div class="card-pn">${challenge.participant_num}</div>
             </div>
         </div>
         <div class="cn">
-            <div><img class="img2" src="../images/img2.svg" /></div>
+            <div><img class="img2" src="../static/images/challenges/img2.svg" /></div>
             <p class="card-cn">${challenge.creator_name}</p>
+        </div>
+        <div class="outbtn">
+            <div class="outbtntext" id="outbtntext" onClick="openModal()">탈퇴하기</div>
         </div>
     `;
 
@@ -40,3 +43,21 @@ data.forEach(challenge => {
 }
 
 renderCards(joining_challenges);
+
+function openModal() {
+    document.getElementById('choutmodal').style.display = 'block';
+
+    const buttons = document.querySelectorAll(".btn_add");
+    buttons.forEach(btn => {
+        btn.disabled = true;
+    });
+}
+
+function closeModal() {
+    document.getElementById('choutmodal').style.display = 'none';
+
+    const buttons = document.querySelectorAll(".btn_add");
+    buttons.forEach(btn => {
+        btn.disabled = false
+    });
+}

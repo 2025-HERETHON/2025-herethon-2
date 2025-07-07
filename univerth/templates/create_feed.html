@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create_feed</title>
+    <link rel="stylesheet" href="../static/css/create_feed.css" />
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="cfheader">글쓰기</div>
+        </div>
+
+        <div class="addphoto">
+            <div class="photo">사진</div>
+
+            <div class="photo-row">
+                <label id="photo-box" for="photoInput">
+                    <div class="photoicon">
+                        <img id="photoicon" src="../static/images/challenges/img5.svg" />
+                    </div>
+                    <span id="photoCount">0/4</span>
+                </label>
+
+                <div id="preview" class="preview-box"></div>
+            </div>
+
+            <input type="file" id="photoInput" accept="image/*" multiple />
+        </div>
+
+        <div class="addcontent">
+            <div class="content">캡션 내용</div>
+            <div class="content_input">
+                <textarea id="contenttext"></textarea>
+            </div>
+        </div>
+
+        <button id="addfeed" disabled><span class="addfeedtext">게시물 등록</span></button>
+
+        <script src="../static/js/create_feed.js"></script>
+    </div>
+</body>
+</html>
