@@ -29,6 +29,9 @@ def new_store(request):
         longitude = long_lat.get('long')
         latitude = long_lat.get('lat')
 
+        if longitude is None or latitude is None:
+            return JsonResponse({'error': '주소를 찾을 수 없습니다.'})
+
         store = GreenStore.objects.create(
             name = name,
             address = address,
@@ -49,8 +52,14 @@ def new_store(request):
         return render(request, "home.html")
         #return render(request, "map_add.html")
 
+
 def get_long_lat(address):
-    return {'long':123.12, 'lat':123.12}
+    geolocator = Nominatim(user_agent="univerth")
+    location = geolocator.geocode(address)
+    if location:
+        return {'long': location.longitude, 'lat': location.latitude}
+    else:
+        return {'long': None, 'lat': None}
 
 #피그마 보니 화면을 새로 렌더링할 필요는 없는 거 같아 데이터만 전송합니다!
 def show_store(request, id):
