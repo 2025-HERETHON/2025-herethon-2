@@ -110,3 +110,6 @@ def get_answered_quiz(year, month, user):  # 특정 달의 퀴즈 참여 현황 
     }
     
     return answered_quiz
+
+def auth(request):
+    return render(request, "auth.html")

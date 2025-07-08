@@ -39,4 +39,5 @@ urlpatterns = [
     path("home/quiz/", home_detail_quiz, name='home_quiz'),
     path("home/calendar/", calendar, name='calendar'),
     path("mypage/", mypage, name='mypage'),
+    path('', auth, name='auth'),
 ]
