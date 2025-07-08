@@ -147,3 +147,11 @@ def login(request):
             return JsonResponse({'error': '잘못된 아이디 혹은 비밀번호입니다.'})
     else:
         return render(request, "login.html")
+    
+def check_username(request):
+    username = request.GET.get('username')
+
+    if User.objects.filter(username=username).exists():
+        return JsonResponse({'error': '이미 존재하는 아이디입니다.'})
+    else:
+        return JsonResponse({'message': '사용 가능한 아이디입니다.'})
