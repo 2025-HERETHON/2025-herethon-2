@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/account02.css' %}">
+</head>
+<body>
+    <div id="Account02_wrap">
+        <header>
+            <div class="title">
+            유니버스 회원가입
+            </div>
+            <div class="step">
+                STEP 02 재학생 인증
+            </div>
+        </header>
+        <main>
+            <div class="input_email">
+                <div class="info">
+                    <div class="text">학교 이메일</div>
+                    <div class="time">2:30</div>
+                </div>
+                <input type="text" class="email" placeholder="메일 주소를 입력하세요.">
+                <button class="certify_btn" style="font-size: 20px;">인증 하기</button>
+            </div>
+            <div class="error">
+                <img src="{% static 'images/login/Vector.png' %}"  alt="" width="20" height="20">
+                <div class="error_msg">
+                    인증 번호가 틀립니다. 다시 입력해주세요.
+                </div>
+            </div>
+        </main>
+        <button class="step_btn">인증 완료</button>
+    </div>
+    <script src="{% static 'js/account02.js' %}"></script>
+</body>
+</html>

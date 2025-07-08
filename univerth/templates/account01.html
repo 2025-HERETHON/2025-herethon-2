@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/account01.css' %}">
+</head>
+<body>
+    <div id="Account01_wrap">
+        <header>
+            <div class="title">
+            유니버스 회원가입
+            </div>
+            <div class="step">
+                STEP 01 캠퍼스 선택
+            </div>
+        </header>
+        <main>
+            <div class="input_univ">
+                <div class="text">소속 대학</div>
+                <input type="text" placeholder="대학명을 입력하세요." class="univ">
+                <button class="search_btn">
+                    <img src="{% static 'images/account01/Search.png' %}" alt="검색">
+                </button>
+            </div>
+        </main>
+        <button class="step_btn">다음</button>
+    </div>
+    <script src="{% static 'js/account01.js' %}"></script>
+</body>
+</html>

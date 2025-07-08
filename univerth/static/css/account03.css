@@ -1,0 +1,284 @@
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NPSfontBold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body{
+    background-color: #000;
+    margin: 0;
+
+}
+
+#Account03_wrap{
+    position: relative;
+    width: 393px;
+    height: 852px;
+    background-color: #fff;
+    border: solid 1px #000;
+    margin: 0 auto;
+    text-align: left;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.title{
+    margin-top: 114px;
+    font-family: 'NPSfontBold';
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.step{
+    margin-top: 29px;
+    font-family: 'NPSfontBold';
+    font-weight: bold;
+    font-size: 25px;
+    color: #2CD7A6;
+}
+
+/* 닉네임 입력 */
+
+.input_name{
+    margin-top: 32px;
+}
+
+.input_name>.text{
+    font-family: 'SUIT-Regular';
+    font-size: 15px;
+    font-weight: 500;
+    padding-left: 7px;
+}
+
+.input_name>input{
+    width: 353px;
+    height: 53px;
+    box-sizing: border-box;
+    padding-top: 5px;
+    border: solid 1.5px #9E9E9E;
+    border-radius: 10px;
+    padding-left: 17px;
+    padding-right: 17px;
+    font-size: 20px;
+}
+
+.input_name>.info1{
+    color: #14B470;
+    padding-left: 5px;
+    font-family: 'SUIT-Regular';
+}
+
+input:focus{
+    border: solid 1px #2CD7A6;
+    outline: none;
+}
+
+/* 아이디 입력 */
+
+.input_id{
+    margin-top: 10px;
+    position: relative;
+}
+
+.input_id>.text{
+    font-family: 'SUIT-Regular';
+    font-size: 15px;
+    font-weight: 500;
+    padding-left: 7px;
+}
+
+.input_id>input{
+    width: 353px;
+    height: 53px;
+    box-sizing: border-box;
+    padding-top: 5px;
+    border: solid 1.5px #9E9E9E;
+    border-radius: 10px;
+    padding-left: 17px;
+    padding-right: 17px;
+    font-size: 20px;
+}
+
+input:focus{
+    border: solid 1px #2CD7A6;
+    outline: none;
+}
+
+.input_id>button{
+    background: none;
+    border: none;
+    position: absolute; 
+    padding: 0 0; 
+    left: 260px;
+    top: 32px;
+    color: #9E9E9E;
+    font-family: 'SUIT-Regular';
+}
+
+/* 비밀번호1 (입력) */
+
+.input_password1{
+    margin-top: 30px;
+}
+
+.input_password1>.text{
+    font-family: 'SUIT-Regular';
+    font-size: 15px;
+    font-weight: 500;
+    padding-left: 7px;
+}
+
+.input_password1>input{
+    width: 353px;
+    height: 53px;
+    box-sizing: border-box;
+    padding-top: 5px;
+    border: solid 1.5px #9E9E9E;
+    border-radius: 10px;
+    padding-left: 17px;
+    padding-right: 17px;
+    font-size: 20px;
+}
+
+.input_password1>.info2{
+    color: #14B470;
+    padding-left: 5px;
+    font-family: 'SUIT-Regular';
+}
+
+input:focus{
+    border: solid 1px #2CD7A6;
+    outline: none;
+}
+
+/* 비밀번호2 (확인) */
+
+.input_password2{
+    margin-top: 10px;
+}
+
+.input_password2>.text{
+    font-family: 'SUIT-Regular';
+    font-size: 15px;
+    font-weight: 500;
+    padding-left: 7px;
+}
+
+.input_password2>input{
+    width: 353px;
+    height: 53px;
+    box-sizing: border-box;
+    padding-top: 5px;
+    border: solid 1.5px #9E9E9E;
+    border-radius: 10px;
+    padding-left: 17px;
+    padding-right: 17px;
+    font-size: 20px;
+}
+
+input:focus{
+    border: solid 1px #2CD7A6;
+    outline: none;
+}
+
+/* 회원가입 완료 버튼 */
+
+.step_btn{
+    margin-top: 72px;
+    width: 353px;
+    height: 55px;
+    background-color: #9E9E9E;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+/* 아이디 중복 확인 팝업1 - 사용 가능한 아이디 */
+.popup{
+    position: absolute;
+    z-index: 1;
+    width: 393px;
+    height: 722px;
+    background-color: #000;
+    opacity: 40%;
+    left: 0; 
+    top: 60px;
+    display: none;
+}
+
+.popup1{
+    position: absolute;
+    z-index: 2;
+    width: 353px;
+    height: 190px;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    top:353px;
+    display: none;
+}
+
+.popup1>.msg{
+    font-family: 'SUIT-Regular';
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 62px;
+    color: #000000;
+}
+
+.popup1>button{
+    margin-top: 45px;
+    width: 80px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(#2CD7A6,#59D385);
+    color: #fff;
+}
+
+/* 아이디 중복 확인 팝업2 - 중복된 아이디 */
+.popup2{
+    position: absolute;
+    z-index: 2;
+    width: 353px;
+    height: 190px;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    top:353px;
+    display: none;
+}
+
+.popup2>.msg{
+    font-family: 'SUIT-Regular';
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 62px;
+    color: #000000;
+}
+
+.popup2>button{
+    margin-top: 45px;
+    width: 80px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(#2CD7A6,#59D385);
+    color: #fff;
+}

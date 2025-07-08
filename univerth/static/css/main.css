@@ -1,0 +1,66 @@
+/*공통 스타일*/
+@font-face {
+    font-family: 'NPSfont-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NPSfont-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontRegular.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SUIT';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MangoDdobak-L';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/MangoDdobak-L.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'NPSfont', 'Inter', 'SUIT';
+}
+
+:root {
+    --primary-color1: #59D385;
+    --primary-color2: #2CD7A6;
+    --text-color: #000000;
+    --background-color: #fff;
+}
+
+body {
+    margin: 0;
+    background-color: #000000;
+    align-items: stretch;
+}
+
+#root {
+    width: 393px;
+    height: 782px;
+    margin: 0 auto;
+    overflow-y: auto;
+    position: relative;
+    background-color: var(--background-color);
+}
+
+.app-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: block;
+}
+
+button {
+    cursor: pointer;
+}

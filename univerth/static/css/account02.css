@@ -1,0 +1,138 @@
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NPSfontBold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    margin: 0;
+
+}
+
+body{
+    background-color: #000;
+    margin-top: 0;
+}
+
+#Account02_wrap{
+    width: 393px;
+    height: 852px;
+    background-color: #fff;
+    border: solid 1px #000;
+    margin: 0 auto;
+    text-align: left;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.title{
+    margin-top: 114px;
+    font-family: 'NPSfontBold';
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.step{
+    margin-top: 29px;
+    font-family: 'NPSfontBold';
+    font-weight: bold;
+    font-size: 25px;
+    color: #2CD7A6;
+}
+
+/* 메일 주소 입력칸 */
+
+.input_email{
+    margin-top: 93px;
+    position: relative;
+}
+
+.input_email>.text{
+    font-family: 'SUIT-Regular';
+    font-size: 15px;
+    font-weight: 500;
+    padding-left: 7px;
+}
+
+.input_email>input{
+    width: 353px;
+    height: 55px;
+    padding-top: 5px;
+    border: solid 1.5px #9E9E9E;
+    border-radius: 10px;
+    padding-left: 17px;
+    padding-right: 17px;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+
+.email:focus{
+    border: solid 1px #2CD7A6;
+    outline: none;
+}
+
+.input_email>button{
+    background: none;
+    border: none;
+    position: absolute; 
+    padding: 0 0; 
+    left: 260px;
+    top: 39px;
+    color: #9E9E9E;
+    font-family: 'SUIT-Regular';
+}
+
+/* 타이머 */
+
+.input_email>.info{
+    display: flex;
+    justify-content: left;
+    gap: 243px;
+    align-items: center;
+}
+
+.time{    
+    color: #2CD7A6;
+    left: 305px;
+    top: 15px;
+}
+
+
+/* 인증 완료 버튼 */
+
+.step_btn{
+    margin-top: 323px;
+    width: 353px;
+    height: 55px;
+    background-color: #9E9E9E;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+/* 인증번호 에러시 */
+
+.error{
+    top: 360px;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    padding: 15px 0px;
+    display:none;
+}
+
+.error_msg{
+    text-align: left;
+    color: #FD7565;
+    font-family: 'SUIT-Regular';
+    font-size: 15px;
+    font-weight:bolder;
+}
