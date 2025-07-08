@@ -18,6 +18,7 @@
             </div>
         </header>
         <form method="post" action="{% url 'signup_step3' %}">
+            {% csrf_token %}
             <div class="input_name">
                 <div class="text">닉네임</div>
                 <input type="text" class="user" name="nickname">
