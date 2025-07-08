@@ -67,6 +67,6 @@ def show_store(request, id):
     }
     return JsonResponse(store_detail)
 
-#지도 보여주는 함수
+#메인 지도 함수
 def map_main(request):
     return render(request, 'map_main.html')
