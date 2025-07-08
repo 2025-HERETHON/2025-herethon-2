@@ -38,6 +38,6 @@ class Comment(models.Model):
     writer=models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="comments_author")
 
     def __str__(self):
-        return f'[{self.author.nickname}] - {self.content}'
+        return f'[{self.writer.nickname}] - {self.content}'
 
     
