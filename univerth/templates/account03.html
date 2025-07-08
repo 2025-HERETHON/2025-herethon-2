@@ -17,29 +17,29 @@
                 STEP 03 회원정보 입력
             </div>
         </header>
-        <main>
+        <form method="post" action="{% url 'signup_step3' %}">
             <div class="input_name">
-            <div class="text">닉네임</div>
-            <input type="text" class="user">
-            <div class="info1">*2자 이상</div>
+                <div class="text">닉네임</div>
+                <input type="text" class="user" name="nickname">
+                <div class="info1">*2자 이상</div>
             </div>
             <div class="input_id">
                 <div class="text">아이디</div>
-                <input type="text" class="id">
+                <input type="text" class="id" name="username">
                 <button class="certify_btn" style="font-size: 20px;">중복 확인</button>
             </div>
             <div class="input_password1">
                 <div class="text">비밀번호</div>
-                <input type="password" class="password1" >
+                <input type="password" class="password1" name="password1">
                 <div class="info2">*영문, 숫자, 특수문자 포함 8자 이상</div>
             </div>
             <div class="input_password2">
                 <div class="text">비밀번호 확인</div>
-                <input type="password" class="password2" >
+                <input type="password" class="password2" name="password2">
                 <div class="info3"></div>
             </div>
-        </main>
-        <button class="step_btn">회원가입 완료</button>
+            <button type="submit" class="step_btn">회원가입 완료</button>
+        </form>
         <div class="popup1">
             <div class="msg">사용 가능한 아이디입니다.</div>
             <button>확인</button>
