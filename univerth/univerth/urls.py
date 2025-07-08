@@ -20,6 +20,7 @@ from users.views import *
 from quiz.views import *
 from challenges.views import *
 from users.views_home import *
+from users.views_mypage import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,4 +38,5 @@ urlpatterns = [
     path("home/", home, name='home'),
     path("home/quiz/", home_detail_quiz, name='home_quiz'),
     path("home/calendar/", calendar, name='calendar'),
+    path("mypage/", mypage, name='mypage'),
 ]
