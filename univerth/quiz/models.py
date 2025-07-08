@@ -1,12 +1,19 @@
 from django.db import models
 from users.models import *
 
+class Category(models.Model):
+    name=models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
 class Quiz(models.Model):
     date = models.DateField()
     question = models.TextField()
     answer = models.TextField()
     description = models.TextField(null=True)
     mission=models.TextField()
+    Category=models.ManyToManyField(to=Category, related_name="quizzes")
 
     def __str__(self):
         return f'문제 {self.id} - {self.question}'
@@ -25,4 +32,5 @@ class UserQuiz(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="user_quiz")
     selected_option=models.ForeignKey(Option, on_delete=models.CASCADE, related_name="user_quiz", null=True)
     
+
 

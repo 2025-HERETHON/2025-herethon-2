@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 
 #챌린지 세부 내용 보여주기 (챌린지 설명+피드 리스트)
 def challenge_detail(request, id): 
@@ -33,6 +34,7 @@ def exit_challenge(request, challenge_id):
     
 #좋아요 & 좋아요 취소 데이터
 @require_POST
+@csrf_exempt
 def toggle_like(request, feed_id):
     feed = get_object_or_404(Feed, id=feed_id)
     user = request.user
@@ -131,6 +133,7 @@ def delete_comment(request, id):
     return redirect('challenges:feed_detail', comment.feed.id)
 
 #피드 상세 조회. JsonResponse로 데이터만 보냄
+@csrf_exempt
 def feed_data(request, feed_id):
     feed = get_object_or_404(Feed, id=feed_id)
 

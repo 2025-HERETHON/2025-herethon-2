@@ -2,14 +2,16 @@ from django.shortcuts import render
 from .models import *
 from datetime import date
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 def quiz_show(request):
     today = date.today()
     quiz = Quiz.objects.filter(date=today).first()
     options = Option.objects.filter(quiz=quiz)
 
-    return render(request, 'quiz.html', {'quiz': quiz, 'options': options})
+    return render(request, 'quiz.html', {'quiz': quiz, 'options': options, 'category': quiz.Category})
 
+@csrf_exempt
 def check_answer(request):
     if request.method == 'POST':
         selected_option_id = request.POST.get('selected_option_id')
@@ -18,7 +20,7 @@ def check_answer(request):
             selected_option = Option.objects.get(id=selected_option_id)
             quiz = selected_option.quiz  
         except Option.DoesNotExist:
-            return JsonResponse({'error': 'Option not found'})
+            return JsonResponse({'error': '선택지를 찾지 못했습니다.'})
 
         is_correct = (selected_option.text == quiz.answer)
 
@@ -40,4 +42,4 @@ def check_answer(request):
             'mission':quiz.mission,
         })
 
-    return JsonResponse({'error': 'Invalid request'})
+    return JsonResponse({'error': '유효하지 않은 요청입니다.'})

@@ -2,6 +2,10 @@ from django.shortcuts import render
 from .models import *
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from geopy.geocoders import Nominatim
+from geopy.distance import geodesic
+from geopy.exc import GeocoderTimedOut
+
 
 # Create your views here.
 @csrf_exempt
@@ -47,3 +51,5 @@ def new_store(request):
 
 def get_long_lat(address):
     return {'long':123.12, 'lat':123.12}
+
+#def show_store(request):
