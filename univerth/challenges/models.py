@@ -12,10 +12,15 @@ def upload_filepath(instance, filename):
 
 class Challenge(models.Model):
     challenge_name=models.CharField(max_length=50)
+<<<<<<< HEAD
     participant_num = models.IntegerField(default=0)
     creator = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="challenge_creator")
     start_at = models.DateField()
     end_at = models.DateField()
+=======
+    participant_num = models.IntegerField(default=1)
+    creator = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="challenge_creator")
+>>>>>>> e92136952f1b97db34242fb1f42ae62e55c12e2c
     description = models.TextField()
     participants = models.ManyToManyField(to=User, related_name="challenge_participants")
 
@@ -40,6 +45,10 @@ class Comment(models.Model):
     writer=models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="comments_author")
 
     def __str__(self):
+<<<<<<< HEAD
         return f'[{self.author.nickname}] - {self.content}'
+=======
+        return f'[{self.writer.nickname}] - {self.content}'
+>>>>>>> e92136952f1b97db34242fb1f42ae62e55c12e2c
 
     

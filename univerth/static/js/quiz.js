@@ -134,7 +134,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     });
 });
 
-//제출하기 후 Toast
+//제출하기 후 Toast 함수
 function showToast(message) {
     const toast = document.createElement("div");
     toast.className = "toast-message";
@@ -144,6 +144,6 @@ function showToast(message) {
     // 1초 후 사라지게
     setTimeout(() => {
         toast.classList.add("hide");
-        setTimeout(() => toast.remove(), 500); // 애니메이션 후 완전 제거
+        setTimeout(() => toast.remove(), 800); // 애니메이션 후 완전 제거
     }, 1000);
 }

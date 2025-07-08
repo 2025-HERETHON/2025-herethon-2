@@ -22,12 +22,22 @@ def check_answer(request):
 
         is_correct = (selected_option.text == quiz.answer)
 
+        if request.user.is_authenticated:
+            request.user.user_point += 1
+            request.user.save()
+
+            if request.user.univ:
+                request.user.univ.univ_point = sum(
+                    student.user_point for student in request.user.univ.students.all()
+                )
+                request.user.univ.save()
 
         return JsonResponse({
             'is_correct': is_correct,
             'answer': quiz.answer,
             'description': quiz.description,
-            'is_answered': True
+            'is_answered': True,
+            'mission':quiz.mission,
         })
 
     return JsonResponse({'error': 'Invalid request'})

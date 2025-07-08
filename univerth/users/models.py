@@ -3,15 +3,17 @@ from django.contrib.auth.models import AbstractUser
 
 class Univ(models.Model):
     univ_name=models.CharField(max_length=20)
-    point=models.IntegerField(default=0)
     rank=models.IntegerField(default=435)
     email_domain=models.CharField(max_length=20)
+    univ_point = models.IntegerField(default=0)
 
 class User(AbstractUser):
     email=models.EmailField(max_length=30, unique=True, null=False, blank=False)
     nickname=models.CharField(max_length=20, unique=True)
     is_verified=models.BooleanField(default=False)
     univ=models.ForeignKey(to=Univ, on_delete=models.CASCADE, related_name="students", null=True, blank=True)
+    user_point=models.IntegerField(default=0)
+    
 
     #def __str__(self):
     #    return f"{self.nickname} ({self.univ.univ_name})"

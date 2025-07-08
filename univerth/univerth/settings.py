@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import ssl
 import warnings
 
@@ -34,6 +35,8 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 # 추가
 
+=======
+>>>>>>> e92136952f1b97db34242fb1f42ae62e55c12e2c
 """
 Django settings for univerth project.
 
@@ -171,14 +174,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' #추가
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587 #수정
-EMAIL_HOST_USER = '20231000@sungshin.ac.kr'
-EMAIL_HOST_PASSWORD = 'totutlwmkrtxfdqv'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'univerthhere@gmail.com'
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False #추가
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-#추가
-from django.core.mail.utils import DNS_NAME
-DNS_NAME._fqdn = "myhost.localdomain" 
