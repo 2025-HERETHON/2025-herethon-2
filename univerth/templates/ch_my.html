@@ -1,26 +1,46 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>challenge_my</title>
-    <link rel="stylesheet" href="../static/css/ch_my.css" />
+    <link rel="stylesheet" href="{% static 'css/ch_my.css' %}" />
 </head>
 <body>
     <div class="wrap">
         <div class="ch-header">
             <span class="ch">챌린지</span>
             <div class="ch-button">
-                <button class="btn-group" onclick="location.href='ch_group.html'">그룹</button>
-                <button class="btn-my" onclick="location.href='ch_my.html'">MY</button>
+                <button class="btn-group" onclick="location.href='{% url 'challenges:challenge_list_popular' %}'">그룹</button>
+                <button class="btn-my" onclick="location.reload()">MY</button>
             </div>
         </div>
 
         <div class="ch-order">
-            <span id="card-count"></span>
+            <span id="card-count">그룹 {{ joining_challenges|length }}개</span>
         </div>
     
-        <div id="joining_challenges"></div>
+        <div id="joining_challenges">
+            {% for challenge in joining_challenges %}
+            <div class="card">
+                <div class="card-top">
+                    <h3 class="card-title">{{ challenge.name }}</h3>
+                    <div class="pn">
+                        <div><img class="img1" src="{% static 'images/challenges/img1.svg' %}" /></div>
+                        <div class="card-pn">{{ challenge.participant_num }}</div>
+                    </div>
+                </div>
+                <div class="cn">
+                    <div><img class="img2" src="{% static 'images/challenges/img2.svg' %}" /></div>
+                    <p class="card-cn">{{ challenge.creator_name }}</p>
+                </div>
+                <div class="outbtn">
+                    <div class="outbtntext" id="outbtntext" onClick="openModal({{ challenge.id }})">탈퇴하기</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
 
         <div id="choutmodal" class="modal-overlay" style="display:none;">
             <div class="modal-content">
@@ -28,18 +48,20 @@
                 <span class="choutmodaltext2">탈퇴하시겠습니까?</span>
 
                 <div class="mdoutbtn">
-                    <button class="okbtn"><div class="oktext">확인</div></button>
+                    <button class="okbtn" id="confirmExitBtn"><div class="oktext">확인</div></button>
                     <button class="ccbtn" onclick="closeModal()"><div class="cctext">취소</div></button>
                 </div>
             </div>
         </div>
 
-        <button class="btn_add" onclick="location.href='ch_add.html'">
-            <img src="../static/images/challenges/img3.svg" class="img3" />
-            <img src="../static/images/challenges/img4.svg" class="img4" />
+        <button class="btn_add" onclick="location.href='{% url 'challenges:create_challenge' %}'">
+            <img src="{% static 'images/challenges/img3.svg' %}" class="img3" />
+            <img src="{% static 'images/challenges/img4.svg' %}" class="img4" />
         </button>
-
-        <script src="../static/js/ch_my.js"></script>
+        <script>
+            const exitUrlTemplate = "{% url 'challenges:exit_challenge' 0 %}";
+        </script>
+        <script src="{% static 'js/ch_my.js' %}"></script>
     </div>
 </body>
 </html>
