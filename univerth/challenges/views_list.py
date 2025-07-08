@@ -49,7 +49,6 @@ def create_challenge(request):
         )
         
         challenge.participants.add(creator)
-        #return redirect("챌린지 세부페이지", pk=challenge.id)
-        return redirect("challenges:challenge_list_my")
+        return redirect("challenges:feed_detail", feed_id=challenge.id)
     else:
         return render(request, "ch_add.html")
