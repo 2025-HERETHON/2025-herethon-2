@@ -9,7 +9,7 @@ def quiz_show(request):
     quiz = Quiz.objects.filter(date=today).first()
     options = Option.objects.filter(quiz=quiz)
 
-    return render(request, 'quiz.html', {'quiz': quiz, 'options': options, 'category': quiz.Category})
+    return render(request, 'quiz.html', {'quiz': quiz, 'options': options})
 
 @csrf_exempt
 def check_answer(request):

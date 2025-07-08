@@ -13,7 +13,6 @@ class Quiz(models.Model):
     answer = models.TextField()
     description = models.TextField(null=True)
     mission=models.TextField()
-    Category=models.ManyToManyField(to=Category, related_name="quizzes")
 
     def __str__(self):
         return f'문제 {self.id} - {self.question}'
