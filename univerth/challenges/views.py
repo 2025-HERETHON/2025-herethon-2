@@ -89,7 +89,7 @@ def update_feed(request, id):
                 feed.image.delete()
             feed.image = image
         feed.save()
-        return redirect('challenges:challenge_detail', id=feed.challenge.id)
+        return redirect('challenges:feed_detail', id=feed.challenge.id)
     return render(request, 'update.html', {'feed':feed})
 
 #피드 삭제 
