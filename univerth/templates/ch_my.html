@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>challenge_my</title>
-    <link rel="stylesheet" href="../static/css/ch_my.css" />
+    <link rel="stylesheet" href="{% static 'css/ch_my.css' %}" />
 </head>
 <body>
     <div class="wrap">
@@ -17,10 +18,29 @@
         </div>
 
         <div class="ch-order">
-            <span id="card-count"></span>
+            <span id="card-count">그룹 {{ joining_challenges|length }}개</span>
         </div>
     
-        <div id="joining_challenges"></div>
+        <div id="joining_challenges">
+            {% for challenge in joining_challenges %}
+            <div class="card">
+                <div class="card-top">
+                    <h3 class="card-title">{{ challenge.name }}</h3>
+                    <div class="pn">
+                        <div><img class="img1" src="{% static 'images/challenges/img1.svg' %}" /></div>
+                        <div class="card-pn">{{ challenge.participant_num }}</div>
+                    </div>
+                </div>
+                <div class="cn">
+                    <div><img class="img2" src="{% static 'images/challenges/img2.svg' %}" /></div>
+                    <p class="card-cn">{{ challenge.creator_name }}</p>
+                </div>
+                <div class="outbtn">
+                    <div class="outbtntext" id="outbtntext" onClick="openModal()">탈퇴하기</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
 
         <div id="choutmodal" class="modal-overlay" style="display:none;">
             <div class="modal-content">
@@ -35,11 +55,11 @@
         </div>
 
         <button class="btn_add" onclick="location.href='ch_add.html'">
-            <img src="../static/images/challenges/img3.svg" class="img3" />
-            <img src="../static/images/challenges/img4.svg" class="img4" />
+            <img src="{% static 'images/challenges/img3.svg' %}" class="img3" />
+            <img src="{% static 'images/challenges/img4.svg' %}" class="img4" />
         </button>
 
-        <script src="../static/js/ch_my.js"></script>
+        <script src="{% static 'js/ch_my.js' %}"></script>
     </div>
 </body>
 </html>

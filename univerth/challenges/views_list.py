@@ -3,6 +3,7 @@ from .models import *
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+
 def challenge_list_my(request):
     user = request.user
     if user.is_authenticated:
@@ -18,7 +19,7 @@ def challenge_list_my(request):
                     'participant_num' : ch.participant_num
                 }
                 challenge_list.append(challenge)
-            return render(request, "ch_my.html", {"joining_challenges":challenge_list})
+            return render(request, "ch_my.html", { "joining_challenges" : challenge_list })
     else:
         return redirect('login')
 
