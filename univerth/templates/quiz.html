@@ -1,53 +1,80 @@
-<!DOCTYPE html>
 <html lang="ko">
+  {% load static %}
   <head>
     <meta charset="utf-8" />
     <title>퀴즈</title>
-
-    <link rel="stylesheet" href="../static/css/main.css" />
-    <link rel="stylesheet" href="../static/css/quiz.css" />
-    <link rel="stylesheet" href="../static/css/navbar.css" />
-
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/quiz.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-
-  <body>
+  <body data-user-id="{{ user.id }}">
     <div id="root">
       <div class="app-wrapper">
         <div class="quiz-container">
-          <header id="quiz-header">
-            <div>
-              <span class="quiz-title">오늘의 유니버스 퀴즈</span>
-            </div>
-            <div class="category-round">
-              <p class="quiz-days-category">사회인식/트렌드</p>
-            </div>
-          </header>
+          {% include "navbar.html" %}
+          <form method="post" id="quiz-form">
+            {% csrf_token %}
+            <header id="quiz-header">
+              <div>
+                <span class="quiz-title">오늘의 유니버스 퀴즈</span>
+              </div>
+              <div class="category-round">
+                <p class="quiz-days-category">카테고리</p>
+              </div>
+            </header>
 
-          <div class="today-date">
-            <p>7월 5일 토요일</p>
-          </div>
-
-          <div class="quiz-wrapper">
-            <div class="question-content">
-              <p>
-                다음 중 실제로는 재활용이 어렵지만, 일반적으로 재활용이 가능하다고 오해받는 품목은?
+            <div class="today-date">
+              <p id="quiz-date" data-date="{{ quiz.date|date:'Y-m-d' }}">
+                {{ quiz.date|date:"Y년 m월 d일" }}
               </p>
             </div>
-          </div>
 
-          <div class="answer-container">
-            <div class="answers"></div>
-            <!--답변들-->
-          </div>
+            <div class="quiz-wrapper">
+              <div class="question-content">
+                <p>Q. {{ quiz.question }}</p>
+              </div>
+            </div>
 
-          <button class="submit-btn" data-url="/quiz" type="button">
-            <img src="../static/images/quiz/submit-btn.png" alt="제출하기" />
-          </button>
+            <div class="answer-container">
+              <div class="answers">
+                {% for option in options %}
+                <button
+                  type="button"
+                  class="quiz-option"
+                  data-id="{{ option.id }}"
+                >
+                  {{ forloop.counter }}. {{ option.text }}
+                </button>
+                {% endfor %}
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <img
+                src="{% static 'images/quiz/submit-btn.png' %}"
+                alt="제출하기"
+              />
+            </button>
+          </form>
         </div>
       </div>
     </div>
 
-    <script type="module" src="../static/js/quiz.js"></script>
+    <script>
+      const quizData = {
+        quiz_id: {{ quiz.id }},
+        date: "{{ quiz.date }}",
+        question: "{{ quiz.question }}",
+        is_answered: {{ quiz.is_answered|yesno:"true,false" }},
+        options: [
+          {% for option in options %}
+            { id: {{ option.id }},
+             text: "{{ option.text }}" },
+          {% endfor %}
+        ]
+      };
+    </script>
+    <script type="module" src="{% static 'js/quiz.js' %}"></script>
   </body>
 </html>

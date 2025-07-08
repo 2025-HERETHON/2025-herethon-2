@@ -4,9 +4,9 @@
     flex-direction: row;
     top: 0;
     left: 0;
-    height: 60px;
+    height: auto;
     width: 100%;
-    padding: 10px 20px 10px 20px;
+    padding: 8px 20px 10px 20px;
     display: flex;
     background-color: #fff;
     justify-content: space-between;
@@ -16,6 +16,10 @@
 .header-nav button {
     border: none;
     background: transparent;
+}
+img.logo-img{
+ width: 155px!important;
+ height: auto!important;
 }
 
 .header-nav img {
@@ -27,6 +31,7 @@
 img.user-img {
     width: 30px;
     height: 30px;
+    top:2px;
 }
 
 /*------------------ 2.bottom-nav------------------*/

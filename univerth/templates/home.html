@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
+  {% load static %}
   <head>
     <meta charset="utf-8" />
     <title>홈</title>
 
-    <link rel="stylesheet" href="../static/css/main.css" />
-    <link rel="stylesheet" href="../static/css/home.css" />
-    <link rel="stylesheet" href="../static/css/navbar.css" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
@@ -15,14 +16,15 @@
     <div id="root">
       <div class="app-wrapper">
         <div class="home-container">
+          {% include "navbar.html" %}
           <header id="home-title">
-            <p class="univ-name">동덕여자대학교</p>
+            <p class="univ-name">{{ my_ranking.univ_name }}</p>
           </header>
 
           <div class="calendar-wrapper">
             <img
               class="calendar-background"
-              src="../static/images/home/callendar_background.png"
+              src="{% static 'images/home/callendar_background.png' %}"
               alt="캘린더 뒷배경"
             />
 
@@ -30,7 +32,7 @@
               <div class="icons">
                 <button id="prev">
                   <img
-                    src="../static/images/home/callendar_prev.png"
+                    src="{% static 'images/home/callendar_prev.png' %}"
                     alt="이전 달"
                   />
                 </button>
@@ -39,7 +41,7 @@
 
                 <button id="next">
                   <img
-                    src="../static/images/home/callendar_next.png"
+                    src="{% static 'images/home/callendar_next.png' %}"
                     alt="다음 달"
                   />
                 </button>
@@ -72,14 +74,21 @@
       </div>
 
       <div class="modal-overlay hidden">
-        <div class="modal">
-         
-
-        
-        </div>
+        <div class="modal"></div>
       </div>
     </div>
 
-    <script type="module" src="../static/js/home.js"></script>
+      {{ ranking|json_script:"ranking-data" }}
+      {{ my_ranking|json_script:"my-ranking-data" }}
+      {{ answered_quiz|json_script:"answered-quiz-data" }}
+
+    <script>
+  const homeData = {
+    ranking: JSON.parse(document.getElementById("ranking-data").textContent),
+    my_ranking: JSON.parse(document.getElementById("my-ranking-data").textContent),
+    answered_quiz: JSON.parse(document.getElementById("answered-quiz-data").textContent),
+  };
+</script>
+    <script type="module" src="{% static 'js/home.js' %}"></script>
   </body>
 </html>
