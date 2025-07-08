@@ -1,10 +1,17 @@
-function openModal() {
+let selectedId = null; 
+
+function openModal(challengeId) {
+    selectedId = challengeId;
     document.getElementById('choutmodal').style.display = 'block';
 
     const buttons = document.querySelectorAll(".btn_add");
     buttons.forEach(btn => {
         btn.disabled = true;
     });
+    const btn = document.getElementById("confirmExitBtn");
+    btn.onclick = function() {
+        window.location.href = `/challenges/exit-challenge/${selectedId}/`;
+    };
 }
 
 function closeModal() {
