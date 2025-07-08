@@ -12,6 +12,7 @@
             <img src="/2025-herethon-2/univerth/static/images/login/logo.png" alt="">
         </div>
         <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
             <div class="input">
             <input type="text" placeholder="아이디" class="id" name="username">
             <input type="password" placeholder="비밀번호" class="password" name="password">
