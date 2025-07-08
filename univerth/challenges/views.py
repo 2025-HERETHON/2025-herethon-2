@@ -7,7 +7,7 @@ from django.views.decorators.http import require_POST
 def challenge_detail(request, id): 
     challenge=get_object_or_404(Challenge, id=id) 
     feeds = challenge.challenge_feeds.all().order_by('-created_at')
-    return render(request, 'challenges/challenge_detail.html', {'challenge':challenge, 'feeds':feeds})
+    return render(request, 'challenge_detail.html', {'challenge':challenge, 'feeds':feeds})
 
 #챌린지 참여 함수
 def join_challenge(request, challenge_id):
@@ -74,7 +74,7 @@ def create_feed(request, challenge_id):
                 request.user.univ.save()
 
         return redirect('challenges:challenge_detail',id=challenge.id)
-    return render(request, 'challenges/create_feed.html', {'challenge': challenge})
+    return render(request, 'create_feed.html', {'challenge': challenge})
 
 #피드 수정
 def update_feed(request, id):
@@ -90,7 +90,7 @@ def update_feed(request, id):
             feed.image = image
         feed.save()
         return redirect('challenges:challenge_detail', id=feed.challenge.id)
-    return render(request, 'challenges/update.html', {'feed':feed})
+    return render(request, 'update.html', {'feed':feed})
 
 #피드 삭제 
 def delete_feed(request, id):
@@ -154,4 +154,4 @@ def feed_data(request, feed_id):
 
 # 피드 상세 조회 페이지 html 렌더링
 def feed_detail(request, feed_id):
-    return render(request, 'challenges/feed_detail.html', {'feed_id': feed_id})
+    return render(request, 'feed_detail.html', {'feed_id': feed_id})
