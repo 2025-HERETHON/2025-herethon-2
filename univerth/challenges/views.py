@@ -2,17 +2,16 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-from django.views.decorators.csrf import csrf_exempt
 
 #챌린지 세부 내용 보여주기 (챌린지 설명+피드 리스트)
 def challenge_detail(request, id): 
     challenge=get_object_or_404(Challenge, id=id) 
     feeds = challenge.challenge_feeds.all().order_by('-created_at')
-    return render(request, 'challenge_detail.html', {'challenge':challenge, 'feeds':feeds})
+    return render(request, 'detail_ch.html', {'challenge':challenge, 'feeds':feeds})
 
 #챌린지 참여 함수
-def join_challenge(request, challenge_id):
-    challenge=get_object_or_404(Challenge, id=challenge_id)
+def join_challenge(request, id):
+    challenge=get_object_or_404(Challenge, id=id)
     user=request.user
 
     if user not in challenge.participants.all():
@@ -22,8 +21,8 @@ def join_challenge(request, challenge_id):
         return redirect('challenges:challenge_detail', id=challenge.id)
     
 #챌린지 나가기 함수 
-def exit_challenge(request, challenge_id):
-    challenge=get_object_or_404(Challenge, id=challenge_id)
+def exit_challenge(request, id):
+    challenge=get_object_or_404(Challenge, id=id)
     user=request.user
 
     if user in challenge.participants.all():
@@ -34,7 +33,6 @@ def exit_challenge(request, challenge_id):
     
 #좋아요 & 좋아요 취소 데이터
 @require_POST
-@csrf_exempt
 def toggle_like(request, feed_id):
     feed = get_object_or_404(Feed, id=feed_id)
     user = request.user
@@ -52,8 +50,8 @@ def toggle_like(request, feed_id):
     })
 
 #피드 작성
-def create_feed(request, challenge_id):
-    challenge = get_object_or_404(Challenge, id=challenge_id)
+def create_feed(request, id):
+    challenge = get_object_or_404(Challenge, id=id)
     if request.method=="POST":
         content=request.POST.get("content")
         image=request.FILES.get("image")
@@ -101,8 +99,8 @@ def delete_feed(request, id):
     return redirect('challenges:challenge_detail', id=feed.challenge.id)
 
 #댓글 생성
-def create_comment(request, feed_id):
-    feed=get_object_or_404(Feed, id=feed_id)
+def create_comment(request, id):
+    feed=get_object_or_404(Feed, id=id)
     if request.method=="POST":
         content=request.POST.get('content')
 
@@ -111,7 +109,7 @@ def create_comment(request, feed_id):
             content=content,
             writer=request.user
         )
-        return redirect('challenges:feed_detail', feed_id)
+        return redirect('challenges:feed_detail', id)
     return redirect('challenges:challenge_detail') 
     # 댓글 수는 {{feed.comments.count}} 로 가져오기
 
@@ -133,9 +131,8 @@ def delete_comment(request, id):
     return redirect('challenges:feed_detail', comment.feed.id)
 
 #피드 상세 조회. JsonResponse로 데이터만 보냄
-@csrf_exempt
-def feed_data(request, feed_id):
-    feed = get_object_or_404(Feed, id=feed_id)
+def feed_data(request, id):
+    feed = get_object_or_404(Feed, id=id)
 
     data = {
         'writer': feed.writer.nickname,
@@ -156,5 +153,5 @@ def feed_data(request, feed_id):
     return JsonResponse(data)
 
 # 피드 상세 조회 페이지 html 렌더링
-def feed_detail(request, feed_id):
-    return render(request, 'feed_detail.html', {'feed_id': feed_id})
+def feed_detail(request, id):
+    return render(request, 'feed_detail.html', {'feed_id': id})
