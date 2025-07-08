@@ -40,4 +40,5 @@ urlpatterns = [
     path("home/calendar/", calendar, name='calendar'),
     path("mypage/", mypage, name='mypage'),
     path('', auth, name='auth'),
+    path('map/', include('map.urls', namespace='map')),
 ]
