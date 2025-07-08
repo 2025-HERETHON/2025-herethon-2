@@ -8,7 +8,7 @@ def challenge_list_my(request):
     if user.is_authenticated:
         user_challenges = Challenge.objects.filter(participants=user)
         if not user_challenges.exists():
-            return render(request, "challenges/ch_my.html", {'message':'가입한 챌린지가 없습니다.'})
+            return render(request, "ch_my.html", {'message':'가입한 챌린지가 없습니다.'})
         else:
             challenge_list = []
             for ch in user_challenges:
@@ -18,7 +18,7 @@ def challenge_list_my(request):
                     'participant_num' : ch.participant_num
                 }
                 challenge_list.append(challenge)
-            return render(request, "challenges/ch_my.html", {"joining_challenges":challenge_list})
+            return render(request, "ch_my.html", {"joining_challenges":challenge_list})
     else:
         return redirect('login')
 
@@ -32,7 +32,7 @@ def challenge_list_popular(request):
             'participant_num' : ch.participant_num
         }
         challenge_list.append(challenge)
-    return render(request, "challenges/ch_group.html", {"popular_challenges":top_challenges})
+    return render(request, "ch_group.html", {"popular_challenges":top_challenges})
 
 @csrf_exempt
 def create_challenge(request):
@@ -52,4 +52,4 @@ def create_challenge(request):
         #return redirect("챌린지 세부페이지", pk=challenge.id)
         return redirect("challenges:challenge_list_my")
     else:
-        return render(request, "challenges/ch_add.html")
+        return render(request, "ch_add.html")
