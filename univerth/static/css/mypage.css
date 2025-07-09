@@ -1,0 +1,216 @@
+/*홈 화면*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'NPSfont-Bold', 'SUIT';
+}
+
+#back-btn {
+    top: 22;
+    left: 20;
+    position: absolute;
+    z-index: 2001;
+    border: none;
+    background-color: transparent;
+}
+
+#back-btn img {
+    width: 22px;
+    height: 16px;
+}
+
+.mypage-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.mypage-container::-webkit-scrollbar {
+    display: none;
+}
+
+.mypage-header {
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+    height: 47px;
+    margin-bottom: 30px;
+    align-items: start;
+    padding-left: 21px;
+    padding-top: 10px;
+}
+
+.mypage-header p {
+    color: #000;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.user-info {
+    height: 208px;
+    padding: 0 20px;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+
+
+
+}
+
+.user-history {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 127px;
+    padding: 0 20px;
+}
+
+.second-title-text {
+    margin-bottom: 10px;
+}
+
+.second-title-text p {
+    color: #000;
+    font-family: "NPSfont-Bold";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.user-info-contents {
+    width: 100%;
+    height: 100%;
+
+}
+
+.user-info-nick-section p,
+.user-info-id-section p {
+    color: #000;
+    font-family: 'SUIT';
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 550;
+    line-height: normal;
+    margin-left: 10px;
+    height: 19px;
+}
+
+.user-info-nick-section {
+    margin-bottom: 20px;
+}
+
+input {
+    color: #000;
+    font-family: 'SUIT';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-left: 11px;
+    border: none;
+    width: 353px;
+    height: 55px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(44, 215, 166, 0.10) 0%, rgba(89, 211, 133, 0.10) 100%);
+}
+
+input:focus {
+    outline: 1.5px solid #2CD7A6;
+}
+
+button#nick-correction {
+    position: absolute;
+    right: 35;
+    top: 211;
+    border: none;
+    background-color: transparent;
+    color: #14B470;
+    text-align: center;
+    font-family: 'SUIT';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.user-history-contents {
+    display: flex;
+    flex-direction: row;
+    width: 353px;
+    height: 110px;
+    justify-content: space-between;
+    flex-shrink: 0;
+    border-radius: 10px;
+    padding: 8px 13px 28px 13px;
+    background: linear-gradient(180deg, rgba(44, 215, 166, 0.10) 0%, rgba(89, 211, 133, 0.10) 100%);
+}
+
+.history-quiz,
+.history-challenge {
+    display: flex;
+    flex-direction: column;
+    width: 163px;
+    height: 100%;
+
+}
+
+.history-text {
+    margin-bottom: 18px;
+}
+
+.history-text p,
+.history-text p span {
+    color: #000;
+    font-family: 'SUIT';
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.text-bold {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.history-quiz-show,
+.history-challenge-show {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.history-quiz-show p,
+.history-challenge-show p {
+    color: #000;
+    font-family: 'SUIT';
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.line-text {
+    width: 0.5px;
+    height: 70px;
+    background: rgba(0, 0, 0, 0.20);
+    transform: translate(-10px, 20px);
+}

@@ -1,0 +1,90 @@
+<html lang="ko">
+  {% load static %}
+  <head>
+    <meta charset="utf-8" />
+    <title>마이페이지</title>
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div id="root">
+      <div class="app-wrapper">
+        <button id="back-btn">
+          <img
+            src="{% static 'images/navbar/back_icon.png' %}"
+            alt="뒤로가기"
+          />
+        </button>
+        <div class="mypage-container">
+          {% include "navbar.html" %}
+          <div class="mypage-header">
+            <p class="my-page-title">마이페이지</p>
+          </div>
+
+          <div class="user-info">
+            <div class="second-title-text">
+              <p>회원 정보</p>
+            </div>
+
+            <div class="user-info-contents">
+              <div class="user-info-nick-section">
+                <p>닉네임</p>
+                <input
+                  type="text"
+                  id="user-info-nick"
+                  placeholder="닉네임을 입력해주세요"
+                />
+                <button id="nick-correction">수정</button>
+              </div>
+              <div class="user-info-id-section">
+                <p>아이디</p>
+                <input type="text" id="user-info-id" disabled />
+              </div>
+            </div>
+          </div>
+
+          <div class="user-history">
+            <div class="second-title-text">
+              <p>활동 내역</p>
+            </div>
+
+            <div class="user-history-contents">
+              <div class="history-quiz">
+                <div class="history-text">
+                  <p>퀴즈 참여</p>
+                </div>
+                <div class="history-quiz-show">
+                  <p><span class="text-bold" id="quiz-count">0</span> 그루</p>
+                </div>
+              </div>
+
+              <div class="line-text"></div>
+
+              <div class="history-challenge">
+                <div class="history-text">
+                  <p>챌린지 인증</p>
+                </div>
+                <div class="history-challenge-show">
+                  <p><span class="text-bold" id="feed-count">0</span> 그루</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{ data|json_script:"mypage-data" }}
+
+    <script>
+      const myPageData = JSON.parse(
+        document.getElementById("mypage-data").textContent
+      );
+    </script>
+    <script type="module" src="{% static 'js/mypage.js' %}"></script>
+  </body>
+</html>
