@@ -77,10 +77,15 @@ def home_detail_quiz(request):
     elif weekday == 6:
         type = '사회적 인식 및 트렌드'
 
+    try:
+        answer_option = Option.objects.get(id=quiz.answer).text
+    except Option.DoesNotExist:
+        return JsonResponse({'error':'정답을 불러올 수 없습니다.'})
+    
     return JsonResponse({
         'type': type,
         'question' : quiz.question,
-        'answer': quiz.answer,
+        'answer': answer_option,
         'mission' : quiz.mission
     })
 

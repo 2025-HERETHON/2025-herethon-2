@@ -10,7 +10,7 @@ class Quiz(models.Model):
     mission=models.TextField()
 
     def __str__(self):
-        return f'{self.date} - {self.question}'
+        return f'문제 {self.id} - {self.question}'
     
 class Option(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="options")
@@ -26,5 +26,4 @@ class UserQuiz(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="user_quiz")
     selected_option=models.ForeignKey(Option, on_delete=models.CASCADE, related_name="user_quiz", null=True)
     
-
 
