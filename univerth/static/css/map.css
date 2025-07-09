@@ -1,0 +1,58 @@
+main{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.map_wrap{
+    margin-top: 532px;
+    width: 353px;
+    height: 120px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+#map_info{
+  padding: 13px;
+}
+
+.name{
+    font-family: 'NPSfont-Bold';
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+.address{
+    font-family: 'SUIT';;
+    font-size: 10px;
+    padding-bottom: 20px;
+}
+
+.tags{
+    font-family: 'SUIT';;
+    font-size: 12px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+    
+}
+
+.tags>.tag{
+    padding: 4px 5px;
+    border-radius: 40px;
+    color: #fff;
+    background: linear-gradient(#2CD7A6,#59D385);
+}
+
+.map_icon{
+    position: absolute;
+    top: 50%;
+}
+
+.map_add{
+    top: 80px;
+    left: 303px;
+    position: absolute;
+}
