@@ -27,6 +27,6 @@ def mypage(request):
                 'username': user.username,
                 'quiz_num': quiz_num,
                 'feed_num' : feed_num  }
-        return render(request, "home.html", {'data':data})
-        #return render(request, "mypage.html")    
+        #return render(request, "home.html", {'data':data})
+        return render(request, "mypage.html")    
 
