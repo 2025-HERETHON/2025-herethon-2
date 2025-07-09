@@ -1,3 +1,4 @@
+/*
 const popular_challenges = [
 	{
 		"name" : "캠퍼스 내 플로깅",
@@ -40,3 +41,4 @@ data.forEach(challenge => {
 }
 
 renderCards(popular_challenges);
+*/
