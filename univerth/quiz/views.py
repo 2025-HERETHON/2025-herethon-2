@@ -38,7 +38,15 @@ def check_answer(request):
                     student.user_point for student in request.user.univ.students.all()
                 )
                 request.user.univ.save()
-
+        
+        UserQuiz.objects.create(
+            user = request.user,
+            quiz = quiz,
+            is_answered = True,
+            is_correct = is_correct,
+            selected_option = selected_option
+        )
+        
         return JsonResponse({
             'is_correct': is_correct,
             'answer': answer_option.text,
