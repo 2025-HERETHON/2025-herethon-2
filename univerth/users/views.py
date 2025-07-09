@@ -132,7 +132,6 @@ def check_verification(request):
     else:
         return JsonResponse({'error': '이메일 인증을 완료하세요.'})
 
-@csrf_exempt
 def login(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -141,8 +140,7 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            #return redirect("home")
-            return render(request, "home.html")
+            return JsonResponse({"message": "로그인 성공"})
         else:
             return JsonResponse({'error': '잘못된 아이디 혹은 비밀번호입니다.'})
     else:
