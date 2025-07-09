@@ -29,6 +29,7 @@ def challenge_list_popular(request):
     challenge_list = []
     for ch in top_challenges:
         challenge = {
+            'id': ch.id,
             'name': ch.challenge_name,
             'creator_name' : ch.creator.nickname,
             'participant_num' : ch.participant_num
