@@ -23,6 +23,22 @@ function closeModal() {
     });
 }
 
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+        const id = card.dataset.id;
+        window.location.href = `/challenges/challenge-detail/<int:id>/${id}/`;
+    });
+})
+
+// "탈퇴하기" 버튼 클릭 시 카드 클릭 이벤트 막기
+document.querySelectorAll('.outbtntext').forEach(btn => {
+    btn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const challengeId = btn.closest('.card').dataset.id;
+        openModal(challengeId);
+    });
+});
+
 // const joining_challenges = [
 // 	{
 // 		"name" : "캠퍼스 내 플로깅",

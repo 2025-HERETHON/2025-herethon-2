@@ -34,7 +34,7 @@ def challenge_list_popular(request):
             'participant_num' : ch.participant_num
         }
         challenge_list.append(challenge)
-    return render(request, "ch_group.html", {"popular_challenges":top_challenges})
+    return render(request, "ch_group.html", {"popular_challenges": challenge_list })
 
 @csrf_exempt
 def create_challenge(request):

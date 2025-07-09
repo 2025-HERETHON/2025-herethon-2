@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set "VIRTUAL_ENV=C:\Users\서예린\Desktop\HERETHON\2025-herethon-2\univerth\myvenv"
+set "VIRTUAL_ENV=C:\HERETHON\2025-herethon-2\univerth\myvenv"
 
 if not defined PROMPT set PROMPT=$P$G
 
