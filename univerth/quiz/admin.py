@@ -4,5 +4,8 @@ from .models import *
 # Register your models here.
 
 admin.site.register(Quiz)
-admin.site.register(Option)
 admin.site.register(UserQuiz)
+
+@admin.register(Option)
+class OptionModelAdmin(admin.ModelAdmin):
+    list_display = ['id', 'quiz_id', 'text']
