@@ -34,10 +34,28 @@ if(user){
 if(id) { 
   id.addEventListener('input', function() {
     if(id.value.trim() !== "") {
-      id.style.border = "1px solid #2CD7A6";
-      certify_btn.addEventListener('click',function(){
-      certify_btn.style.color="#2CD7A6";
-    });
+        id.style.border = "1px solid #2CD7A6";
+
+        certify_btn.onclick = function(){
+            event.preventDefault();
+            certify_btn.style.color="#2CD7A6";
+
+            const username = id.value.trim();
+            fetch(`/signup/username/?username=${encodeURIComponent(username)}`, {method: 'GET'})
+                .then(response => response.json())
+                .then(data => {
+                    if(data.message) {
+                        alert(data.message);
+                        certify_btn.style.color="#2CD7A6";
+                    }
+                    else if (data.error) {
+                        alert(data.error);
+                        id.value = "";
+                        id.style.border = "";
+                        certify_btn.style.color="";
+                    }
+                });
+        }
     } else {
       id.style.border = "";
       certify_btn.addEventListener('click',function(){
@@ -98,19 +116,58 @@ if(password2){
 }
 
 //닉네임, 아이디, 비밀번호, 비밀번호 확인 입력 시 회원가입 완료 버튼 색상 변화
-const step_btn=document.querySelector('.step_btn');
-function checkInputs() {
-    if(user.value.trim() !=='' && 
-    id.value.trim() !=='' &&
-    password1.value.trim() !=='' &&
-    password2.value.trim() !==''){
-        step_btn.style.backgroundColor = "#2CD7A6";
-    }
-    else{
-        step_btn.style.backgroundColor = "";
-    }
-}
+const form = document.getElementById('signupForm')
+//const step_btn=document.querySelector('.step_btn');
 
-[user, id, password1, password2].forEach(input => {
-    input.addEventListener('input', checkInputs);
+form.addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const csrfToken = formData.get('csrfmiddlewaretoken');
+
+    try {
+        const response = await fetch('/signup/step3/', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrfToken,
+        },
+        body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.signup_success) {
+            alert(data.message); 
+            window.location.href = "/login/";
+        } else {
+            const errors = data.errors;
+            let messages = [];
+
+            for (const field in errors) {
+                if (errors.hasOwnProperty(field)) {
+                    messages.push(`${field} : ${errors[field][0]}`);
+
+                    const fieldMap = {
+                        username: '.id',
+                        nickname: '.user',
+                        password1: '.password1',
+                        password2: '.password2'
+                    };
+                    const selector = fieldMap[field];
+                    if (selector) {
+                        const input = document.querySelector(selector);
+                        if (input) {
+                            input.value = '';
+                            input.style.border = '';
+                        }
+                    }
+                }
+                
+            }
+            alert(messages.join('\n'));
+        }
+
+    } catch (error) {
+        alert("서버 오류가 발생했습니다.");
+    }
 });

@@ -1,10 +1,12 @@
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/2025-herethon-2/univerth/static/css/account02.css">
+    <link rel="stylesheet" href="{% static 'css/account02.css' %}">
 </head>
 <body>
     <div id="Account02_wrap">
@@ -17,7 +19,7 @@
             </div>
         </header>
         <main>
-             <div class="input_email">
+            <div class="input_email">
                 <div class="info">
                     <div class="text">학교 이메일</div>
                     <div class="time">2:30</div>
@@ -26,7 +28,7 @@
                 <button class="certify_btn" style="font-size: 20px;">인증 하기</button>
             </div>
             <div class="error">
-                <img src="/2025-herethon-2/univerth/static/images/login/Vector.png"  alt="" width="20" height="20">
+                <img src="{% static 'images/login/Vector.png' %}"  alt="" width="20" height="20">
                 <div class="error_msg">
                     인증 번호가 틀립니다. 다시 입력해주세요.
                 </div>
@@ -34,6 +36,6 @@
         </main>
         <button class="step_btn">인증 완료</button>
     </div>
-    <script src="/2025-herethon-2/univerth/static/js/account02.js"></script>
+    <script src="{% static 'js/account02.js' %}"></script>
 </body>
 </html>

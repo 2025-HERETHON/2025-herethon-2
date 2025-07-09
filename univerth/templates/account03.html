@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/2025-herethon-2/univerth/static/css/account03.css">
+    <link rel="stylesheet" href="{% static 'css/account03.css' %}">
 </head>
 <body>
     <div id="Account03_wrap">
@@ -17,7 +18,7 @@
                 STEP 03 회원정보 입력
             </div>
         </header>
-        <form method="post" action="{% url 'signup_step3' %}">
+        <form method="post" action="{% url 'signup_step3' %}" id="signupForm">
             {% csrf_token %}
             <div class="input_name">
                 <div class="text">닉네임</div>
@@ -50,6 +51,6 @@
             <button>확인</button>
         </div>
     </div>
-    <script src="/2025-herethon-2/univerth/static/js/account03.js"></script>
+    <script src="{% static 'js/account03.js' %}"></script>
 </body>
 </html>
