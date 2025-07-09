@@ -51,6 +51,6 @@ def create_challenge(request):
         )
         
         challenge.participants.add(creator)
-        return redirect("challenges:feed_detail", feed_id=challenge.id)
+        return redirect("challenges:challenge_detail", id=challenge.id)
     else:
         return render(request, "ch_add.html")
