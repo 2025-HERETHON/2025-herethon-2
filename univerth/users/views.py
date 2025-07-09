@@ -25,7 +25,7 @@ def signup_step1(request):
         univ_id = int(univ_id)
         request.session['univ_id'] = univ_id
 
-        return redirect("signup_step2")
+        return JsonResponse({"redirect_url":"/signup/step2/"})
     else:
         return render(request, "account01.html")
 

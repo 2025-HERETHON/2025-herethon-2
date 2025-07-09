@@ -114,14 +114,18 @@ document.addEventListener('DOMContentLoaded', function() {
             if (typeof data === 'object') {
                 if (data.errors) {
                     alert(data.errors); // "잘못된 입력입니다." 또는 "존재하지 않는 학교입니다."
-                } else {
+                } else if (data.redirect_url) {
+                    window.location.href = data.redirect_url;
+                }
+                else {
                     alert('알 수 없는 오류가 발생했습니다.');
                 }
             } else {
                 // 정상 응답 (account02.html 렌더링)
-                document.open();
-                document.write(data);
-                document.close();
+                //document.open();
+                //document.write(data);
+                //document.close();
+                alert('잘못된 응답 형식입니다.')
             }
         })
         .catch(error => {

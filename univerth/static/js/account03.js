@@ -143,11 +143,19 @@ form.addEventListener('submit', async function(event) {
             const errors = data.errors;
             let messages = [];
 
+            const fieldMap = {
+                username: '아이디',
+                nickname: '닉네임',
+                password1: '비밀번호',
+                password2: '비밀번호 확인'
+            };
+
             for (const field in errors) {
                 if (errors.hasOwnProperty(field)) {
-                    messages.push(`${field} : ${errors[field][0]}`);
+                    const displayName = fieldMap[field] || field;
+                    messages.push(`${displayName} : ${errors[field][0]}`);
 
-                    const fieldMap = {
+                    fieldMap = {
                         username: '.id',
                         nickname: '.user',
                         password1: '.password1',
