@@ -1,9 +1,11 @@
 let selectedId = null; 
 
-function openModal(challengeId) {
+function openModal(btnElement, challengeId) {
+    const card = btnElement.closest('.card');
     selectedId = challengeId;
+    const selectedName = card.dataset.name;
     document.getElementById('choutmodal').style.display = 'block';
-
+    document.getElementById("modal-challenge-name").textContent = selectedName;
     const buttons = document.querySelectorAll(".btn_add");
     buttons.forEach(btn => {
         btn.disabled = true;
@@ -26,7 +28,7 @@ function closeModal() {
 document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
         const id = card.dataset.id;
-        window.location.href = `/challenges/challenge-detail/<int:id>/${id}/`;
+        window.location.href = `/challenges/challenge-detail/${id}/`;
     });
 })
 

@@ -7,14 +7,14 @@ textarea1.addEventListener("input", () => {
     }
 });
 
-const textarea2 = document.getElementById("creater_name");
-textarea2.addEventListener("input", () => {
-    if (textarea2.value.trim() !== "") {
-    textarea2.classList.add("active");
-    } else {
-    textarea2.classList.remove("active");
-    }
-});
+// const textarea2 = document.getElementById("creater_name");
+// textarea2.addEventListener("input", () => {
+//     if (textarea2.value.trim() !== "") {
+//     textarea2.classList.add("active");
+//     } else {
+//     textarea2.classList.remove("active");
+//     }
+// });
 
 const textarea3 = document.getElementById("challenge_detail");
 textarea3.addEventListener("input", () => {
@@ -27,7 +27,7 @@ textarea3.addEventListener("input", () => {
 
 const inputs = [
     document.getElementById("name"),
-    document.getElementById("creater_name"),
+    //document.getElementById("creater_name"),
     document.getElementById("challenge_detail")
 ];
 const addGroupbtn = document.getElementById("add_group");
