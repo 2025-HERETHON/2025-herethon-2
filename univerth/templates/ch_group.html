@@ -24,7 +24,9 @@
     
         <div id="popular_challenges">
             {% for challenge in popular_challenges %}
-            <div class="card">
+            <p>challenge.id = {{ challenge.id }}</p>
+            <a href="{% url 'challenges:challenge_detail' challenge.id %}">
+            <div class="card" data-id="{{ challenge.id }}">
                 <div class="card-top">
                     <h3 class="card-title">{{ challenge.name }}</h3>
                     <div class="pn">
@@ -37,10 +39,11 @@
                     <p class="card-cn">{{ challenge.creator_name }}</p>
                 </div>
             </div>
+            </a>
             {% endfor %}
         </div>
 
-        <button class="btn_add" onclick="location.href='{% url 'challenges:create_feed' %}'">
+        <button class="btn_add" onclick="location.href='{% url 'challenges:create_challenge' %}'">
             <img src="{% static 'images/challenges/img3.svg' %}" class="img3" />
             <img src="{% static 'images/challenges/img4.svg' %}" class="img4" />
         </button>
