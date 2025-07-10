@@ -1,71 +1,59 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/2025-herethon-2/univerth/static/css/main.css" />
-    <link rel="stylesheet" href="/2025-herethon-2/univerth/static/css/map.css" />
-    <link rel="stylesheet" href="/2025-herethon-2/univerth/static/css/navbar.css" />
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/map.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c0f06b8d6ced742b20e69a5e3a88efd4&libraries=services"
+    ></script>
+  </head>
+  <body>
     <div id="root">
-        <div class="app-wrapper">
-            <!-- {% include "navbar.html" %} -->
-            <main>
-                <div class="map_add">
-                    <img src="/2025-herethon-2/univerth/static/images/map/map_add.png" width="70" height="70" alt="">
-                </div>
-                <div class="map_icon">
-                    <img src="/2025-herethon-2/univerth/static/images/map/map_icon.png" alt="">
-                </div>
-                <div class="map_wrap">
-                    <div id="map_info">
-                        <div class="name"> </div>
-                        <div class="address"></div>
-                        <div class="tags">
-                            <div class="tag"></div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-            <nav class="bottom-nav">
-                <button class="nav-item" data-url="/home" type="button" id="nav-home">
-                <img
-                src="../static/images/navbar/home_basic.png"
-                alt="홈 버튼"
-                class="nav-icon home-button"
-                />
-                </button>
-                <button class="nav-item" data-url="/quiz" type="button" id="nav-quiz">
-                    <img
-                    src="../static/images/navbar/quiz_basic.png"
-                    alt="퀴즈 버튼"
-                    class="nav-icon quiz-button"
-                    />
-                </button>
-                <button class="nav-item" data-url="/map" type="button" id="nav-map">
-                    <img
-                    src="../static/images/navbar/map_basic.png"
-                    alt="지도 버튼"
-                    class="nav-icon map-button"
-                    />
-                </button>
-                <button
-                    class="nav-item"
-                    data-url="/challenge"
-                    type="button"
-                    id="nav-challenge"
-                    >
-                    <img
-                    src="../static/images/navbar/challenge_basic.png"
-                    alt="챌린지 버튼"
-                    class="nav-icon challenge-button"
-                    />
-                </button>
-                <script src="/2025-herethon-2/univerth/static/js/map.js"></script>
-            </nav>
+      <div class="app-wrapper">
+        <div class="map-container">
+          {% include "navbar.html" %}
+
+          <div id="map"></div>
+
+          <!-- 장소 추가 버튼 -->
+          <button class="map_add">
+            <img
+              src="{% static 'images/map/map_add.png' %}"
+              width="70"
+              height="70"
+              alt="장소 추가하기"
+            />
+          </button>
+
+          <!-- 상세 정보 패널 -->
+          <div class="map_wrap" id="map_wrap">
+            <div id="map_info" class="map_info">
+              <div class="name"></div>
+              <div class="address"></div>
+              <div class="tags"></div>
+              <div class="map_info_close">
+                <button class="close-btn">접기</button>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</body>
+
+    <script>
+      const userUniv = "{{ user_univ }}"; //내학교 이름 받기
+    </script>
+    <script>
+  const addUrl = "{% url 'map:new_store' %}"; 
+</script>
+    <!-- 모듈 스크립트 연결 -->
+    <script type="module" src="{% static 'js/map.js' %}"></script>
+  </body>
 </html>
