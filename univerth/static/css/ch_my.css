@@ -8,6 +8,13 @@ body {
     align-items: flex-start;
 }
 
+#root {
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
 .wrap {
     width: 393px;
     min-height: 100vh;
@@ -15,7 +22,6 @@ body {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    padding: 0 20px;
     position: relative;
 }
 
@@ -23,7 +29,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0px 10px 0px;
+    padding: 20px 20px 10px 20px;
 }
 
 .ch-header .ch {
@@ -50,11 +56,9 @@ body {
 }
 
 .btn-my {
-    background: linear-gradient(
-    180deg,
-    rgba(44, 215, 166, 1) 0%,
-    rgba(89, 211, 133, 1) 100%
-    );
+    background: linear-gradient(180deg,
+            rgba(44, 215, 166, 1) 0%,
+            rgba(89, 211, 133, 1) 100%);
     -webkit-background-clip: text !important;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -75,6 +79,8 @@ body {
     justify-content: space-between;
     margin-top: 10px;
     margin-bottom: 10px;
+    padding: 0 20px;
+
 }
 
 .ch-order .ch-group-count {
@@ -91,6 +97,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 0 20px;
+
 }
 
 .card {
@@ -101,16 +109,14 @@ body {
     padding-left: 12px;
     padding-right: 12px;
     box-shadow: 0px 0px 1px 0.1px #00000033;
-    background: linear-gradient(
-        180deg,
-        rgba(44, 215, 166, 0.1) 0%,
-        rgba(89, 211, 133, 0.1)100%
-    );
+    background: linear-gradient(180deg,
+            rgba(44, 215, 166, 0.1) 0%,
+            rgba(89, 211, 133, 0.1)100%);
     box-sizing: border-box;
     position: relative;
 }
 
-.card-top{
+.card-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -194,11 +200,9 @@ body {
     align-items: center;
     width: 100px;
     height: 38px;
-    background: linear-gradient(
-        180deg,
-        rgba(44, 215, 166, 1) 0%,
-        rgba(89, 211, 133, 1) 100%
-    );
+    background: linear-gradient(180deg,
+            rgba(44, 215, 166, 1) 0%,
+            rgba(89, 211, 133, 1) 100%);
     border-radius: 30px;
     border: none;
     text-align: center;
@@ -232,8 +236,10 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;    /* wrap 기준 */
-    height: 100%;   /* wrap 기준 */
+    width: 100%;
+    /* wrap 기준 */
+    height: 100%;
+    /* wrap 기준 */
     background-color: rgba(0, 0, 0, 0.4);
     display: none;
     justify-content: center;
@@ -270,21 +276,21 @@ body {
     margin-top: 45px;
 }
 
-.okbtn, .ccbtn {
+.okbtn,
+.ccbtn {
     width: 80px;
     height: 35px;
-    background: linear-gradient(
-        180deg,
-        rgba(44, 215, 166, 1) 0%,
-        rgba(89, 211, 133, 1) 100%
-    );
+    background: linear-gradient(180deg,
+            rgba(44, 215, 166, 1) 0%,
+            rgba(89, 211, 133, 1) 100%);
     border: none;
     border-radius: 20px;
     box-shadow: 0px 0px 3px 0.1px #14b470;
     cursor: pointer;
 }
 
-.oktext, .cctext {
+.oktext,
+.cctext {
     font-family: "SUIT Bold", Helvetica;
     font-weight: 700;
     color: #ffffff;

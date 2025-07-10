@@ -1,3 +1,10 @@
+import { loadNavbar } from "./main.js";
+
+window.addEventListener("DOMContentLoaded", async () => {
+    // navbar 불러오기
+    loadNavbar(".challenge-container");
+});
+
 document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
         const id = card.dataset.id;

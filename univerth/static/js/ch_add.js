@@ -1,3 +1,10 @@
+import { loadNavbar } from "./main.js";
+
+window.addEventListener("DOMContentLoaded", async () => {
+    // navbar 불러오기
+    loadNavbar(".challenge-container");
+});
+
 const textarea1 = document.getElementById("name");
 textarea1.addEventListener("input", () => {
     if (textarea1.value.trim() !== "") {
