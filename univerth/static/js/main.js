@@ -1,28 +1,37 @@
-/*----공통------*/
-
-//상단/하단 nav-bar
 export function loadNavbar(containerSelector = ".home-container") {
+  const homeImg = document.querySelector("#nav-home img");
+  const quizImg = document.querySelector("#nav-quiz img");
+  const mapImg = document.querySelector("#nav-map img");
+  const challengeImg = document.querySelector("#nav-challenge img");
+  const logoImg = document.querySelector(".logo-img");
 
-  // 모든 탭 아이콘을 기본 이미지로 되돌리기
-  document.querySelector("#nav-home img").src = "../static/images/navbar/home_basic.png";
-  document.querySelector("#nav-quiz img").src = "../static/images/navbar/quiz_basic.png";
-  document.querySelector("#nav-map img").src = "../static/images/navbar/map_basic.png";
-  document.querySelector("#nav-challenge img").src = "../static/images/navbar/challenge_basic.png";
+  if (homeImg) homeImg.src = "../static/images/navbar/home_basic.png";
+  if (quizImg) quizImg.src = "../static/images/navbar/quiz_basic.png";
+  if (mapImg) mapImg.src = "../static/images/navbar/map_basic.png";
+  if (challengeImg) challengeImg.src = "../static/images/navbar/challenge_basic.png";
 
   switch (containerSelector) {
     case ".home-container":
-      document.querySelector("#nav-home img").src = "../static/images/navbar/home_select.png";
+      if (homeImg) homeImg.src = "../static/images/navbar/home_select.png";
       break;
+
     case ".quiz-container":
-      document.querySelector("#nav-quiz img").src = "../static/images/navbar/quiz_select.png";
+      if (quizImg) quizImg.src = "../static/images/navbar/quiz_select.png";
       break;
-    /*case ".map-container":
-      document.querySelector("#nav-map img").src = "../static/images/navbar/map_select.png";
+
+    case ".map-container":
+      if (mapImg) mapImg.src = "../static/images/navbar/map_select.png";
+      const header = document.querySelector(".header-nav");
+      if (header) header.style.display = "none";
       break;
+
     case ".challenge-container":
-      document.querySelector("#nav-challenge img").src = "../static/images/navbar/challenge_select.png";
-      break;*/
+      if (challengeImg) challengeImg.src = "../static/images/navbar/challenge_select.png";
+      break;
+
     case ".mypage-container":
-      document.querySelector(".logo-img").style.transform = "translateX(30px)";
+      if (logoImg) logoImg.style.transform = "translateX(30px)";
+      break;
   }
+  
 }
