@@ -1,3 +1,5 @@
+import { loadNavbar } from "./main.js";
+
 document.addEventListener('DOMContentLoaded', function () {
     // 가입 모달 열기/닫기
     function openModal() {
@@ -29,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             };
         });
     }
+
 
     // 댓글 모달 열기/닫기
     function openCommentModal(feedId) {

@@ -47,7 +47,7 @@ body {
 
 #root {
     width: 393px;
-    height: 782px;
+    height: 99vh;
     margin: 0 auto;
     overflow-y: auto;
     position: relative;
@@ -63,4 +63,14 @@ body {
 
 button {
     cursor: pointer;
+}
+
+.challenge-container{
+    width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }

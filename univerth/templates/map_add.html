@@ -3,7 +3,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-393, initial-scale=0.9" />
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
     <link rel="stylesheet" href="{% static 'css/map_add.css' %}" />
@@ -12,58 +12,60 @@
 <body>
     <div id="root">
         <div class="app-wrapper">
+          <div class="map-container">
             {% include "navbar.html" %}
             
             <main>
                 <div class="header">
-                    <img class="back" src="{% static 'images/map_add/Vector (1).svg' %}" alt="">
+                    <img class="back" src="{% static 'images/map_add/Vector (1).svg' %}" alt="" onlick="window.location.href='{% url 'map:map_main' %}'" />
                     <div class="title">친환경 장소 추가</div>
                 </div>
                 <form action="" method="post" id="addForm">
                     {% csrf_token %}
                     <div class="input_name">
-                        <label for="">상호명</label>
+                        <label for="name">상호명</label>
                         <input type="text" name="name" class="name" id="name" />
                     </div>
                     <div class="input_address">
-                        <label for="">주소</label>
+                        <label for="address">주소</label>
                         <input type="text" name="address" class="address" id="address" />
                     </div>
                     <div class="input_tags">
-                        <label for="">태그</label>
+                        <label for="tags">태그</label>
                         <input
                         type="text"
-                        name="tags"
+                        name="tags_text"
                         class="tags"
                         id="tags"
                         placeholder="태그 선택"
                         autocomplete="off"
-                    />
+                        readonly />
                     </div>
+                    <div id="selected-tags"></div>
+
                     <button type="submit" class="add_btn">장소 추가</button>
                 </form>
                 <div class="tag_box">
                     <header>
-                        <button type="button" class="cencel">취소</button>
+                        <button type="button" class="cancel">취소</button>
                         <button type="button" class="check">확인</button>
                     </header>
                     <p>친환경 태그</p>
                     <div class="tag_container">
                         <div class="container1">
-                            <button type="button" class="tag1"># 다회용기 포장</button>
-                            <button type="button" class="tag2"># 다회용기 할인</button>
-                            <button type="button" class="tag3"># 종이 빨대</button>
+                            <button type="button" class="tag1" data-id="1"># 다회용기 포장</button>
+                            <button type="button" class="tag2" data-id="2"># 다회용기 할인</button>
+                            <button type="button" class="tag3" data-id="3"># 종이 빨대</button>
                         </div>
                         <div class="container2">
-                            <button type="button" class="tag4"># 친환경 포장재</button>
-                            <button type="button" class="tag5"># 비건</button>
-                            <button type="button" class="tag6"># 기타</button>
+                            <button type="button" class="tag4" data-id="4"># 친환경 포장재</button>
+                            <button type="button" class="tag5" data-id="5"># 비건</button>
+                            <button type="button" class="tag6" data-id="6"># 기타</button>
                         </div>
                     </div>
                 </div>
             </main>
-            
-            
+          </div>
         </div>
     </div>
     <script type="module" src="{% static 'js/map_add.js' %}"></script>

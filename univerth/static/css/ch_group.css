@@ -8,6 +8,13 @@ body {
     align-items: flex-start;
 }
 
+#root {
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
 .wrap {
     width: 393px;
     min-height: 100vh;
@@ -15,19 +22,19 @@ body {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    padding: 0 20px;
     position: relative;
 }
+
 
 .ch-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0px 10px 0px;
+    padding: 20px 20px 10px 20px;
 }
 
 .ch-header .ch {
-    font-family: "NPS font-Bold", Helvetica;
+    font-family: "NPS font", Helvetica;
     font-weight: 700;
     color: #000000;
     font-size: 25px;
@@ -37,11 +44,9 @@ body {
 }
 
 .btn-group {
-    background: linear-gradient(
-    180deg,
-    rgba(44, 215, 166, 1) 0%,
-    rgba(89, 211, 133, 1) 100%
-    );
+    background: linear-gradient(180deg,
+            rgba(44, 215, 166, 1) 0%,
+            rgba(89, 211, 133, 1) 100%);
     -webkit-background-clip: text !important;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -53,11 +58,10 @@ body {
     line-height: normal;
     border: none;
     cursor: pointer;
-    
+    font-family: "NPS font";
 }
 
 .btn-my {
-    font-family: "NPS font-ExtraBold", Helvetica;
     font-weight: 800;
     color: #0000004c;
     font-size: 20px;
@@ -68,6 +72,7 @@ body {
     border: none;
     padding: 0;
     cursor: pointer;
+    font-family: "NPS font";
 }
 
 .ch-odr {
@@ -75,6 +80,7 @@ body {
     padding-left: 11px;
     font-size: 15px;
     color: #000;
+    
 }
 
 .ch-odr::before {
@@ -85,11 +91,9 @@ body {
     transform: translateY(-50%);
     width: 5px;
     height: 5px;
-    background: linear-gradient(
-    180deg,
-    rgba(44, 215, 166, 1) 0%,
-    rgba(89, 211, 133, 1) 100%
-    );
+    background: linear-gradient(180deg,
+            rgba(44, 215, 166, 1) 0%,
+            rgba(89, 211, 133, 1) 100%);
     border-radius: 2.5px;
 }
 
@@ -99,6 +103,7 @@ body {
     justify-content: space-between;
     margin-top: 10px;
     margin-bottom: 10px;
+    padding: 0 20px;
 }
 
 .ch-order .ch-group-count {
@@ -115,6 +120,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 0 20px;
 }
 
 .card {
@@ -125,15 +131,11 @@ body {
     padding-left: 12px;
     padding-right: 12px;
     box-shadow: 0px 0px 1px 0.1px #00000033;
-    background: linear-gradient(
-        180deg,
-        rgba(44, 215, 166, 0.1) 0%,
-        rgba(89, 211, 133, 0.1)100%
-    );
+    background-color: #F8F8F8;
     box-sizing: border-box;
 }
 
-.card-top{
+.card-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -148,8 +150,8 @@ body {
 
 .card-title {
     margin-top: 0px;
-    font-family: "NPS font-Regular", Helvetica;
-    font-weight: 400;
+    font-family: 'SUIT';
+    font-weight: bold;
     color: #000000;
     font-size: 20px;
     letter-spacing: 0;
@@ -178,6 +180,11 @@ body {
     margin-top: -30px;
 }
 
+.card-cn{
+    font-family: "NPS font";
+    font-size: 15px;
+}
+
 .img2 {
     width: 25px;
     height: 22px;
@@ -189,7 +196,7 @@ body {
     border: none;
     padding: 0;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 500;
 }
 
 .img3 {
@@ -210,6 +217,3 @@ body {
     height: 33px;
     z-index: 2;
 }
-
-
-
