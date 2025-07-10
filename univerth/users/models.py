@@ -7,6 +7,9 @@ class Univ(models.Model):
     email_domain=models.CharField(max_length=20)
     univ_point = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.univ_name
+
 class User(AbstractUser):
     email=models.EmailField(max_length=30, unique=True, null=False, blank=False)
     nickname=models.CharField(max_length=20, unique=True)

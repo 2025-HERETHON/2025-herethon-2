@@ -18,11 +18,16 @@ def check_answer(request):
 
         try:
             selected_option = Option.objects.get(id=selected_option_id)
-            quiz = selected_option.quiz  
+            quiz = selected_option.quiz
         except Option.DoesNotExist:
             return JsonResponse({'error': '선택지를 찾지 못했습니다.'})
 
-        is_correct = (selected_option.text == quiz.answer)
+        is_correct = (int(selected_option_id) == int(quiz.answer))
+
+        try:
+            answer_option = Option.objects.get(id=quiz.answer)
+        except Option.DoesNotExist:
+            return JsonResponse({'error':'정답을 불러오지 못했습니다.'})
 
         if request.user.is_authenticated:
             request.user.user_point += 1
@@ -33,10 +38,18 @@ def check_answer(request):
                     student.user_point for student in request.user.univ.students.all()
                 )
                 request.user.univ.save()
-
+        
+        UserQuiz.objects.create(
+            user = request.user,
+            quiz = quiz,
+            is_answered = True,
+            is_correct = is_correct,
+            selected_option = selected_option
+        )
+        
         return JsonResponse({
             'is_correct': is_correct,
-            'answer': quiz.answer,
+            'answer': answer_option.text,
             'description': quiz.description,
             'is_answered': True,
             'mission':quiz.mission,
