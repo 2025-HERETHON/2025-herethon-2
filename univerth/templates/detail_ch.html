@@ -1,39 +1,41 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>detail_challenge</title>
-    <link rel="stylesheet" href="../static/css/detail_ch.css" />
+    <link rel="stylesheet" href="{% static 'css/detail_ch.css' %}" />
 </head>
 <body>
     <div class="wrap">
         <div class="header">
             <div id="challenges">
               <div class="card-top">
-                <h3 class="card-title">캠퍼스 내 플로깅</h3>
+                <h3 class="card-title">{{ challenge.challenge_name }}</h3>
                 <div class="pn">
-                  <div><img class="img1" src="../static/images/challenges/img1.svg" /></div>
-                  <div class="card-pn">60</div>
+                  <div><img class="img1" src="{% static 'images/challenges/img1.svg' %}" /></div>
+                  <div class="card-pn">{{ challenge.participant_num }}</div>
                 </div>
               </div>
               <div class="dsc">
-                <p class="card-dsc">‘캠퍼스 내 플로깅'은 학교 건물을 중심으로 바닥에 떨어진 쓰레기를 주워 버리는 활동입니다.학우들과 함께 즐기면서 환경을 지켜보아요!</p>
+                <p class="card-dsc">{{ challenge.description }}</p>
               </div>
             </div>
         </div>
 
         <div class="scroll-area">
+        {% for feed in feeds %}
         <div class="feed">
           <div class="feedheader">
-            <div class="nickname">솜소미네</div>
-            <div class="created_at">7월 1일 23:11</div>
+            <div class="nickname">{{ feed.writer.nickname }}</div>
+            <div class="created_at">{{ feed.created_at|date:"n월 j일 H:i" }}</div>
           </div>
 
           <div class="carousel">
           <div class="image">
-            <img class="carousel-img active" src="../static/images/challenges/Frame 2.png" />
-            <img class="carousel-img" src="../static/images/challenges/Frame 3.png" />
+            <img class="carousel-img active" src="{% static 'images/challenges/Frame 2.png' %}" />
+            <img class="carousel-img" src="{% static 'images/challenges/Frame 3.png' %}" />
           </div>
 
           <div class="dots">
@@ -80,20 +82,17 @@
 
           <div class="icon">
             <div class="like">
-              <div class="likeicon"><img src="../static/images/challenges/img7.svg" /></div>
+              <div class="likeicon"><img src="{% static 'images/challenges/img7.svg' %}" /></div>
               <div class="like_count">5</div>
             </div>
 
             <div class="comment">
-              <div class="commenticon" onclick="openCommentModal()"><img src="../static/images/challenges/img8.svg" /></div>
+              <div class="commenticon" onclick="openCommentModal()"><img src="{% static 'images/challenges/img8.svg' %}" /></div>
               <div class="comment_count">2</div>
             </div>
           </div>
 
-          <span class="f-content">오늘도 어김없이 쓰레기 줍기!!
-오늘은 본관 근처에서 플로깅을 했어요. 근래 캠퍼스가 많이
-깨끗해진 것 같아서 뿌듯하네요^^
-날이 많이 더워졌는데, 모두들 힘내봅시다 🤗</span>
+          <span class="f-content"></span>
         </div>
         </div>
 
@@ -195,6 +194,6 @@
 
           
     </div>
-    <script src="../static/js/detail_ch.js"></script>
+    <script src="{% static 'js/detail_ch.js' %}"></script>
 </body>
 </html>

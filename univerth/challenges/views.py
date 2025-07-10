@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 
 #챌린지 세부 내용 보여주기 (챌린지 설명+피드 리스트)
 def challenge_detail(request, id): 
@@ -50,18 +51,22 @@ def toggle_like(request, feed_id):
     })
 
 #피드 작성
+@csrf_exempt
 def create_feed(request, id):
     challenge = get_object_or_404(Challenge, id=id)
+
     if request.method=="POST":
         content=request.POST.get("content")
-        image=request.FILES.get("image")
+        images=request.FILES.getlist("image")
 
         feed=Feed.objects.create(
             content=content,
-            image=image,
             writer=request.user,
             challenge=challenge,
         )
+
+        for image in images:
+            FeedImage.objects.create(feed=feed, image=image)
 
         if request.user.is_authenticated:
             request.user.user_point += 1

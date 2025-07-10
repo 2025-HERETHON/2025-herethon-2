@@ -21,7 +21,6 @@ class Challenge(models.Model):
         return self.challenge_name
     
 class Feed(models.Model):
-    image=models.ImageField(upload_to=upload_filepath, blank=True)
     content=models.TextField()
     challenge=models.ForeignKey(to=Challenge, on_delete=models.CASCADE, related_name="challenge_feeds")
     writer=models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="feeds_author")
@@ -39,3 +38,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'[{self.writer.nickname}] - {self.content}'
+    
+class FeedImage(models.Model):
+    feed = models.ForeignKey(Feed, on_delete=models.CASCADE, related_name="images")
+    image = models.ImageField(upload_to=upload_filepath)
