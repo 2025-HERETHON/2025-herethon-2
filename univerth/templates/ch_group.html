@@ -12,6 +12,7 @@
 <body>
   <div id="root">
     <div class="wrap">
+      <div class="challenge-container">
         {% include "navbar.html" %}
         <div class="ch-header">
             <span class="ch">챌린지</span>
@@ -28,9 +29,6 @@
     
         <div id="popular_challenges">
             {% for challenge in popular_challenges %}
-
-            <a href="{% url 'challenges:challenge_detail' challenge.id %}">
-
             {% if challenge.id %}
 
             <div class="card" data-id="{{ challenge.id }}">
@@ -56,6 +54,7 @@
         </button>
 
         <script src="{% static 'js/ch_group.js' %}"></script>
+      </div>
     </div>
   </div>
 </body>

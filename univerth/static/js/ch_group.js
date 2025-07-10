@@ -1,9 +1,17 @@
-document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-        const id = card.dataset.id;
-        window.location.href = `/challenges/challenge-detail/${id}/`;
+import { loadNavbar } from "./main.js";
+
+window.addEventListener("DOMContentLoaded", async () => {
+    loadNavbar(".challenge-container");
+
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', () => {
+            const id = card.dataset.id;
+            window.location.href = `/challenges/challenge-detail/${id}/`;
+        });
     });
-})
+});
+
+
 
 /*
 const popular_challenges = [
