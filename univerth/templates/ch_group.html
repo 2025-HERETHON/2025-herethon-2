@@ -1,9 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
+    <base href="/">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-393, initial-scale=0.9" />
     <title>challenge_group</title>
     <link rel="stylesheet" href="{% static 'css/ch_group.css' %}" />
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
@@ -44,8 +45,10 @@
                     <p class="card-cn">{{ challenge.creator_name }}</p>
                 </div>
             </div>
+
             {% endif %}
             {% endfor %}
+
         </div>
 
         <button class="btn_add" onclick="location.href='{% url 'challenges:create_challenge' %}'">
@@ -54,7 +57,6 @@
         </button>
 
         <script src="{% static 'js/ch_group.js' %}"></script>
-      </div>
     </div>
   </div>
 </body>

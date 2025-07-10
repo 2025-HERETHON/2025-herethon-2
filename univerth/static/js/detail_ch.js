@@ -136,7 +136,12 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 });
 */
+
+import { loadNavbar } from "./main.js";
+
 document.addEventListener('DOMContentLoaded', function () {
+    // navbar 불러오기
+    loadNavbar(".challenge-container");
     // 가입 모달 열기/닫기
     function openModal() {
         document.getElementById('chjoinmodal').style.display = 'block';
