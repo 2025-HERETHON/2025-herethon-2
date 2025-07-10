@@ -1,3 +1,4 @@
+/*
 const challenges = [
     {
         "challenge_name": "캠퍼스 내 플로깅",
@@ -32,6 +33,7 @@ data.forEach(challenge => {
 }
 
 renderChallenges(challenges);
+*/
 
 //모달 제어
 function openModal() {

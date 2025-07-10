@@ -83,3 +83,9 @@ function showStoreInfo(store) {
   wrap.style.display = "block"; // 혹시 display:none 걸려있으면 복구
   wrap.classList.add("active");
 }
+
+
+const map_add=document.querySelector('.map_add')
+map_add.addEventListener('click',function(){
+  window.location.href= "map_add.html"
+})

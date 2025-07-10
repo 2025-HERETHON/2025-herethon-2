@@ -8,15 +8,23 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set "VIRTUAL_ENV=C:\Users\hi020\OneDrive\바탕 화면\멋사\여기톤\2025-herethon-2\univerth\myvenv"
+ feat/challenge2
+set "VIRTUAL_ENV=C:\HERETHON\2025-herethon-2\univerth\myvenv"
+
+ HEAD
+set VIRTUAL_ENV=C:\Users\이온2\Desktop\projects\2025-herethon-2\univerth\myvenv
+
+set "VIRTUAL_ENV=C:\Users\서예린\Desktop\HERETHON\2025-herethon-2\univerth\myvenv"
+ f6a68e403dceadfde0c992166cef478b73993b11
+ main
 
 if not defined PROMPT set PROMPT=$P$G
 
 if defined _OLD_VIRTUAL_PROMPT set PROMPT=%_OLD_VIRTUAL_PROMPT%
 if defined _OLD_VIRTUAL_PYTHONHOME set PYTHONHOME=%_OLD_VIRTUAL_PYTHONHOME%
 
-set "_OLD_VIRTUAL_PROMPT=%PROMPT%"
-set "PROMPT=(myvenv) %PROMPT%"
+set _OLD_VIRTUAL_PROMPT=%PROMPT%
+set PROMPT=(myvenv) %PROMPT%
 
 if defined PYTHONHOME set _OLD_VIRTUAL_PYTHONHOME=%PYTHONHOME%
 set PYTHONHOME=
@@ -24,8 +32,8 @@ set PYTHONHOME=
 if defined _OLD_VIRTUAL_PATH set PATH=%_OLD_VIRTUAL_PATH%
 if not defined _OLD_VIRTUAL_PATH set _OLD_VIRTUAL_PATH=%PATH%
 
-set "PATH=%VIRTUAL_ENV%\Scripts;%PATH%"
-set "VIRTUAL_ENV_PROMPT=myvenv"
+set PATH=%VIRTUAL_ENV%\Scripts;%PATH%
+set VIRTUAL_ENV_PROMPT=(myvenv) 
 
 :END
 if defined _OLD_CODEPAGE (

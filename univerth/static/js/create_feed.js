@@ -20,9 +20,9 @@ inputFile.addEventListener("change", () => {
 
     const icon = document.getElementById("photoicon");
     if (hasFiles) {
-        icon.src = "../static/images/challenges/img5.svg";
+        icon.src = icon.dataset.iconAdded;
     } else {
-        icon.src = "../static/images/challenges/img6.svg";
+        icon.src = icon.dataset.iconNone;
     }
 });
 
@@ -73,3 +73,37 @@ function checkInputs() {
 }
 
 contentInput.addEventListener("input", checkInputs);
+
+function getCSRFToken() {
+    return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+}
+
+addfeedbtn.addEventListener("click", async () => {
+    const formData = new FormData();
+
+    selectedFiles.forEach(file => {
+        formData.append("image", file);
+    })
+    formData.append("content", contentInput.value);
+
+    try {
+        const response = await fetch(window.location.pathname, {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": getCSRFToken()
+            },
+            body: formData
+        });
+        
+        if (response.redirected) {
+            alert("피드가 등록되었습니다.");
+            window.location.href = response.url;
+        }
+        else {
+            alert("업로드를 실패하였습니다.");
+        }
+    }
+    catch (err) {
+        alert("오류가 발생하였습니다.");
+    }
+});
