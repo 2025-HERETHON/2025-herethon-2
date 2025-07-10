@@ -24,7 +24,6 @@
     
         <div id="popular_challenges">
             {% for challenge in popular_challenges %}
-            <p>challenge.id = {{ challenge.id }}</p>
             <a href="{% url 'challenges:challenge_detail' challenge.id %}">
             <div class="card" data-id="{{ challenge.id }}">
                 <div class="card-top">
