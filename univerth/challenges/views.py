@@ -2,14 +2,19 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 
 #챌린지 세부 내용 보여주기 (챌린지 설명+피드 리스트)
 def challenge_detail(request, id): 
     challenge=get_object_or_404(Challenge, id=id) 
     feeds = challenge.challenge_feeds.all().order_by('-created_at')
-    return render(request, 'detail_ch.html', {'challenge':challenge, 'feeds':feeds})
+    is_joined = challenge.participants.filter(id=request.user.id).exists()
+    for feed in feeds:
+        feed.is_liked = feed.like.filter(id=request.user.id).exists()
+    return render(request, 'detail_ch.html', {'challenge':challenge, 'feeds':feeds, 'is_joined': is_joined})
 
 #챌린지 참여 함수
+@csrf_exempt
 def join_challenge(request, id):
     challenge=get_object_or_404(Challenge, id=id)
     user=request.user
@@ -18,8 +23,10 @@ def join_challenge(request, id):
         challenge.participants.add(user)
         challenge.participant_num+=1
         challenge.save()
-        return redirect('challenges:challenge_detail', id=challenge.id)
-    
+        #return redirect('challenges:challenge_detail', id=challenge.id)
+        return JsonResponse({'message':'가입되었습니다.'})
+    return JsonResponse({'error': '이미 가입되었습니다.'})
+
 #챌린지 나가기 함수 
 def exit_challenge(request, id):
     challenge=get_object_or_404(Challenge, id=id)
@@ -32,9 +39,10 @@ def exit_challenge(request, id):
         return redirect('challenges:challenge_detail', id=challenge.id)
     
 #좋아요 & 좋아요 취소 데이터
+@csrf_exempt
 @require_POST
-def toggle_like(request, feed_id):
-    feed = get_object_or_404(Feed, id=feed_id)
+def toggle_like(request, id):
+    feed = get_object_or_404(Feed, id=id)
     user = request.user
 
     if user in feed.like.all():
@@ -50,18 +58,22 @@ def toggle_like(request, feed_id):
     })
 
 #피드 작성
+@csrf_exempt
 def create_feed(request, id):
     challenge = get_object_or_404(Challenge, id=id)
+
     if request.method=="POST":
         content=request.POST.get("content")
-        image=request.FILES.get("image")
+        images=request.FILES.getlist("image")
 
         feed=Feed.objects.create(
             content=content,
-            image=image,
             writer=request.user,
             challenge=challenge,
         )
+
+        for image in images:
+            FeedImage.objects.create(feed=feed, image=image)
 
         if request.user.is_authenticated:
             request.user.user_point += 1
@@ -99,6 +111,7 @@ def delete_feed(request, id):
     return redirect('challenges:challenge_detail', id=feed.challenge.id)
 
 #댓글 생성
+@csrf_exempt
 def create_comment(request, id):
     feed=get_object_or_404(Feed, id=id)
     if request.method=="POST":
@@ -109,8 +122,8 @@ def create_comment(request, id):
             content=content,
             writer=request.user
         )
-        return redirect('challenges:feed_detail', id)
-    return redirect('challenges:challenge_detail') 
+        return JsonResponse({'message':'댓글이 정상 등록되었습니다.'})
+    return JsonResponse({'error':'오류가 발생했습니다.'})
     # 댓글 수는 {{feed.comments.count}} 로 가져오기
 
 #댓글 수정

@@ -21,25 +21,24 @@
         </div>
 
         <div class="addphoto">
-          <div class="photo">사진</div>
 
-          <div class="photo-row">
-            <label id="photo-box" for="photoInput">
-              <div class="photoicon">
-                <img
-                  id="photoicon"
-                  src="{% static 'images/challenges/img5.svg' %}"
-                  data-icon-none="{% static 'images/challenges/img5.svg' %}"
-                  data-icon-added="{% static 'images/challenges/img6.svg' %}"
-                />
-              </div>
-              <span id="photoCount">0/2</span>
-            </label>
+            <div class="photo">사진</div>
 
-            <div id="preview" class="preview-box"></div>
-          </div>
+            <div class="photo-row">
+                <label id="photo-box" for="photoInput">
+                    <div class="photoicon">
+                        <img id="photoicon" src="{% static 'images/challenges/img5.svg' %}"
+                        data-icon-none="{% static 'images/challenges/img5.svg' %}"
+                        data-icon-added="{% static 'images/challenges/img6.svg' %}" />
+                    </div>
+                    <span id="photoCount">0/2</span>
+                </label>
 
-          <input type="file" id="photoInput" accept="image/*" multiple />
+                <div id="preview" class="preview-box"></div>
+            </div>
+
+            <input type="file" id="photoInput" name="image" accept="image/*" multiple />
+
         </div>
 
         <div class="addcontent">

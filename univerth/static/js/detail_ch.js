@@ -1,147 +1,6 @@
-/*
-document.addEventListener('DOMContentLoaded', function () {
-    // 가입 모달 열기/닫기
-    function openModal() {
-        document.getElementById('chjoinmodal').style.display = 'block';
-    }
-    function closeModal() {
-        document.getElementById('chjoinmodal').style.display = 'none';
-    }
-
-    // 가입 후 버튼 텍스트 변경 및 클릭 이벤트 변경
-    function convertWrite() {
-        closeModal();
-
-        const btnText = document.getElementById("jointext");
-        btnText.innerText = "글쓰기";
-
-        const actionBtn = document.getElementById("joinbtn");
-        actionBtn.onclick = function () {
-            location.href = 'univerth/templates/create_feed.html';
-        };
-    }
-
-    // 댓글 모달 열기/닫기
-    function openCommentModal() {
-        document.getElementById("commentModal").style.display = "block";
-        document.body.style.overflow = "hidden";
-    }
-    function closeCommentModal() {
-        document.getElementById("commentModal").style.display = "none";
-        document.body.style.overflow = "auto";
-    }
-
-    // 슬라이드 기능
-    function showSlide(index) {
-        const slides = document.querySelectorAll('.carousel-img');
-        const dots = document.querySelectorAll('.dot');
-
-        slides.forEach((img, i) => {
-            img.classList.remove('active');
-            dots[i].classList.remove('dotactive');
-        });
-
-        slides[index].classList.add('active');
-        dots[index].classList.add('dotactive');
-    }
-
-    // 댓글 입력창 활성화 스타일
-    const commentInput = document.getElementById('c-input');
-    if (commentInput) {
-        commentInput.addEventListener('input', () => {
-            if (commentInput.value.trim() !== "") {
-                commentInput.classList.add('active');
-            } else {
-                commentInput.classList.remove('active');
-            }
-        });
-    }
-
-    // 댓글 모달 외부 클릭 시 닫기
-    window.addEventListener('click', function (e) {
-        const commentModal = document.getElementById("commentModal");
-        if (e.target === commentModal) {
-            closeCommentModal();
-        }
-    });
-
-    // 수정/삭제 모달 열기
-    const editDeleteModal = document.getElementById('delete');
-    document.addEventListener('click', function (e) {
-        const dot = e.target.closest('.c-dot');
-        if (dot) {
-            e.stopPropagation();
-
-            const commentCard = dot.closest('.commentcard');
-            if (!commentCard) return;
-
-            const rect = commentCard.getBoundingClientRect();
-            editDeleteModal.style.position = 'absolute'; // 꼭 설정 필요
-            editDeleteModal.style.top = `${rect.bottom + window.scrollY + 5}px`;
-            editDeleteModal.style.left = `${rect.left + window.scrollX}px`;
-
-            editDeleteModal.classList.remove('hidden');
-        } else {
-            if (!editDeleteModal.contains(e.target)) {
-                editDeleteModal.classList.add('hidden');
-            }
-        }
-    });
-
-
-
-    // 삭제 확인 모달 제어
-    const confirmModal = document.getElementById('confirmModal');
-    const deleteBtn = document.getElementById('delete-btn');
-    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-
-    if (deleteBtn) {
-        deleteBtn.addEventListener('click', () => {
-            editDeleteModal.classList.add('hidden');
-            confirmModal.classList.remove('hidden');
-            console.log('delete button clicked');
-        });
-    }
-
-    if (cancelDeleteBtn) {
-        cancelDeleteBtn.addEventListener('click', () => {
-            confirmModal.classList.add('hidden');
-        });
-    }
-
-    if (confirmDeleteBtn) {
-        confirmDeleteBtn.addEventListener('click', () => {
-            confirmModal.classList.add('hidden');
-            alert('삭제 완료!'); // 실제 삭제 로직 여기에 추가
-        });
-    }
-
-    // 전역 함수 등록 (템플릿 내 onclick에서 호출용)
-    window.openModal = openModal;
-    window.closeModal = closeModal;
-    window.convertWrite = convertWrite;
-    window.openCommentModal = openCommentModal;
-    window.closeCommentModal = closeCommentModal;
-    window.showSlide = showSlide;
-    window.openConfirmModal = () => {
-        editDeleteModal.classList.add('hidden');
-        confirmModal.classList.remove('hidden');
-    };
-    window.confirmDelete = () => {
-        confirmModal.classList.add('hidden');
-    };
-    window.cancelDelete = () => {
-        confirmModal.classList.add('hidden');
-    };
-});
-*/
-
 import { loadNavbar } from "./main.js";
 
 document.addEventListener('DOMContentLoaded', function () {
-    // navbar 불러오기
-    loadNavbar(".challenge-container");
     // 가입 모달 열기/닫기
     function openModal() {
         document.getElementById('chjoinmodal').style.display = 'block';
@@ -151,60 +10,140 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // 가입 후 버튼 텍스트 변경 및 클릭 이벤트 변경
-    function convertWrite() {
+    function convertWrite(challengeId) {
         closeModal();
 
-        const btnText = document.getElementById("jointext");
-        btnText.innerText = "글쓰기";
-
-        const actionBtn = document.getElementById("joinbtn");
-        actionBtn.onclick = function () {
-            location.href = 'univerth/templates/create_feed.html';
-        };
+        fetch(`/challenges/join-challenge/${challengeId}/`, {
+                method: 'POST'
+        })
+        .then(response => response.json().then(data => ({ok: response.ok, data})))
+        .then(({ok, data}) => {
+            if (!ok || data.error ) {
+                alert('알 수 없는 오류가 발생했습니다.')
+                return;
+            }
+            const btnText = document.getElementById("jointext");
+            btnText.innerText = "글쓰기";
+        
+            const actionBtn = document.getElementById("joinbtn");
+            actionBtn.onclick = function () {
+                location.href = `/challenges/create-feed/${challengeId}/`;
+            };
+        });
     }
+
 
     // 댓글 모달 열기/닫기
-    function openCommentModal() {
-        document.getElementById("commentModal").style.display = "block";
-        document.body.style.overflow = "hidden";  // 스크롤 막기
+    function openCommentModal(feedId) {
+        const modal = document.getElementById(`commentModal-${feedId}`);
+        if (modal) {
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden";  // 스크롤 막기
+        }
     }
-    function closeCommentModal() {
-        document.getElementById("commentModal").style.display = "none";
+    function closeCommentModal(modal) {
+        modal.style.display = "none";
         document.body.style.overflow = "auto";    // 스크롤 허용
     }
 
     // 슬라이드 기능 (이미지, 점)
-    function showSlide(index) {
-        const slides = document.querySelectorAll('.carousel-img');
-        const dots = document.querySelectorAll('.dot');
+    function showSlide(feedId, index) {
+        // const slides = document.querySelectorAll('.carousel-img');
+        // const dots = document.querySelectorAll('.dot');
+        const images = document.querySelectorAll(`.carousel-img.feed-${feedId}`);
+        const dots = document.querySelectorAll(`#carousel-${feedId} .dot`);
 
-        slides.forEach((img, i) => {
-            img.classList.remove('active');
-            dots[i].classList.remove('dotactive');
+        // slides.forEach((img, i) => {
+        //     img.classList.remove('active');
+        //     dots[i].classList.remove('dotactive');
+        // });
+
+        // slides[index].classList.add('active');
+        // dots[index].classList.add('dotactive');
+          images.forEach((img, i) => {
+            img.classList.toggle("active", i === index);
         });
 
-        slides[index].classList.add('active');
-        dots[index].classList.add('dotactive');
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("dotactive", i === index);
+        });
     }
 
     // 댓글 입력창 활성화 스타일 토글
-    const commentInput = document.getElementById('c-input');
-    if (commentInput) {
-        commentInput.addEventListener('input', () => {
-            if (commentInput.value.trim() !== "") {
-                commentInput.classList.add('active');
+    // const commentInput = document.getElementsByClassName('c-input');
+    // if (commentInput) {
+    //     commentInput.addEventListener('input', () => {
+    //         if (commentInput.value.trim() !== "") {
+    //             commentInput.classList.add('active');
+    //         } else {
+    //             commentInput.classList.remove('active');
+    //         }
+    //     });
+    // }
+    document.querySelectorAll('.c-input').forEach(input =>
+        input.addEventListener('input', () => {
+            if (input.value.trim() !== "") {
+                input.classList.add('active');
             } else {
-                commentInput.classList.remove('active');
+                input.classList.remove('active');
             }
-        });
+        })
+    )
+
+    // 댓글 추가
+    function addComment(challengeId, feedId) {
+        const input = document.getElementById(`c-input-${feedId}`)
+        console.log(input.value);
+        if(input) {
+            const formData = new FormData();
+            formData.append('content', input.value.trim());
+            fetch(`/challenges/feeds/${feedId}/create-comment/`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json().then(data => ({ok: response.ok, data})))
+            .then(({ok, data}) => {
+                if (!ok || data.error ) {
+                    alert('알 수 없는 오류가 발생했습니다.');
+                    return;
+                }
+                else {
+                    alert('댓글이 등록되었습니다.');
+                    window.location.reload();
+                }
+            })
+        }
+    }
+    
+    function addLike(feedId) {
+        fetch(`/challenges/feeds/${feedId}/toggle-like/`, {
+            method: 'POST'
+        })
+        .then(response => response.json().then(data => ({ok: response.ok, data})))
+        .then(({ok, data}) => {
+            if (!ok || data.error ) {
+                alert('알 수 없는 오류가 발생했습니다.');
+                return;
+            }
+            else {
+                //alert('좋아요가 등록되었습니다.');
+                //window.location.href = `/challenges/challenge-detail/${challengeId}/`;
+                window.location.reload();
+            }
+        })
     }
 
     // 댓글 모달 외부 클릭 시 닫기
     window.addEventListener('click', function (e) {
-        const commentModal = document.getElementById("commentModal");
-        if (e.target === commentModal) {
-            closeCommentModal();
-        }
+        this.document.querySelectorAll('.modal-overlay').forEach(modal => {
+            if (e.target === modal) {
+                closeCommentModal(modal);
+            }
+        })
+        // const commentModal = document.getElementById("commentModal");
+        // if (e.target === commentModal) {
+        //     closeCommentModal();
+        // }
     });
 
     // 수정/삭제 모달 제어
@@ -268,6 +207,8 @@ document.addEventListener('DOMContentLoaded', function () {
     window.openCommentModal = openCommentModal;
     window.closeCommentModal = closeCommentModal;
     window.showSlide = showSlide;
+    window.addComment = addComment;
+    window.addLike = addLike;
     window.openConfirmModal = function () {
         editDeleteModal.classList.add('hidden'); // 수정/삭제 모달 숨기기
         confirmModal.classList.remove('hidden'); // 삭제 확인 모달 보이기
