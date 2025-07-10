@@ -1,109 +1,103 @@
-// 입력값 있을 시 입력칸 색상 변화
-const name = document.querySelector('.name');
-const address = document.querySelector('.address');
-const tags = document.querySelector('.tags');
+import { loadNavbar } from "./main.js";
 
-if (name) {
-    name.addEventListener('input', function () {
-        if (name.value.trim() !== "") {
-            name.style.border = "1px solid #2CD7A6";
+document.addEventListener('DOMContentLoaded', () => {
+    const name = document.querySelector('.name');
+    const address = document.querySelector('.address');
+    const tags = document.querySelector('.tags');
+    const add_btn = document.querySelector('.add_btn');
+    const input_tags = document.querySelector('.input_tags');
+    const tag_box = document.querySelector('.tag_box');
+    const cencel = document.querySelector('.cencel');
+    const check = document.querySelector('.check');
+    const back = document.querySelector('.back');
+
+    function updateInputBorder(input) {
+        if (input.value.trim() !== "") {
+            input.style.border = "1px solid #2CD7A6";
         } else {
-            name.style.border = "";
+            input.style.border = "";
         }
-    });
-}
-
-if (address) {
-    address.addEventListener('input', function () {
-        if (address.value.trim() !== "") {
-            address.style.border = "1px solid #2CD7A6";
-        } else {
-            address.style.border = "";
-        }
-    });
-}
-
-if (tags) {
-    tags.addEventListener('input', function () {
-        if (tags.value.trim() !== "") {
-            tags.style.border = "1px solid #2CD7A6";
-        } else {
-            tags.style.border = "";
-        }
-    });
-}
-
-// 입력값 있을 시에 로그인 버튼 색상 변화
-const add_btn = document.querySelector('.add_btn');
-function checkInputs() {
-    if (
-        name.value.trim() !== '' &&
-        address.value.trim() !== '' &&
-        tags.value.trim() !== ''
-    ) {
-        add_btn.style.backgroundColor = "#2CD7A6";
-    } else {
-        add_btn.style.backgroundColor = "";
     }
-}
 
-[name, address, tags].forEach(input => {
-    input.addEventListener('input', checkInputs);
-});
+    function checkInputs() {
+        if (
+            name.value.trim() !== '' &&
+            address.value.trim() !== '' &&
+            tags.value.trim() !== ''
+        ) {
+            add_btn.style.backgroundColor = "#2CD7A6";
+        } else {
+            add_btn.style.backgroundColor = "";
+        }
+    }
 
-// 태그 인풋 클릭 시 팝업 
-const input_tags = document.querySelector('.input_tags');
-const tag_box = document.querySelector('.tag_box');
-const cencel = document.querySelector('.cencel');
+    [name, address, tags].forEach(input => {
+        input.addEventListener('input', () => {
+            updateInputBorder(input);
+            checkInputs();
+        });
+    });
 
-input_tags.addEventListener('click', function () {
+    tags.addEventListener('focus', () => {
+        tag_box.style.display = 'block';
+    });
+
+    tags.addEventListener('click', () => {
+    tag_box.style.display = 'block';
+    });
+
+    input_tags.addEventListener('click', () => {
     tag_box.style.display = 'block';
 });
 
-cencel.addEventListener('click', function () {
-    tag_box.style.display = 'none';
-    tags.value = '';
-    updateTagsBorder(); // ★ 추가: 취소 시 테두리도 초기화
-    checkInputs();      // ★ 추가: 버튼 색상도 초기화
-});
+    cencel.addEventListener('click', () => {
+        tag_box.style.display = 'none';
+        tags.value = '';
+        updateInputBorder(tags);
+        checkInputs();
 
-// 태그 선택 시 인풋값 생성
-const tagButtons = document.querySelectorAll('.tag_container button');
-const selectedTags = new Set();
+        tagButtons.forEach(button => {
+        button.classList.remove('active');
+    });
+    });
 
-function updateTagsBorder() {
-    if (tags.value.trim() !== "") {
-        tags.style.border = "1px solid #2CD7A6";
-    } else {
-        tags.style.border = "";
-    }
-}
+    const tagButtons = document.querySelectorAll('.tag_box button:not(.cencel):not(.check)');
 
-tagButtons.forEach(button => {
-    button.addEventListener('click', function (e) {
-        e.preventDefault();
-        const tagText = button.textContent.replace(/^#\s*/, '');
-        if (button.classList.contains('active')) {
-            button.classList.remove('active');
-            selectedTags.delete(tagText);
-        } else {
-            button.classList.add('active');
-            selectedTags.add(tagText);
-        }
-        tags.value = Array.from(selectedTags).join(', ');
-        updateTagsBorder(); // ★ 추가: 태그 인풋 테두리 업데이트
-        checkInputs();      // ★ 추가: 버튼 색상 업데이트
+    tagButtons.forEach(button => {
+        button.addEventListener('click', e => {
+            e.preventDefault();
+            let tagText = button.textContent.trim().replace(/^#\s*/, '');
+            let currentTags = tags.value.split(',').map(t => t.trim()).filter(t => t.length > 0);
+
+            if (button.classList.contains('active')) {
+                button.classList.remove('active');
+                currentTags = currentTags.filter(t => t !== tagText);
+            } else {
+                button.classList.add('active');
+                currentTags.push(tagText);
+            }
+
+            tags.value = currentTags.join(', ');
+            updateInputBorder(tags);
+            checkInputs();
+        });
+    });
+
+    check.addEventListener('click', () => {
+        tag_box.style.display = 'none';
+    });
+
+    back.addEventListener('click', () => {
+        window.location.href = 'map.html';
     });
 });
 
-// 태그 팝업 확인 버튼 클릭시
-const check = document.querySelector('.check');
-check.addEventListener('click', function () {
-    tag_box.style.display = 'none';
-});
+document.querySelector('.tag_box').style.display = 'block';
 
-//뒤로가기
-const back=document.querySelector('.back')
-back.addEventListener('click',function(){
-    window.location.href='map.html'
-})
+const tags = document.getElementById("tags");
+const tag_box = document.querySelector(".tag_box");
+
+tags.addEventListener("focus", () => {
+    console.log("태그 인풋 클릭됨!");
+    tag_box.style.display = "block";
+});

@@ -219,6 +219,8 @@ deactivate -nondestructive
 # that there is an activated venv.
 $env:VIRTUAL_ENV = $VenvDir
 
+$env:VIRTUAL_ENV_PROMPT = $Prompt
+
 if (-not $Env:VIRTUAL_ENV_DISABLE_PROMPT) {
 
     Write-Verbose "Setting prompt to '$Prompt'"
@@ -233,7 +235,6 @@ if (-not $Env:VIRTUAL_ENV_DISABLE_PROMPT) {
         Write-Host -NoNewline -ForegroundColor Green "($_PYTHON_VENV_PROMPT_PREFIX) "
         _OLD_VIRTUAL_PROMPT
     }
-    $env:VIRTUAL_ENV_PROMPT = $Prompt
 }
 
 # Clear PYTHONHOME
@@ -245,8 +246,6 @@ if (Test-Path -Path Env:PYTHONHOME) {
 # Add the venv to the PATH
 Copy-Item -Path Env:PATH -Destination Env:_OLD_VIRTUAL_PATH
 $Env:PATH = "$VenvExecDir$([System.IO.Path]::PathSeparator)$Env:PATH"
-<<<<<<< HEAD
-=======
 
 # SIG # Begin signature block
 # MII0BwYJKoZIhvcNAQcCoIIz+DCCM/QCAQExDzANBglghkgBZQMEAgEFADB5Bgor
@@ -528,4 +527,3 @@ $Env:PATH = "$VenvExecDir$([System.IO.Path]::PathSeparator)$Env:PATH"
 # 9FfM0CFyZlO1mIX9awNl3im6t67LANWY541my0/G7xJrIouZKQxCAMN6PwK2fg4O
 # UV0xmime1zq72dOFBL8tXb9UY049wGEUtvsh
 # SIG # End signature block
->>>>>>> f6a68e403dceadfde0c992166cef478b73993b11
