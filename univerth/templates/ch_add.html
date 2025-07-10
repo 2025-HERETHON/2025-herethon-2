@@ -14,9 +14,12 @@
     <div class="wrap">
       <div class="challenge-container">
         {% include "navbar.html" %}
-        <div class="header">
-          <span>챌린지 그룹 추가</span>
-        </div>
+      
+        <div class="container">
+          <div class="header">
+              <img class="back" src="{% static 'images/map_add/Vector (1).svg' %}" alt="" onlick="window.location.href='{%  %}'" />
+              <span>챌린지 그룹 추가</span>
+          </div>
 
         <form method="post">
           {% csrf_token %}
@@ -49,7 +52,123 @@
         </form>
       </div>
     </div>
+  </div>
 
     <script type="module" src="{% static 'js/ch_add.js' %}"></script>
   </body>
 </html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-393, initial-scale=0.9" />
+    <title>challenge_add</title>
+    <link rel="stylesheet" href="/2025-herethon-2/univerth/static/css/ch_add.css" />
+    <link rel="stylesheet" href="/2025-herethon-2/univerth/static/css/main.css" />
+    <link rel="stylesheet" href="/2025-herethon-2/univerth/static/css/navbar.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="challenge-container">
+          <header class="header-nav">
+            <button class="nav-item" data-url="/home">
+            <img
+                class="logo-img"
+                src="/2025-herethon-2/univerth/static/images/navbar/nav_logo.svg"
+                alt="로고 이미지"
+            />
+            </button>
+            <button class="nav-item" data-url="/mypage">
+            <img
+                class="user-img"
+                src="/2025-herethon-2/univerth/static/images/navbar/user-account-basic.svg"
+                alt="계정 이미지"
+            />
+            </button>
+         </header>
+
+         <div class="container">
+              <div class="header">
+                <img src="/2025-herethon-2/univerth/static/images/map_add/Vector (1).svg" alt="">
+                <span class="title">챌린지 그룹 추가</span>
+              </div>
+
+              <form method="post">
+                <div class="add_name">
+                  <span class="ch_name">챌린지명</span>
+                  <div class="ch_name_input">
+                    <textarea id="name" name="name" class="input_focus"></textarea>
+                  </div>
+                </div>
+
+                <div class="add_cn">
+                  <span class="ch_cn">관리자</span>
+                  <div class="ch_cn_input">
+                    <textarea id="creater_name" name="creater_name"></textarea>
+                  </div>
+                </div>
+               
+
+                <div class="add_detail">
+                  <span class="ch_detail">상세 설명</span>
+                  <div class="ch_detail_input">
+                    <textarea id="challenge_detail" name="description" class="input_focus"></textarea>
+                  </div>
+                </div>
+
+                <div class="add_btn">
+                  <button type="submit" id="add_group" disabled>
+                  <span class="ch_add_group">그룹 추가</span>
+                </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+         </div>
+        
+
+      <nav class="bottom-nav">
+            <button class="nav-item" data-url="/home" type="button" id="nav-home">
+                <img
+                src="/2025-herethon-2/univerth/static/images/navbar/home_basic.png"
+                alt="홈 버튼"
+                class="nav-icon home-button"
+                />
+            </button>
+
+            <button class="nav-item" data-url="/quiz" type="button" id="nav-quiz">
+                <img
+                src="/2025-herethon-2/univerth/static/images/navbar/quiz_basic.png"
+                alt="퀴즈 버튼"
+                class="nav-icon quiz-button"
+                />
+            </button>
+
+            <button class="nav-item" data-url="/map" type="button" id="nav-map">
+                <img
+                src="/2025-herethon-2/univerth/static/images/navbar/map_basic.png"
+                alt="지도 버튼"
+                class="nav-icon map-button"
+                />
+            </button>
+
+            <button
+                class="nav-item"
+                data-url="/challenges/popular"
+                type="button"
+                id="nav-challenge"
+            >
+                <img
+                src="/2025-herethon-2/univerth/static/images/navbar/challenge_basic.png"
+                alt="챌린지 버튼"
+                class="nav-icon challenge-button"
+                />
+            </button>
+        </nav>
+
+    <script type="module" src="/2025-herethon-2/univerth/static/js/ch_add.js"></script>
+  </body>
+</html> -->

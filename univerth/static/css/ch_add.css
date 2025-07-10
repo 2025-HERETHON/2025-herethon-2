@@ -15,12 +15,16 @@ body {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    padding: 0 20px;
+    justify-content: center;
     position: relative;
 }
 
+.container{
+    padding: 0 20px;
+}
+
 .header {
-    font-family: "NPS font-Bold", Helvetica;
+    font-family: "NPS font", Helvetica;
     font-weight: 700;
     color: #000000;
     font-size: 25px;
@@ -29,31 +33,52 @@ body {
     padding: 20px 0px 20px 0px;
 }
 
+
+.header>.title{
+    font-family: "NPS font";
+}
+.add_name{
+    margin-bottom: 20px;
+}
+
 .ch_name, .ch_cn, .ch_detail {
     margin-left: 10px;
     font-family: "SUIT-SemiBold", Helvetica;
-    font-weight: 600;
+    font-weight: 500;
     color: #000000;
     font-size: 15px;
     letter-spacing: 0;
     line-height: normal;
 }
 
+.ch_name_input textarea{
+    padding: 11px 11px;
+}
+
+
 .ch_name_input textarea, .ch_cn_input textarea {
-    margin-bottom: 20px;
     width: 353px;
     height: 55px;
     border-radius: 10px;
     border: 1.5px solid;
     border-color: #9e9e9e;
     box-sizing: border-box;
-    padding: 20px;
     font-family: "SUIT-Regular", Helvetica;
     font-weight: 400;
     color: #000000;
     font-size: 20px;
     letter-spacing: 0;
     resize: none;
+    overflow: hidden;
+}
+
+.input_focus{
+    padding-top: 0;
+}
+
+.input_focus:focus{
+    border: solid 1px #2cd7a6;
+    outline: none;
 }
 
 #name.active, #creater_name.active, #challenge_detail.active {
@@ -75,6 +100,7 @@ body {
     font-size: 20px;
     letter-spacing: 0;
     resize: none;
+    padding: 13px 11px;
 }
 
 #add_group:disabled {
@@ -114,9 +140,14 @@ body {
     cursor: pointer;
 }
 
+.add_btn{
+    position: absolute;
+    top: 637px;
+}
+
 .ch_add_group {
     font-family: "SUIT-Bold", Helvetica;
-    font-weight: 700;
+    font-weight: 500;
     color: #ffffff;
     font-size: 20px;
     letter-spacing: 0;
