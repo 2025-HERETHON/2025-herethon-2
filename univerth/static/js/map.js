@@ -18,5 +18,5 @@ container.innerHTML = `
 
 const map_add=document.querySelector('.map_add')
 map_add.addEventListener('click',function(){
-  window.location.href="map_add.html"
+  window.location.href= "map_add.html"
 })
