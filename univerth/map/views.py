@@ -49,8 +49,7 @@ def new_store(request):
         return JsonResponse({'message':'정상적으로 추가되었습니다.'})
             
     else:
-        return render(request, "home.html")
-        #return render(request, "map_add.html")
+        return render(request, "map_add.html")
 
 
 def get_long_lat(address):
@@ -76,6 +75,22 @@ def show_store(request, id):
     }
     return JsonResponse(store_detail)
 
+
 #메인 지도 함수
 def map_main(request):
-    return render(request, 'map_main.html')
+    user = request.user
+    univ = user.univ.univ_name
+    return render(request, 'map.html', {'user_univ': univ})
+
+def get_stores(request):
+    stores = []
+    store_all = GreenStore.objects.all()
+    for s in store_all:
+        store = {
+            'id': s.id,
+            'name': s.name,
+            'longitude': s.longitude,
+            'latitude': s.latitude
+        }
+        stores.append(store)
+    return JsonResponse({'stores':stores})

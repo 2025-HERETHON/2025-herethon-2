@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>challenge_group</title>
     <link rel="stylesheet" href="{% static 'css/ch_group.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
 </head>
 <body>
+  <div id="root">
     <div class="wrap">
+        {% include "navbar.html" %}
         <div class="ch-header">
             <span class="ch">챌린지</span>
             <div class="ch-button">
@@ -24,7 +28,11 @@
     
         <div id="popular_challenges">
             {% for challenge in popular_challenges %}
+
+            <a href="{% url 'challenges:challenge_detail' challenge.id %}">
+
             {% if challenge.id %}
+
             <div class="card" data-id="{{ challenge.id }}">
                 <div class="card-top">
                     <h3 class="card-title">{{ challenge.name }}</h3>
@@ -49,5 +57,6 @@
 
         <script src="{% static 'js/ch_group.js' %}"></script>
     </div>
+  </div>
 </body>
 </html>

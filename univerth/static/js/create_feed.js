@@ -36,11 +36,11 @@ let selectedFiles = [];
 
 photoInput.addEventListener("change", () => {
     const newFiles = Array.from(photoInput.files);
-    selectedFiles = selectedFiles.concat(newFiles).slice(0, 4);
+    selectedFiles = selectedFiles.concat(newFiles).slice(0, 2);
 
     preview.innerHTML = "";
 
-    photoCount.textContent = `${selectedFiles.length}/4`;
+    photoCount.textContent = `${selectedFiles.length}/2`;
 
     selectedFiles.forEach(file => {
         const reader = new FileReader();

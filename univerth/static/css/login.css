@@ -75,6 +75,7 @@ input:focus{
     gap: 6px;
     padding: 15px 20px;
     display:none;
+    top: 470px;
 }
 
 .error_msg{

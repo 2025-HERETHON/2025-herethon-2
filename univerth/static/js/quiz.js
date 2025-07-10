@@ -13,6 +13,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     console.log("문제 로드 - quizData:", quizData);
 
     quizId = quizData.quiz_id;
+    console.log("quizId:", quizId);
     userId = document.body.dataset.userId; // 백엔드에서 넘긴 유저 ID 사용
 
     // 날짜 및 카테고리 표시

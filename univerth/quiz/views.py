@@ -28,6 +28,9 @@ def check_answer(request):
             answer_option = Option.objects.get(id=quiz.answer)
         except Option.DoesNotExist:
             return JsonResponse({'error':'정답을 불러오지 못했습니다.'})
+        
+        if UserQuiz.objects.filter(user=request.user, quiz=quiz, is_answered=True).exists():
+            return JsonResponse({'error': '이미 참여한 퀴즈입니다.', 'is_answered': True})
 
         if request.user.is_authenticated:
             request.user.user_point += 1
