@@ -78,7 +78,9 @@ def show_store(request, id):
 
 #메인 지도 함수
 def map_main(request):
-    return render(request, 'map.html')
+    user = request.user
+    univ = user.univ.univ_name
+    return render(request, 'map.html', {'user_univ': univ})
 
 def get_stores(request):
     stores = []
