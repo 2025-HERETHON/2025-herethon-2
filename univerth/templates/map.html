@@ -23,9 +23,7 @@
           <div id="map"></div>
 
           <!-- 장소 추가 버튼 -->
-          <button
-            class="map_add"
-          >
+          <button class="map_add">
             <img
               src="{% static 'images/map/map_add.png' %}"
               width="70"
@@ -42,28 +40,19 @@
               <div class="tags"></div>
               <div class="map_info_close">
                 <button class="close-btn">접기</button>
-
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-<script id="store-data" type="application/json">
-  [
-    {
-      "name": "치코커피",
-      "address": "서울 성북구 장월로1라길 13",
-      "tags": ["종이빨대", "비건식당"]
-    },
-    {
-      "name": "에코편의점",
-      "address": "솔샘로 120",
-      "tags": ["다회용기", "텀블러 할인"]
-    }
-  ]
-</script>
 
+    <script>
+      const userUniv = "{{ user_univ }}"; //내학교 이름 받기
+    </script>
+    <script>
+  const addUrl = "{% url 'map:new_store' %}"; 
+</script>
     <!-- 모듈 스크립트 연결 -->
     <script type="module" src="{% static 'js/map.js' %}"></script>
   </body>

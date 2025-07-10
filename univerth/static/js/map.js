@@ -1,39 +1,51 @@
-import { loadNavbar } from "./main.js"; // 공통 네비게이션 로딩
+import { loadNavbar } from "./main.js";
 
 const imageSrc = "../static/images/map/custom_marker.png";
 const imageSize = new kakao.maps.Size(44, 54);
 const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
 window.addEventListener("DOMContentLoaded", async () => {
-  await loadNavbar(".map-container");
-
-  const rawData = document.getElementById("store-data")?.textContent.trim();
-  let storeData = [];
-
-  if (rawData) {
-    try {
-      storeData = JSON.parse(rawData);
-    } catch (err) {
-      console.error("JSON 파싱 에러:", err);
-    }
-  } else {
-    console.warn("store-data 스크립트가 비어 있습니다.");
-  }
+  loadNavbar(".map-container");
 
   const mapContainer = document.getElementById("map");
-  const mapOption = {
-    center: new kakao.maps.LatLng(37.5665, 126.9780), // 서울시청 중심
-    level: 5,
-  };
-  const map = new kakao.maps.Map(mapContainer, mapOption);
-  const geocoder = new kakao.maps.services.Geocoder();
+  const places = new kakao.maps.services.Places();
 
-  storeData.forEach((store) => {
-    if (!store.address) return;
+  // 대학 이름 → 위치 좌표 변환
+  places.keywordSearch(userUniv, async (result, status) => {
+    if (status !== kakao.maps.services.Status.OK) {
+      console.error("학교 키워드 검색 실패:", userUniv);
+      return;
+    }
 
-    geocoder.addressSearch(store.address, (result, status) => {
-      if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    const lat = result[0].y;
+    const lng = result[0].x;
+    const center = new kakao.maps.LatLng(lat, lng);
+
+    const mapOption = {
+      center: center,
+      level: 5,
+    };
+    const map = new kakao.maps.Map(mapContainer, mapOption);
+    // 초기 카카오맵 띄워질 위치 = 나의 대학 -> 대학 마커로 표시
+    const univMarker = new kakao.maps.Marker({
+      position: center,
+      map: map,
+      title: "내 대학",
+      image: new kakao.maps.MarkerImage(
+        "../static/images/home/ranking_myUniv.png",
+        new kakao.maps.Size(40, 30)
+      )
+    });
+    // 마커 찍기 위한 장소데이터 요청
+    try {
+      const response = await fetch("/map/store/list/");
+      const data = await response.json();
+      const storeList = data.stores;
+
+      storeList.forEach((store) => {
+        if (store.latitude == null || store.longitude == null) return;
+
+        const coords = new kakao.maps.LatLng(store.longitude, store.latitude);
 
         const marker = new kakao.maps.Marker({
           map: map,
@@ -41,51 +53,47 @@ window.addEventListener("DOMContentLoaded", async () => {
           image: markerImage,
         });
 
-        kakao.maps.event.addListener(marker, "click", () => {
-          showStoreInfo(store);
-          map.panTo(coords);
+        //마커 클릭시 상세 정보 요청
+        kakao.maps.event.addListener(marker, "click", async () => {
+          try {
+            const detailRes = await fetch(`/map/store/${store.id}/`);
+            const detail = await detailRes.json();
+            if (detail.success) {
+              showStoreInfo(detail);
+              map.panTo(coords);
+            }
+          } catch (err) {
+            console.error("상세 정보 에러:", err);
+          }
         });
-      } else {
-        console.warn(`주소 변환 실패: ${store.name} - ${store.address}`);
-      }
+      });
+    } catch (error) {
+      console.error("가게 리스트 요청 에러:", error);
+    }
+
+    //모달에 상세 정보 표시
+    function showStoreInfo(store) {
+      const wrap = document.querySelector(".map_wrap");
+      const infoBox = document.getElementById("map_info");
+
+      infoBox.querySelector(".name").textContent = store.name;
+      infoBox.querySelector(".address").textContent = store.address;
+      infoBox.querySelector(".tags").innerHTML = store.tags
+        .map((tag) => `<span class="tag">#${tag}</span>`)
+        .join(" ");
+
+      wrap.style.display = "block";
+      wrap.classList.add("active");
+    }
+
+    // 모달 닫기
+    document.querySelector(".close-btn").addEventListener("click", () => {
+      document.querySelector(".map_wrap").classList.remove("active");
+    });
+
+    // 장소 추가 버튼
+    document.querySelector(".map_add").addEventListener("click", function () {
+      window.location.href = addUrl;
     });
   });
-
-  function showStoreInfo(store) {
-    const wrap = document.querySelector(".map_wrap");
-    const infoBox = document.getElementById("map_info");
-
-    infoBox.querySelector(".name").textContent = store.name;
-    infoBox.querySelector(".address").textContent = store.address;
-    infoBox.querySelector(".tags").innerHTML = store.tags
-      .map((tag) => `<span class="tag">#${tag}</span>`)
-      .join(" ");
-
-    wrap.classList.add("active");
-  }
-
-  document.querySelector(".close-btn").addEventListener("click", () => {
-    document.querySelector(".map_wrap").classList.remove("active");
-  });
 });
-
-
-function showStoreInfo(store) {
-  const wrap = document.querySelector(".map_wrap");
-  const infoBox = document.getElementById("map_info");
-
-  infoBox.querySelector(".name").textContent = store.name;
-  infoBox.querySelector(".address").textContent = store.address;
-  infoBox.querySelector(".tags").innerHTML = store.tags
-    .map((tag) => `<span class="tag"># ${tag}</span>`)
-    .join(" ");
-
-  wrap.style.display = "block"; // 혹시 display:none 걸려있으면 복구
-  wrap.classList.add("active");
-}
-
-
-const map_add=document.querySelector('.map_add')
-map_add.addEventListener('click',function(){
-  window.location.href= "map_add.html"
-})
