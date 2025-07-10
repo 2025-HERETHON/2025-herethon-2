@@ -50,7 +50,13 @@
 
           <div class="icon">
             <div class="like">
-              <div class="likeicon"><img src="{% static 'images/challenges/img7.svg' %}" /></div>
+              <div class="likeicon" onclick="addLike({{ feed.id }})">
+                {% if feed.is_liked %}
+                  <img src="{% static 'images/challenges/img13.svg' %}" />
+                {% else %}
+                  <img src="{% static 'images/challenges/img7.svg' %}" />
+                {% endif %}
+              </div>
               <div class="like_count">{{ feed.like.count }}</div>
             </div>
             <div class="comment">

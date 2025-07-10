@@ -9,6 +9,8 @@ def challenge_detail(request, id):
     challenge=get_object_or_404(Challenge, id=id) 
     feeds = challenge.challenge_feeds.all().order_by('-created_at')
     is_joined = challenge.participants.filter(id=request.user.id).exists()
+    for feed in feeds:
+        feed.is_liked = feed.like.filter(id=request.user.id).exists()
     return render(request, 'detail_ch.html', {'challenge':challenge, 'feeds':feeds, 'is_joined': is_joined})
 
 #챌린지 참여 함수
@@ -37,9 +39,10 @@ def exit_challenge(request, id):
         return redirect('challenges:challenge_detail', id=challenge.id)
     
 #좋아요 & 좋아요 취소 데이터
+@csrf_exempt
 @require_POST
-def toggle_like(request, feed_id):
-    feed = get_object_or_404(Feed, id=feed_id)
+def toggle_like(request, id):
+    feed = get_object_or_404(Feed, id=id)
     user = request.user
 
     if user in feed.like.all():
