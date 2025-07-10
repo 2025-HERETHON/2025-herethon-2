@@ -11,6 +11,7 @@ def challenge_detail(request, id):
     return render(request, 'detail_ch.html', {'challenge':challenge, 'feeds':feeds})
 
 #챌린지 참여 함수
+@csrf_exempt
 def join_challenge(request, id):
     challenge=get_object_or_404(Challenge, id=id)
     user=request.user
@@ -19,8 +20,10 @@ def join_challenge(request, id):
         challenge.participants.add(user)
         challenge.participant_num+=1
         challenge.save()
-        return redirect('challenges:challenge_detail', id=challenge.id)
-    
+        #return redirect('challenges:challenge_detail', id=challenge.id)
+        return JsonResponse({'message':'가입되었습니다.'})
+    return JsonResponse({'error': '이미 가입되었습니다.'})
+
 #챌린지 나가기 함수 
 def exit_challenge(request, id):
     challenge=get_object_or_404(Challenge, id=id)

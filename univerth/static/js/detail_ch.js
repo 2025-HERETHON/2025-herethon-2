@@ -146,16 +146,26 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // 가입 후 버튼 텍스트 변경 및 클릭 이벤트 변경
-    function convertWrite() {
+    function convertWrite(challengeId) {
         closeModal();
 
-        const btnText = document.getElementById("jointext");
-        btnText.innerText = "글쓰기";
-
-        const actionBtn = document.getElementById("joinbtn");
-        actionBtn.onclick = function () {
-            location.href = 'univerth/templates/create_feed.html';
-        };
+        fetch(`/challenges/join-challenge/${challengeId}/`, {
+                method: 'POST'
+        })
+        .then(response => response.json().then(data => ({ok: response.ok, data})))
+        .then(({ok, data}) => {
+            if (!ok || data.error ) {
+                alert('알 수 없는 오류가 발생했습니다.')
+                return;
+            }
+            const btnText = document.getElementById("jointext");
+            btnText.innerText = "글쓰기";
+        
+            const actionBtn = document.getElementById("joinbtn");
+            actionBtn.onclick = function () {
+                location.href = `/challenges/create-feed/${challengeId}/`;
+            };
+        });
     }
 
     // 댓글 모달 열기/닫기

@@ -119,7 +119,7 @@
             <span class="chjoinmodaltext1">'{{ challenge.challenge_name }}' 그룹에</span>
             <span class="chjoinmodaltext2">가입하시겠습니까?</span>
             <div class="mdjoinbtn">
-              <button class="okbtn" onClick="convertWrite()"><div class="oktext">확인</div></button>
+              <button class="okbtn" onClick="convertWrite({{ challenge.id }})"><div class="oktext">확인</div></button>
               <button class="ccbtn" onclick="closeModal()"><div class="cctext">취소</div></button>
             </div>
           </div>
