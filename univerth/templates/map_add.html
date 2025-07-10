@@ -1,110 +1,71 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/2025-herethon-2/univerth/static/css/main.css" />
-    <link rel="stylesheet" href="/2025-herethon-2/univerth/static/css/map_add.css" />
-    <link rel="stylesheet" href="/2025-herethon-2/univerth/static/css/navbar.css" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/map_add.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
 </head>
 <body>
     <div id="root">
         <div class="app-wrapper">
-            <!-- {% include "navbar.html" %} -->
-            <header class="header-nav">
-                <button>
-                <img
-                    class="logo-img"
-                    src="../static/images/navbar/logo_icon.png"
-                    alt="로고 이미지"
-                />
-                </button>
-                <button>
-                <img
-                    class="user-img"
-                    src="../static/images/navbar/user-account-basic.svg"
-                    alt="계정 이미지"
-                />
-                </button>
-            </header>
+            {% include "navbar.html" %}
+            
             <main>
                 <div class="header">
-                    <img class="back" src="/2025-herethon-2/univerth/static/images/map_add/Vector (1).svg" alt="">
+                    <img class="back" src="{% static 'images/map_add/Vector (1).svg' %}" alt="">
                     <div class="title">친환경 장소 추가</div>
                 </div>
-                <form action="" method="post">
+                <form action="" method="post" id="addForm">
+                    {% csrf_token %}
                     <div class="input_name">
                         <label for="">상호명</label>
-                        <input type="text" name="name" class="name">
+                        <input type="text" name="name" class="name" id="name" />
                     </div>
                     <div class="input_address">
                         <label for="">주소</label>
-                        <input type="text" name="address" class="address">
+                        <input type="text" name="address" class="address" id="address" />
                     </div>
                     <div class="input_tags">
                         <label for="">태그</label>
-                        <input type="text" name="tags" class="tags" placeholder="태그 선택">
+                        <input
+                        type="text"
+                        name="tags"
+                        class="tags"
+                        id="tags"
+                        placeholder="태그 선택"
+                        autocomplete="off"
+                    />
                     </div>
                     <button type="submit" class="add_btn">장소 추가</button>
                 </form>
                 <div class="tag_box">
                     <header>
-                        <button class="cencel">취소</button>
-                        <button class="check">확인</button>
+                        <button type="button" class="cencel">취소</button>
+                        <button type="button" class="check">확인</button>
                     </header>
                     <p>친환경 태그</p>
                     <div class="tag_container">
-                       <div class="container1">
-                            <button type="submit" class="tag1"># 다회용기 포장</button>
-                            <button type="submit" class="tag2"># 다회용기 할인</button>
-                            <button type="submit" class="tag3"># 종이 빨대</button>
-                       </div>
-                       <div class="container2">
-                            <button type="submit" class="tag4"># 친환경 포장재</button>
-                            <button type="submit" class="tag5"># 비건</button>
-                            <button type="submit" class="tag6"># 기타</button>
-                       </div>
+                        <div class="container1">
+                            <button type="button" class="tag1"># 다회용기 포장</button>
+                            <button type="button" class="tag2"># 다회용기 할인</button>
+                            <button type="button" class="tag3"># 종이 빨대</button>
+                        </div>
+                        <div class="container2">
+                            <button type="button" class="tag4"># 친환경 포장재</button>
+                            <button type="button" class="tag5"># 비건</button>
+                            <button type="button" class="tag6"># 기타</button>
+                        </div>
                     </div>
                 </div>
             </main>
-            <nav class="bottom-nav">
-                <button class="nav-item" data-url="/home" type="button" id="nav-home">
-                <img
-                src="../static/images/navbar/home_basic.png"
-                alt="홈 버튼"
-                class="nav-icon home-button"
-                />
-                </button>
-                <button class="nav-item" data-url="/quiz" type="button" id="nav-quiz">
-                    <img
-                    src="../static/images/navbar/quiz_basic.png"
-                    alt="퀴즈 버튼"
-                    class="nav-icon quiz-button"
-                    />
-                </button>
-                <button class="nav-item" data-url="/map" type="button" id="nav-map">
-                    <img
-                    src="../static/images/navbar/map_basic.png"
-                    alt="지도 버튼"
-                    class="nav-icon map-button"
-                    />
-                </button>
-                <button
-                    class="nav-item"
-                    data-url="/challenge"
-                    type="button"
-                    id="nav-challenge"
-                    >
-                    <img
-                    src="../static/images/navbar/challenge_basic.png"
-                    alt="챌린지 버튼"
-                    class="nav-icon challenge-button"
-                    />
-                </button>
-                <script src="/2025-herethon-2/univerth/static/js/map_add.js"></script>
-            </nav>
+            
+            
         </div>
     </div>
+    <script type="module" src="{% static 'js/map_add.js' %}"></script>
 </body>
 </html>
