@@ -88,7 +88,9 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     // 모달 닫기
     document.querySelector(".close-btn").addEventListener("click", () => {
-      document.querySelector(".map_wrap").classList.remove("active");
+      const modal = document.querySelector(".map_wrap");
+      modal.classList.remove("active");
+      modal.style.display = "none";
     });
 
     // 장소 추가 버튼

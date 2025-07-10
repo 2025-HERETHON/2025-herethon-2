@@ -33,4 +33,5 @@ export function loadNavbar(containerSelector = ".home-container") {
       if (logoImg) logoImg.style.transform = "translateX(30px)";
       break;
   }
+  
 }
