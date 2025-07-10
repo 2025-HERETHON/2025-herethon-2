@@ -8,7 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 def challenge_detail(request, id): 
     challenge=get_object_or_404(Challenge, id=id) 
     feeds = challenge.challenge_feeds.all().order_by('-created_at')
-    return render(request, 'detail_ch.html', {'challenge':challenge, 'feeds':feeds})
+    is_joined = challenge.participants.filter(id=request.user.id).exists()
+    return render(request, 'detail_ch.html', {'challenge':challenge, 'feeds':feeds, 'is_joined': is_joined})
 
 #챌린지 참여 함수
 @csrf_exempt
