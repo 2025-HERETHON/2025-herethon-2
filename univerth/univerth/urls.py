@@ -21,6 +21,8 @@ from quiz.views import *
 from challenges.views import *
 from users.views_home import *
 from users.views_mypage import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,3 +44,6 @@ urlpatterns = [
     path('', auth, name='auth'),
     path('map/', include('map.urls', namespace='map')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

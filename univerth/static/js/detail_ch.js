@@ -169,17 +169,26 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // 슬라이드 기능 (이미지, 점)
-    function showSlide(index) {
-        const slides = document.querySelectorAll('.carousel-img');
-        const dots = document.querySelectorAll('.dot');
+    function showSlide(feedId, index) {
+        // const slides = document.querySelectorAll('.carousel-img');
+        // const dots = document.querySelectorAll('.dot');
+        const images = document.querySelectorAll(`.carousel-img.feed-${feedId}`);
+        const dots = document.querySelectorAll(`#carousel-${feedId} .dot`);
 
-        slides.forEach((img, i) => {
-            img.classList.remove('active');
-            dots[i].classList.remove('dotactive');
+        // slides.forEach((img, i) => {
+        //     img.classList.remove('active');
+        //     dots[i].classList.remove('dotactive');
+        // });
+
+        // slides[index].classList.add('active');
+        // dots[index].classList.add('dotactive');
+          images.forEach((img, i) => {
+            img.classList.toggle("active", i === index);
         });
 
-        slides[index].classList.add('active');
-        dots[index].classList.add('dotactive');
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("dotactive", i === index);
+        });
     }
 
     // 댓글 입력창 활성화 스타일 토글
