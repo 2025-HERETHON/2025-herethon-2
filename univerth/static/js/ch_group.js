@@ -1,3 +1,10 @@
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+        const id = card.dataset.id;
+        window.location.href = `/challenges/challenge-detail/${id}/`;
+    });
+})
+
 /*
 const popular_challenges = [
 	{
