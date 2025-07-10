@@ -132,7 +132,6 @@ def check_verification(request):
     else:
         return JsonResponse({'error': '이메일 인증을 완료하세요.'})
 
-@csrf_exempt
 def login(request):
     if request.method == "POST":
         username = request.POST.get("username")
