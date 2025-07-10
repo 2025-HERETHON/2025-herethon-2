@@ -1,4 +1,4 @@
-import { loadNavbar } from "./main.js";
+//import { loadNavbar } from "./main.js"; //html에 추가
 
 document.addEventListener('DOMContentLoaded', function () {
     // 가입 모달 열기/닫기

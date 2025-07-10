@@ -81,7 +81,13 @@
                 <span class="content">{{ feed.content }}</span>
                 <div class="icon">
                   <div class="like">
-                    <div class="likeicon"><img src="{% static 'images/challenges/img7.svg' %}" /></div>
+                    <div class="likeicon" onclick="addLike({{ feed.id }})">
+                      {% if feed.is_liked %}
+                        <img src="{% static 'images/challenges/img13.svg' %}" />
+                      {% else %}
+                        <img src="{% static 'images/challenges/img7.svg' %}" />
+                      {% endif %}
+                    </div>
                     <div class="like_count">{{ feed.like.count }}</div>
                   </div>
                   <div class="comment">
@@ -110,11 +116,10 @@
               <div class="addcomment">
                 <input class="c-input" id="c-input-{{ feed.id }}" type="text" />
                 <button class="send-btn" onclick="addComment({{ challenge.id }}, {{ feed.id }})"><img src="{% static 'images/challenges/img10.svg' %}"/></button>
-
-          
               </div>
             </div>
           </div>
+
         </div>
           <span class="content">{{ feed.content }}</span>
         </div>
@@ -159,7 +164,8 @@
             </div>
           </div> {% endcomment %}
     </div>
-    <script src="{% static 'js/detail_ch.js' %}"></script>
+    <script type="module" src="{% static 'js/main.js' %}"></script>
+    <script type="module" src="{% static 'js/detail_ch.js' %}"></script>
 </body>
 </html>
 
