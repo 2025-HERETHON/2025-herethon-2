@@ -12,11 +12,12 @@
 <body>
     <div id="root">
         <div class="app-wrapper">
+          <div class="map-container">
             {% include "navbar.html" %}
             
             <main>
                 <div class="header">
-                    <img class="back" src="{% static 'images/map_add/Vector (1).svg' %}" alt="">
+                    <img class="back" src="{% static 'images/map_add/Vector (1).svg' %}" alt="" onlick="window.location.href='{% url 'map:map_main' %}'" />
                     <div class="title">친환경 장소 추가</div>
                 </div>
                 <form action="" method="post" id="addForm">
@@ -64,8 +65,7 @@
                     </div>
                 </div>
             </main>
-            
-            
+          </div>
         </div>
     </div>
     <script type="module" src="{% static 'js/map_add.js' %}"></script>

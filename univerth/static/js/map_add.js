@@ -1,3 +1,9 @@
+import { loadNavbar} from "./main.js";
+
+window.addEventListener("DOMContentLoaded", async () => {
+    loadNavbar(".map-container");
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // DOM 요소 선택
     const nameInput = document.querySelector('.name');
