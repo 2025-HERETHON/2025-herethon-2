@@ -1,9 +1,11 @@
 let selectedId = null; 
 
-function openModal(challengeId) {
+function openModal(btnElement, challengeId) {
+    const card = btnElement.closest('.card');
     selectedId = challengeId;
+    const selectedName = card.dataset.name;
     document.getElementById('choutmodal').style.display = 'block';
-
+    document.getElementById("modal-challenge-name").textContent = selectedName;
     const buttons = document.querySelectorAll(".btn_add");
     buttons.forEach(btn => {
         btn.disabled = true;
@@ -22,6 +24,22 @@ function closeModal() {
         btn.disabled = false
     });
 }
+
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+        const id = card.dataset.id;
+        window.location.href = `/challenges/challenge-detail/${id}/`;
+    });
+})
+
+// "탈퇴하기" 버튼 클릭 시 카드 클릭 이벤트 막기
+document.querySelectorAll('.outbtntext').forEach(btn => {
+    btn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const challengeId = btn.closest('.card').dataset.id;
+        openModal(challengeId);
+    });
+});
 
 // const joining_challenges = [
 // 	{

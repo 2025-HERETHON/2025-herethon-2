@@ -29,12 +29,13 @@ def challenge_list_popular(request):
     challenge_list = []
     for ch in top_challenges:
         challenge = {
+            'id': ch.id,
             'name': ch.challenge_name,
             'creator_name' : ch.creator.nickname,
             'participant_num' : ch.participant_num
         }
         challenge_list.append(challenge)
-    return render(request, "ch_group.html", {"popular_challenges":top_challenges})
+    return render(request, "ch_group.html", {"popular_challenges": challenge_list })
 
 @csrf_exempt
 def create_challenge(request):
@@ -51,6 +52,6 @@ def create_challenge(request):
         )
         
         challenge.participants.add(creator)
-        return redirect("challenges:feed_detail", feed_id=challenge.id)
+        return redirect("challenges:challenge_detail", id=challenge.id)
     else:
         return render(request, "ch_add.html")

@@ -38,3 +38,33 @@ function checkInputs() {
 [id, password].forEach(input => {
     input.addEventListener('input', checkInputs);
 });
+
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+    const csrfToken = formData.get('csrfmiddlewaretoken');
+
+    try {
+        const response = await fetch("/login/", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": csrfToken
+            },
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+            const errorBox = document.querySelector('.error');
+            errorBox.style.display = "flex";
+        } else if (data.message === "로그인 성공") {
+            window.location.href = "/home/";
+        }
+
+    } catch (error) {
+        alert("로그인 중 오류가 발생했습니다.");
+    }
+});

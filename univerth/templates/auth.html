@@ -1,19 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/2025-herethon-2/univerth/static/css/auth.css">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
 </head>
 <body>
     <div id="Main_wrap">
         <div class="logo">로고</div>
         <div class="btn">
-            <button class="login_btn">로그인</button>
-            <button class="account_btn">회원가입</button>
+            <button class="login_btn" onclick="location.href='{% url 'login' %}'">로그인</button>
+            <button class="account_btn" onclick="location.href='{% url 'signup_step1' %}'">회원가입</button>
         </div>
     </div>
-    <script src="/2025-herethon-2/univerth/static/js/auth.js"></script>
 </body>
 </html>

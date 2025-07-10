@@ -25,7 +25,7 @@ def signup_step1(request):
         univ_id = int(univ_id)
         request.session['univ_id'] = univ_id
 
-        return redirect("signup_step2")
+        return JsonResponse({"redirect_url":"/signup/step2/"})
     else:
         return render(request, "account01.html")
 
@@ -132,7 +132,6 @@ def check_verification(request):
     else:
         return JsonResponse({'error': '이메일 인증을 완료하세요.'})
 
-@csrf_exempt
 def login(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -141,17 +140,17 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            #return redirect("home")
-            return render(request, "home.html")
+            return JsonResponse({"message": "로그인 성공"})
         else:
             return JsonResponse({'error': '잘못된 아이디 혹은 비밀번호입니다.'})
     else:
         return render(request, "login.html")
     
 def check_username(request):
-    username = request.GET.get('username')
+    if request.method == "GET":
+        username = request.GET.get('username')
 
-    if User.objects.filter(username=username).exists():
-        return JsonResponse({'error': '이미 존재하는 아이디입니다.'})
-    else:
-        return JsonResponse({'message': '사용 가능한 아이디입니다.'})
+        if User.objects.filter(username=username).exists():
+            return JsonResponse({'error': '이미 존재하는 아이디입니다.'})
+        else:
+            return JsonResponse({'message': '사용 가능한 아이디입니다.'})

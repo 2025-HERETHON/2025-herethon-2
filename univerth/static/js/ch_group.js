@@ -1,3 +1,11 @@
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+        const id = card.dataset.id;
+        window.location.href = `/challenges/challenge-detail/${id}/`;
+    });
+})
+
+/*
 const popular_challenges = [
 	{
 		"name" : "캠퍼스 내 플로깅",
@@ -40,3 +48,4 @@ data.forEach(challenge => {
 }
 
 renderCards(popular_challenges);
+*/
