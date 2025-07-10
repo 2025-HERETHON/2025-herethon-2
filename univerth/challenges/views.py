@@ -108,6 +108,7 @@ def delete_feed(request, id):
     return redirect('challenges:challenge_detail', id=feed.challenge.id)
 
 #댓글 생성
+@csrf_exempt
 def create_comment(request, id):
     feed=get_object_or_404(Feed, id=id)
     if request.method=="POST":
@@ -118,8 +119,8 @@ def create_comment(request, id):
             content=content,
             writer=request.user
         )
-        return redirect('challenges:feed_detail', id)
-    return redirect('challenges:challenge_detail') 
+        return JsonResponse({'message':'댓글이 정상 등록되었습니다.'})
+    return JsonResponse({'error':'오류가 발생했습니다.'})
     # 댓글 수는 {{feed.comments.count}} 로 가져오기
 
 #댓글 수정

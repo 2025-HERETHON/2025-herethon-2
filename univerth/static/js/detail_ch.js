@@ -169,12 +169,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // 댓글 모달 열기/닫기
-    function openCommentModal() {
-        document.getElementById("commentModal").style.display = "block";
-        document.body.style.overflow = "hidden";  // 스크롤 막기
+    function openCommentModal(feedId) {
+        const modal = document.getElementById(`commentModal-${feedId}`);
+        if (modal) {
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden";  // 스크롤 막기
+        }
     }
-    function closeCommentModal() {
-        document.getElementById("commentModal").style.display = "none";
+    function closeCommentModal(modal) {
+        modal.style.display = "none";
         document.body.style.overflow = "auto";    // 스크롤 허용
     }
 
@@ -202,23 +205,62 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // 댓글 입력창 활성화 스타일 토글
-    const commentInput = document.getElementById('c-input');
-    if (commentInput) {
-        commentInput.addEventListener('input', () => {
-            if (commentInput.value.trim() !== "") {
-                commentInput.classList.add('active');
+    // const commentInput = document.getElementsByClassName('c-input');
+    // if (commentInput) {
+    //     commentInput.addEventListener('input', () => {
+    //         if (commentInput.value.trim() !== "") {
+    //             commentInput.classList.add('active');
+    //         } else {
+    //             commentInput.classList.remove('active');
+    //         }
+    //     });
+    // }
+    document.querySelectorAll('.c-input').forEach(input =>
+        input.addEventListener('input', () => {
+            if (input.value.trim() !== "") {
+                input.classList.add('active');
             } else {
-                commentInput.classList.remove('active');
+                input.classList.remove('active');
             }
-        });
-    }
+        })
+    )
+
+    // 댓글 추가
+    function addComment(challengeId, feedId) {
+        const input = document.getElementById(`c-input-${feedId}`)
+        console.log(input.value);
+        if(input) {
+            const formData = new FormData();
+            formData.append('content', input.value.trim());
+            fetch(`/challenges/feeds/${feedId}/create-comment/`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json().then(data => ({ok: response.ok, data})))
+            .then(({ok, data}) => {
+                if (!ok || data.error ) {
+                    alert('알 수 없는 오류가 발생했습니다.');
+                    return;
+                }
+                else {
+                    alert('댓글이 등록되었습니다.');
+                    window.location.href = `/challenges/challenge-detail/${challengeId}/`;
+                }
+            })
+        }
+    }    
 
     // 댓글 모달 외부 클릭 시 닫기
     window.addEventListener('click', function (e) {
-        const commentModal = document.getElementById("commentModal");
-        if (e.target === commentModal) {
-            closeCommentModal();
-        }
+        this.document.querySelectorAll('.modal-overlay').forEach(modal => {
+            if (e.target === modal) {
+                closeCommentModal(modal);
+            }
+        })
+        // const commentModal = document.getElementById("commentModal");
+        // if (e.target === commentModal) {
+        //     closeCommentModal();
+        // }
     });
 
     // 수정/삭제 모달 제어
@@ -282,6 +324,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.openCommentModal = openCommentModal;
     window.closeCommentModal = closeCommentModal;
     window.showSlide = showSlide;
+    window.addComment = addComment;
     window.openConfirmModal = function () {
         editDeleteModal.classList.add('hidden'); // 수정/삭제 모달 숨기기
         confirmModal.classList.remove('hidden'); // 삭제 확인 모달 보이기
