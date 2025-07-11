@@ -54,6 +54,8 @@ body {
     display: flex;
     gap: 5px;
     flex-direction: column;
+    padding: 0 20px;
+
 }
 
 .preview-box {
@@ -99,6 +101,7 @@ body {
     justify-content: center;
     cursor: pointer;
     margin-bottom: 20px;
+    padding: 0 20px;
 }
 
 #photo-box.active {
@@ -131,6 +134,8 @@ input[type="file"] {
 
 .addcontent {
     top: 216px;
+    padding: 0 20px;
+
 }
 
 #contenttext {
@@ -195,4 +200,7 @@ input[type="file"] {
     font-size: 20px;
     letter-spacing: 0;
     line-height: normal;
+}
+button{
+    margin: 0 20px;
 }
