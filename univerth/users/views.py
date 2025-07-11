@@ -114,14 +114,17 @@ def activate_email(request, token, email):
     try:
         email_verification = EmailVerification.objects.get(email=decoded_email)
     except:
-        return JsonResponse({'error': '이메일 인증 객체가 존재하지 않습니다.'})
+        #return JsonResponse({'error': '이메일 인증 객체가 존재하지 않습니다.'})
+        return render(request, "email_verification.html", {'error': '이메일 인증 객체가 존재하지 않습니다.'})
 
     if token == generated_token and not User.objects.filter(email=decoded_email).exists():
         email_verification.is_verified = True
         email_verification.save()
-        return JsonResponse({'message': '이메일이 성공적으로 인증되었습니다. 회원가입을 계속 진행해주세요.'})
+        #return JsonResponse({'message': '이메일이 성공적으로 인증되었습니다. 회원가입을 계속 진행해주세요.'})
+        return render(request, "email_verification.html", {'message': '이메일이 성공적으로 인증되었습니다. 회원가입을 계속 진행해주세요.'})
     else:
-        return JsonResponse({'error': '유효하지 않은 인증 요청입니다.'}, status=400)
+        #return JsonResponse({'error': '유효하지 않은 인증 요청입니다.'}, status=400)
+        return render(request, "email_verification.html", {'error': '유효하지 않은 인증 요청입니다.'})
     
 
 def check_verification(request):

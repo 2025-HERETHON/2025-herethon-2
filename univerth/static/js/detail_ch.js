@@ -338,6 +338,18 @@ console.log('feedId:', feedId, 'editingCommentId:', editingCommentId);
         });
     }
 
+    //나무 심기 모달 뜨기
+    const params = new URLSearchParams(window.location.search);
+  if (params.get('success') === '1') {
+    const modal = document.getElementById('tree');
+    modal.style.display = 'block';
+    setTimeout(() => {
+      modal.style.display = 'none';
+    }, 3000);
+  }
+
+    
+
     // 전역 함수로 등록 (HTML onclick 속성에서 호출 가능하도록)
     window.openModal = openModal;
     window.closeModal = closeModal;
