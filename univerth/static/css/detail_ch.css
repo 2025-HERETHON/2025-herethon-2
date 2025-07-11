@@ -145,7 +145,7 @@ body {
 
 .joinbtn {
     position: absolute;
-    bottom: 100px;
+    bottom: 20px;
     left: 137px;
     width: 120px;
     height: 45px;
@@ -242,7 +242,7 @@ body {
 
 .commentmodal-box {
     position: absolute;
-    top: 225px;
+    top: 400px;
     background-color: #fff;
     width: 393px;
     height: 440px;
@@ -338,7 +338,6 @@ body {
 
 
 .delete {
-    position: absolute;
     background-color: #333;
     border-radius: 10px;
     padding: 10px;
@@ -353,6 +352,8 @@ body {
 .delete-content {
     display: flex;
     flex-direction: column;
+    height: 90px;
+    width: 175px;
 }
 
 button {
@@ -366,10 +367,6 @@ button {
     font-size: 14px;
 }
 
-button:hover {
-    background-color: #444;
-}
-
 .text1 {
     margin-right: 6px;
 }
@@ -377,6 +374,12 @@ button:hover {
 .text2 {
     margin-right: 6px;
     color: #ff4d4d;
+}
+
+.writerdot {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .c-dot {
