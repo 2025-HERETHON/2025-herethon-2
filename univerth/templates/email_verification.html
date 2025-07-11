@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-393, initial-scale=0.9" />
+    <title>Univerth-Verification</title>
+</head>
+<body>
+    {% if message %} {{ message }}
+    {% else %} {{ error }}
+    {% endif %}
+</body>
+</html>
