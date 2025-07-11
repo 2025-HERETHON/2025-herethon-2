@@ -186,7 +186,7 @@ body {
     align-items: center;
 }
 
-.jointext, .oktext, .cctext {
+.jointext, .oktext, .cctext, .c-oktext, .c-cctext {
     font-family: 'SUIT';
     font-weight: 700;
     font-size: 17px;
@@ -252,6 +252,15 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+}
+
+.feedheader {
+    padding-bottom: 10px;
+}
+
+.icon {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .commentmodal-box .c-feed {
@@ -371,13 +380,26 @@ button {
     font-size: 14px;
 }
 
+.edit-btn, .delete-btn {
+    display: flex;
+    justify-content: space-around;
+}
+
 .text1 {
     margin-right: 6px;
+    width: 35px;
+    height: 25px;
+    font-family: 'SUIT';
+    font-size: 20px;
 }
 
 .text2 {
     margin-right: 6px;
     color: #ff4d4d;
+    width: 35px;
+    height: 25px;
+    font-family: 'SUIT';
+    font-size: 20px;
 }
 
 .writerdot {
@@ -491,4 +513,12 @@ button {
 
 .hidden {
   display: none !important;
+}
+
+.c-feed .icon{
+    margin-top:20px;
+}
+
+.c-feed .nickname{
+    margin-bottom: 5px;
 }

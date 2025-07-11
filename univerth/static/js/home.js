@@ -171,7 +171,7 @@ const priorityIcons = {
     1: "../static/images/home/ranking_1th.png",
     2: "../static/images/home/ranking_2th.png",
     3: "../static/images/home/ranking_3th.png",
-    4: "../static/images/home/ranking_myUniv.png",
+    4: "../static/images/challenges/img2.svg",
 }
 
 function renderRanking() {

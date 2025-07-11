@@ -12,14 +12,15 @@ body {
 
 #root {
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
 
+
 .wrap {
     width: 393px;
-    min-height: 100%;
+    min-height: 90%;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;

@@ -268,7 +268,7 @@ console.log('feedId:', feedId, 'editingCommentId:', editingCommentId);
         
         modal.style.position = 'absolute';
         modal.style.top = `${rect.bottom + window.scrollY - 50 }px`;
-        modal.style.left = `${rect.left + window.scrollX - 70}px`;
+        modal.style.left = `${rect.left + window.scrollX - 730}px`;
         
 
     // 모달 보이기
@@ -340,13 +340,13 @@ console.log('feedId:', feedId, 'editingCommentId:', editingCommentId);
 
     //나무 심기 모달 뜨기
     const params = new URLSearchParams(window.location.search);
-  if (params.get('success') === '1') {
+    if (params.get('success') === '1') {
     const modal = document.getElementById('tree');
     modal.style.display = 'block';
     setTimeout(() => {
-      modal.style.display = 'none';
+        modal.style.display = 'none';
     }, 3000);
-  }
+    }
 
     
 
@@ -379,6 +379,3 @@ console.log('feedId:', feedId, 'editingCommentId:', editingCommentId);
         if (confirmModal) confirmModal.classList.remove('hidden');
     };
 });
-
-// 필요 시 추가로  confirmDelete, cancelDelete를 전역으로 등록할 수도 있으나
-// 위 addEventListener로 처리되므로 HTML onclick 속성 대신 이벤트리스너 사용 권장
