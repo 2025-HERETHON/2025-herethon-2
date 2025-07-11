@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert('알 수 없는 오류가 발생했습니다.')
                     return;
                 }
+                window.location.reload();
                 const btnText = document.getElementById("jointext");
                 btnText.innerText = "글쓰기";
 
