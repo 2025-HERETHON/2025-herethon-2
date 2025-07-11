@@ -36,6 +36,9 @@ def exit_challenge(request, id):
         challenge.participants.remove(user)
         challenge.participant_num-=1
         challenge.save()
+
+    if challenge.participant_num<=0:
+        challenge.delete()
         return redirect('challenges:challenge_list_my')
     
 #좋아요 & 좋아요 취소 데이터
