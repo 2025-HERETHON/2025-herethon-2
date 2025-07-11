@@ -1,6 +1,6 @@
 #root {
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -11,7 +11,7 @@ body {
     background-color: #f0f0f0;
     display: flex;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 90vh;
     align-items: flex-start;
     font-family: 'NPSfont-Regular';
 }
@@ -24,7 +24,7 @@ textarea:focus {
 
 .wrap {
     width: 393px;
-    min-height: 100vh;
+    min-height: 90vh;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
