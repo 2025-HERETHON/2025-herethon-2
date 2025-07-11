@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="{% static 'css/detail_ch.css' %}" />
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <meta name="csrf-token" content="{{ csrf_token }}">
   </head>
   <body>
+    {% csrf_token %}
     <div class="wrap">
       <!-- 챌린지 정보 -->
       <div class="challenge-container">
@@ -133,15 +135,28 @@
                     <div class="c-cardheader">
                       <div class="writerdot">
                         <div class="writer">{{ comment.writer.nickname }}</div>
-                        {% comment %}
-                        <div class="c-dot"></div>
-                        {% endcomment %}
+                        {% if comment.writer == user %}
+                        <div class="c-dot" data-comment-id="{{comment.id}}"></div>
+                        
+                        <div id="delete-{{ comment.id }}" class="delete hidden">
+                          <div class="delete-content">
+                            <button class="edit-btn" onclick="editComment({{ comment.id }})">
+                              <span class="text1">수정</span>
+                              <img src="{% static 'images/challenges/img11.svg' %}" />
+                            </button>
+                            <button class="delete-btn" onclick="openConfirmModal({{ comment.id }})">
+                              <span class="text2">삭제</span>
+                              <img src="{% static 'images/challenges/img12.svg' %}" />
+                            </button>
+                          </div>
+                        </div>
+                        {% endif %}
                       </div>
                       <div class="date">
                         {{ comment.created_at|date:"n월 j일 H:i" }}
                       </div>
                     </div>
-                    <div class="c-content">{{ comment.content }}</div>
+                    <div class="c-content" id="comment-content-{{ comment.id }}">{{ comment.content }}</div>
                   </div>
                   {% empty %}
                   <p style="padding: 1rem; color: #999">
@@ -156,7 +171,7 @@
                     />
                     <button
                       class="send-btn"
-                      onclick="addComment({{ challenge.id }}, {{ feed.id }})"
+                      onclick="addComment( {{ challenge.id }}, {{ feed.id }})"
                     >
                       <img src="{% static 'images/challenges/img10.svg' %}" />
                     </button>
