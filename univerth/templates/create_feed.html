@@ -19,63 +19,51 @@
         <div class="header">
           <div class="cfheader">글쓰기</div>
         </div>
-        <div class ="add_contents">
+        <div class="add_contents">
           <div class="addphoto">
+            <form id="feedForm" method="POST" enctype="multipart/form-data" action="">
+              {% csrf_token %}
 
-        <form id="feedForm" method="POST" enctype="multipart/form-data" action="">
-        {% csrf_token %}
+              <div class="addphoto">
+                <div class="photo">사진</div>
 
-        <div class="addphoto">
+                <div class="photo-row">
+                  <label id="photo-box" for="photoInput">
+                    <div class="photoicon">
+                      <img
+                        id="photoicon"
+                        src="{% static 'images/challenges/img5.svg' %}"
+                        data-icon-none="{% static 'images/challenges/img5.svg' %}"
+                        data-icon-added="{% static 'images/challenges/img6.svg' %}"
+                      />
+                    </div>
+                    <span id="photoCount">0/2</span>
+                  </label>
 
-            <div class="photo">사진</div>
-
-            <div class="photo-row">
-              <label id="photo-box" for="photoInput">
-                <div class="photoicon">
-                  <img
-                    id="photoicon"
-                    src="{% static 'images/challenges/img5.svg' %}"
-                    data-icon-none="{% static 'images/challenges/img5.svg' %}"
-                    data-icon-added="{% static 'images/challenges/img6.svg' %}"
-                  />
+                  <div id="preview" class="preview-box"></div>
                 </div>
-                <span id="photoCount">0/2</span>
-              </label>
 
-              <div id="preview" class="preview-box"></div>
-            </div>
+                <input
+                  type="file"
+                  id="photoInput"
+                  name="image"
+                  accept="image/*"
+                  multiple
+                />
+              </div>
 
-            <input
-              type="file"
-              id="photoInput"
-              name="image"
-              accept="image/*"
-              multiple
-            />
-            <input type="file" id="photoInput" name="image" accept="image/*" multiple />
+              <div class="addcontent">
+                <div class="content">캡션 내용</div>
+                <div class="content_input">
+                  <textarea id="contenttext" name="content"></textarea>
+                </div>
+              </div>
 
-        </div>
-
-        <div class="addcontent">
-          <div class="content">캡션 내용</div>
-          <div class="content_input">
-            <textarea id="contenttext" name="content"></textarea>
+              <button type="submit" id="addfeed" disabled>
+                <span class="addfeedtext">게시물 등록</span>
+              </button>
+            </form>
           </div>
-
-          <div class="addcontent">
-            <div class="content">캡션 내용</div>
-            <div class="content_input">
-              <textarea id="contenttext"></textarea>
-            </div>
-          </div>
-        <button type="submit" id="addfeed" disabled>
-          <span class="addfeedtext">게시물 등록</span>
-        </button>
-        </form>
-
-          <button id="addfeed" disabled>
-            <span class="addfeedtext">게시물 등록</span>
-          </button>
         </div>
         <script type="module" src="{% static 'js/create_feed.js' %}"></script>
       </div>

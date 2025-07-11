@@ -5,6 +5,11 @@ window.addEventListener("DOMContentLoaded", async () => {
     loadNavbar(".challenge-container");
 });
 
+const form = document.getElementById("feedForm");
+form.addEventListener("submit", (e) => {
+    e.preventDefault();  
+});
+
 
 const textarea1 = document.getElementById("contenttext");
 textarea1.addEventListener("input", () => {
