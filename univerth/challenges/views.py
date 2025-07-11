@@ -127,15 +127,19 @@ def create_comment(request, id):
     # 댓글 수는 {{feed.comments.count}} 로 가져오기
 
 #댓글 수정
-def update_comment(request, id):
-    comment = get_object_or_404(Comment, id=id)
+@csrf_exempt
+def update_comment(request, id, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
 
     if request.method == "POST":
         content = request.POST.get('content')
         if content:
             comment.content = content
             comment.save()
-        return redirect('challenges:feed_detail', comment.feed.id)
+            return JsonResponse({'message': '댓글이 수정되었습니다.'})
+        else:
+            return JsonResponse({'error': '내용이 없습니다.'}, status=400)
+    return JsonResponse({'error': 'POST 요청만 허용'}, status=405)
 
 #댓글 삭제
 def delete_comment(request, id):
