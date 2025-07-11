@@ -7,12 +7,9 @@
 }
 
 #back-btn {
-    top: 22;
-    left: 20;
-    position: absolute;
-    z-index: 2001;
     border: none;
     background-color: transparent;
+    margin-right: 9px;
 }
 
 #back-btn img {
@@ -43,9 +40,9 @@
     margin-top: 10px;
     height: 47px;
     margin-bottom: 30px;
-    align-items: start;
     padding-left: 21px;
     padding-top: 10px;
+    align-items: center
 }
 
 .mypage-header p {
@@ -67,9 +64,6 @@
     flex-direction: column;
     align-content: flex-start;
     align-items: flex-start;
-
-
-
 }
 
 .user-history {

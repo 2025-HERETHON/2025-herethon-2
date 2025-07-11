@@ -1,4 +1,5 @@
 import { loadNavbar } from "./main.js";
+const before = document.referrer;
 
 window.addEventListener("DOMContentLoaded", () => {
   // 1. Navbar 로드
@@ -9,7 +10,7 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("user-info-id").value = myPageData.username || "";
   document.getElementById("quiz-count").innerText = myPageData.quiz_num || "0";
   document.getElementById("feed-count").innerText = myPageData.feed_num || "0";
-    const idShow = document.getElementById("user-info-id").value.trim();
+  const idShow = document.getElementById("user-info-id").value.trim();
 
   // 3. 닉네임 수정 이벤트
   document.getElementById("nick-correction").addEventListener("click", async () => {
@@ -38,7 +39,16 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const backBtn = document.querySelector('.back');
+  // 뒤로 가기 버튼 클릭 시
+  backBtn.addEventListener('click', () => {
+    // Django 프로젝트의 URL에 맞게 수정해주세요.
+    // 예: window.location.href = '/map/';
+    window.location.href = before;
+  });
 
+});
 // CSRF 토큰 가져오기 함수
 function getCSRFToken() {
   const cookieValue = document.cookie
