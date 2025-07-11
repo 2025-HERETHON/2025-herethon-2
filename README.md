@@ -20,6 +20,29 @@
 <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white" height="25"> <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white" height="25">
 - 기획/디자인: <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white" height="25">
 
+
+<br><br>
+<h2>📌 Features</h2>
+
+- **친환경 퀴즈**
+   
+  - 매일 제공되는 퀴즈를 통해 환경에 대한 지식을 높일 수 있습니다
+  - 홈 화면의 캘린더에서 퀴즈 참여 현황과 지난 퀴즈를 확인할 수 있습니다.
+
+- **그룹 챌린지**
+  - 원하는 챌린지 그룹을 생성하거나 참여하여 친환경 활동을 할 수 있습니다.
+  - 그룹을 통해 연대감을 형성하여, 활동에 대한 동기를 부여받을 수 있습니다.
+  - 챌린지 인증 피드를 작성할 수 있으며, 댓글과 좋아요를 통해 자유롭게 소통할 수 있습니다.
+
+- **친환경 상점 지도**
+  - 사용자의 학교 뿐만 아니라 타 학교 인근의 친환경 상점을 지도에 마커를 추가하여 보여줍니다.
+  - 사용자는 종이빨대 사용, 다회용기 할인 등 친환경 태그를 한 개 이상을 선택하여 상점을 지도에 추가할 수 있습니다.
+
+- **캠퍼스 대항전**
+  - 퀴즈를 풀거나 챌린지에 피드를 작성하면 나무 1그루씩을 획득할 수 있습니다.
+  - 대학별로 누적된 나무 수를 집계하여 홈페이지에 순위를 공개함으로써 친환경 활동에 대한 동기를 부여할 수 있습니다.
+
+
 <br><br>
 <h2>🛠️ Members</h2>
 
