@@ -17,11 +17,22 @@
       <div class="challenge-container">
         {% include "navbar.html" %}
         <div class="header">
+          <button id="back-btn" class="back">
+            <img
+              src="{% static 'images/navbar/back_icon.png' %}"
+              alt="뒤로가기"
+            />
+          </button>
           <div class="cfheader">글쓰기</div>
         </div>
         <div class="add_contents">
           <div class="addphoto">
-            <form id="feedForm" method="POST" enctype="multipart/form-data" action="">
+            <form
+              id="feedForm"
+              method="POST"
+              enctype="multipart/form-data"
+              action=""
+            >
               {% csrf_token %}
 
               <div class="addphoto">

@@ -9,7 +9,7 @@ body {
 }
 
 .wrap {
-    width: 393px;
+    width: 393px!important;
     min-height: 100vh;
     background-color: #ffffff;
     display: flex;
@@ -25,7 +25,6 @@ body {
 
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 20px 20px 10px 20px;
     width: 100%;
@@ -54,8 +53,6 @@ body {
     display: flex;
     gap: 5px;
     flex-direction: column;
-    padding: 0 20px;
-
 }
 
 .preview-box {
@@ -112,6 +109,7 @@ body {
     width: 32px;
     height: 24px;
     top: 28px;
+    margin-bottom: 10px;
 }
 
 #photoCount {
@@ -134,8 +132,6 @@ input[type="file"] {
 
 .addcontent {
     top: 216px;
-    padding: 0 20px;
-
 }
 
 #contenttext {
@@ -201,6 +197,14 @@ input[type="file"] {
     letter-spacing: 0;
     line-height: normal;
 }
-button{
-    margin: 0 20px;
+
+#back-btn {
+    border: none;
+    background-color: transparent;
+    margin-right: 9px;
+}
+
+#back-btn img {
+    width: 22px;
+    height: 16px;
 }
