@@ -63,7 +63,7 @@ body {
 }
 
 .ch-header .ch {
-    font-family: "NPSfont-Bold", Helvetica;
+    font-family: 'NPSfont-Bold';
     font-weight: 700;
     color: #000000;
     font-size: 25px;
@@ -76,7 +76,7 @@ body {
 
 
 .btn-group {
-    font-family: "NPS font-ExtraBold";
+    font-family: 'NPSfont-Bold';
     font-weight: 800;
     color: #0000004c;
     font-size: 20px;
@@ -95,7 +95,7 @@ body {
     -webkit-background-clip: text !important;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-family: "NPS font-ExtraBold", Helvetica;
+    font-family: 'NPSfont-Bold';
     font-weight: 800;
     color: transparent;
     font-size: 20px;

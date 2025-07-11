@@ -63,15 +63,13 @@ span .ch {
     -webkit-background-clip: text !important;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-family: "NPS font-ExtraBold", Helvetica;
-    font-weight: 800;
+    font-family: 'NPSfont-Bold';
     color: transparent;
     font-size: 20px;
     letter-spacing: 0;
     line-height: normal;
     border: none;
     cursor: pointer;
-    font-family: "NPS font-ExtraBold", Helvetica;
 }
 
 .btn-my {
@@ -85,7 +83,7 @@ span .ch {
     border: none;
     padding: 0;
     cursor: pointer;
-    font-family: "NPS font-ExtraBold", Helvetica;
+    font-family: 'NPSfont-Bold';
     font-weight: 800;
 }
 
