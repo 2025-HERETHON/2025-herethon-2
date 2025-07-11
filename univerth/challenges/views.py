@@ -36,7 +36,7 @@ def exit_challenge(request, id):
         challenge.participants.remove(user)
         challenge.participant_num-=1
         challenge.save()
-        return redirect('challenges:challenge_detail', id=challenge.id)
+        return redirect('challenges:challenge_list_my')
     
 #좋아요 & 좋아요 취소 데이터
 @csrf_exempt
