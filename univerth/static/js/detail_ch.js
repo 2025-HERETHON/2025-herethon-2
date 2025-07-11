@@ -265,9 +265,11 @@ console.log('feedId:', feedId, 'editingCommentId:', editingCommentId);
 
     // 클릭한 dot 위치 계산해서 모달 위치 잡기
         const rect = dot.getBoundingClientRect();
+        
         modal.style.position = 'absolute';
-        modal.style.top = `${rect.top + window.scrollY + 5}px`;
-        modal.style.left = `${rect.right + window.scrollX}px`;
+        modal.style.top = `${rect.bottom + window.scrollY - 50 }px`;
+        modal.style.left = `${rect.left + window.scrollX - 70}px`;
+        
 
     // 모달 보이기
         modal.classList.remove('hidden');
