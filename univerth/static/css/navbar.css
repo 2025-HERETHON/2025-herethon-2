@@ -30,8 +30,8 @@ img.logo-img{
 
 img.user-img {
     width: 30px;
-    height: 30px;
-    top:2px;
+    height: auto;
+    top:4px;
 }
 
 /*------------------ 2.bottom-nav------------------*/
@@ -52,11 +52,10 @@ img.user-img {
 }
 
 .nav-item {
-    background: none;
+    background: transparent;
     border: none;
     padding: 0;
     width: auto;
-    height: 100%;
     margin: 0;
     display: flex;
     align-items: center;

@@ -1,27 +1,37 @@
-main{
+* {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+main {
     padding-left: 20px;
     position: relative;
 }
 
-main>.header{
+main>.header {
     margin-top: 20px;
     display: flex;
 }
-
-.header>.title{
+tags_text
+.header>.title {
     font-family: 'NPSfont-Bold';
     font-size: 20px;
 }
 
-form{
+form {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-form input{
-    width: 353px;   
+.back {
+    margin-right: 5px;
+}
+
+form input {
+    width: 353px;
     height: 55px;
     border: solid 1px #9E9E9E;
     border-radius: 10px;
@@ -29,13 +39,15 @@ form input{
     font-size: 20px;
     font-family: 'SUIT'
 }
-
-input:focus{
+input #tags_text{
+    height: auto !important;
+}
+input:focus {
     border: solid 1.5px #2CD7A6;
     outline: none;
 }
 
-form button{
+form button {
     margin-top: 188px;
     width: 353px;
     height: 55px;
@@ -48,54 +60,56 @@ form button{
 
 /* 태그 선택 팝업 */
 
-.tag_box{
+.tag_box {
     position: absolute;
     z-index: 1;
     width: 393px;
-    height: 210px;
+    height: 100%;
     padding: 20px;
     background-color: #fff;
     top: 420px;
     left: 0;
-    border-top-left-radius:10px;
-    border-top-right-radius:10px;
-    border: solid 1px #9E9E9E;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     display: none;
+    fill: #FFF;
+    filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.20));
 }
 
-.tag_box>header{
+.tag_box>header {
     display: flex;
     justify-content: space-between;
 }
 
-.tag_box header button{
+.tag_box header button {
     color: #2CD7A6;
     font-size: 17px;
 }
 
-.tag_box button{
+.tag_box button {
     padding: 0;
     border: none;
     background: none;
 }
 
-.tag_box p{
+.tag_box p {
     font-weight: 500;
 }
 
-.tag_container{
+.tag_container {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.container1, .container2{
+.container1,
+.container2 {
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
 
-.tag_container button{
+.tag_container button {
     font-size: 15px;
     padding: 8px 9px;
     border-radius: 40px;
@@ -103,10 +117,9 @@ form button{
 }
 
 .tag_container button.active {
-  color: #fff;
-  border:  solid 1px #2CD7A6;;
-  background-color: #2CD7A6;
+    color: #fff;
+    border: solid 1px #2CD7A6;
+    ;
+    background-color: #2CD7A6;
 
 }
-
-
