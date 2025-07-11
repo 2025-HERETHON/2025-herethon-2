@@ -45,8 +45,8 @@ window.addEventListener("DOMContentLoaded", async () => {
       storeList.forEach((store) => {
         if (store.latitude == null || store.longitude == null) return;
 
-        const coords = new kakao.maps.LatLng(store.longitude, store.latitude);
-
+        const coords = new kakao.maps.LatLng(store.latitude, store.longitude);
+        
         const marker = new kakao.maps.Marker({
           map: map,
           position: coords,

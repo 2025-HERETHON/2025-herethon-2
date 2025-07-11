@@ -28,7 +28,7 @@ if (password) {
 const login_btn = document.querySelector('.login_btn');
 function checkInputs() {
     if (id.value.trim() !== '' && password.value.trim() !== '') {
-        login_btn.style.backgroundColor = "#2CD7A6";
+        login_btn.style.backgroundImage = "linear-gradient(180deg, #2CD7A6 0%, #59D385 100%)";
     }
     else {
         login_btn.style.backgroundColor = "";
