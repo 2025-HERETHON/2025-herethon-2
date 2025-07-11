@@ -240,10 +240,22 @@
           </div>
         </div>
         {% endcomment %}
-      </div>
+
+        <div id="tree" class="tree">
+            <span class="treetext">나무 1그루를 심었어요!</span>
+        </div>
+
+        {% if feed_success %}
+        <div id="tree" class="tree">
+            <span class="treetext">나무 1그루를 심었어요!</span>
+        </div>
+        <script>console.log("🌳 모달이 렌더링되었습니다");</script>
+        {% endif %}
+
     </div>
+   </div>
     <script type="module" src="{% static 'js/main.js' %}"></script>
     <script type="module" src="{% static 'js/detail_ch.js' %}"></script>
-   </div>
+
   </body>
 </html>
