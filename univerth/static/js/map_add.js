@@ -1,7 +1,7 @@
 import { loadNavbar} from "./main.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
-    loadNavbar(".map-container");
+    loadNavbar(".map-container2");
 });
 
 document.addEventListener('DOMContentLoaded', () => {

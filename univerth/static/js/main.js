@@ -24,6 +24,9 @@ export function loadNavbar(containerSelector = ".home-container") {
       const header = document.querySelector(".header-nav");
       if (header) header.style.display = "none";
       break;
+    case ".map-container2":
+      if (mapImg) mapImg.src = "../static/images/navbar/map_select.png";
+      break;
 
     case ".challenge-container":
       if (challengeImg) challengeImg.src = "../static/images/navbar/challenge_select.png";
@@ -33,5 +36,5 @@ export function loadNavbar(containerSelector = ".home-container") {
       if (logoImg) logoImg.style.transform = "translateX(30px)";
       break;
   }
-  
+
 }
