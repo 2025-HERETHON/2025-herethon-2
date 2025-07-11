@@ -54,7 +54,7 @@ body {
     background-color: var(--background-color);
 }
 
-.app-wrapper {
+.app-wrapper, .wrap {
     width: 100%;
     height: 100%;
     position: relative;
