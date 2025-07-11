@@ -1,7 +1,7 @@
 import { loadNavbar } from "./main.js"; //html에 추가
 
 document.addEventListener('DOMContentLoaded', function () {
-    loadNavbar(".home-container");
+    loadNavbar(".challenge-container");
 
     // 가입 모달 열기/닫기
     function openModal() {

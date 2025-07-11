@@ -6,6 +6,13 @@ body {
     justify-content: center;
     min-height: 100vh;
     align-items: flex-start;
+    font-family: 'NPSfont-Regular';
+}
+
+textarea:focus {
+    outline: 1.5px solid #2CD7A6;
+    border-color: transparent;
+    border: none;
 }
 
 .wrap {
@@ -19,12 +26,12 @@ body {
     position: relative;
 }
 
-.container{
+.container {
     padding: 0 20px;
 }
 
 .header {
-    font-family: "NPS font", Helvetica;
+    font-family: "NPSfont Bold", Helvetica;
     font-weight: 700;
     color: #000000;
     font-size: 25px;
@@ -34,14 +41,17 @@ body {
 }
 
 
-.header>.title{
-    font-family: "NPS font";
+.header>.title {
+    font-family: "NPSfont";
 }
-.add_name{
+
+.add_name {
     margin-bottom: 20px;
 }
 
-.ch_name, .ch_cn, .ch_detail {
+.ch_name,
+.ch_cn,
+.ch_detail {
     margin-left: 10px;
     font-family: "SUIT-SemiBold", Helvetica;
     font-weight: 500;
@@ -51,12 +61,13 @@ body {
     line-height: normal;
 }
 
-.ch_name_input textarea{
+.ch_name_input textarea {
     padding: 11px 11px;
 }
 
 
-.ch_name_input textarea, .ch_cn_input textarea {
+.ch_name_input textarea,
+.ch_cn_input textarea {
     width: 353px;
     height: 55px;
     border-radius: 10px;
@@ -72,16 +83,18 @@ body {
     overflow: hidden;
 }
 
-.input_focus{
+.input_focus {
     padding-top: 0;
 }
 
-.input_focus:focus{
+.input_focus:focus {
     border: solid 1px #2cd7a6;
     outline: none;
 }
 
-#name.active, #creater_name.active, #challenge_detail.active {
+#name.active,
+#creater_name.active,
+#challenge_detail.active {
     border-color: #2cd7a6;
 }
 
@@ -129,18 +142,16 @@ body {
     margin-top: 20px;
     width: 353px;
     height: 55px;
-    background: linear-gradient(
-        180deg,
-        rgba(44, 215, 166, 1) 0%,
-        rgba(89, 211, 133, 1) 100%
-    );
+    background: linear-gradient(180deg,
+            rgba(44, 215, 166, 1) 0%,
+            rgba(89, 211, 133, 1) 100%);
     border-radius: 10px;
     border: none;
     text-align: center;
     cursor: pointer;
 }
 
-.add_btn{
+.add_btn {
     position: absolute;
     top: 637px;
 }
