@@ -48,7 +48,7 @@
 
 |PM|FE|FE|FE|BE|BE|
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|<img src="https://github.com/skjjang124.png" width="100">|<img src="https://github.com/user-attachments/assets/08634686-f02e-4687-9ad1-c3e02da9aee2" width="65"/>|<img width="70" alt="Image" src="https://github.com/user-attachments/assets/42aeb6b6-e0ae-4fa3-a61d-6689a8ab0a9c" />|<img src="https://github.com/user-attachments/assets/b7a630b2-4c30-4120-93ac-53f92adc48e2" width="100">|<img width="70" alt="미모티콘2" src="https://github.com/user-attachments/assets/2786cc34-dd73-41ab-b953-1f8b9c13f2dc" />|<img width="110" alt="Image" src="https://github.com/user-attachments/assets/b21cff4d-005d-445d-be35-427c3938bab3" />|
+|<img width="110" alt="Image" src="https://github.com/user-attachments/assets/a6117c74-3b3b-4780-875d-51bb6c9b0cde"/>|<img src="https://github.com/user-attachments/assets/08634686-f02e-4687-9ad1-c3e02da9aee2" width="65"/>|<img width="70" alt="Image" src="https://github.com/user-attachments/assets/42aeb6b6-e0ae-4fa3-a61d-6689a8ab0a9c" />|<img src="https://github.com/user-attachments/assets/b7a630b2-4c30-4120-93ac-53f92adc48e2" width="100">|<img width="70" alt="미모티콘2" src="https://github.com/user-attachments/assets/2786cc34-dd73-41ab-b953-1f8b9c13f2dc" />|<img width="110" alt="Image" src="https://github.com/user-attachments/assets/b21cff4d-005d-445d-be35-427c3938bab3" />|
 |동덕여대|성신여대|이화여대|서울여대|숙명여대|덕성여대|
 |장수경|김성연|서예린|최영|이경은|이영서|
 
