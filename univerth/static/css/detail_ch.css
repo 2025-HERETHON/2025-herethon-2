@@ -468,3 +468,11 @@ button {
 .hidden {
   display: none !important;
 }
+
+.c-feed .icon{
+    margin-top:20px;
+}
+
+.c-feed .nickname{
+    margin-bottom: 5px;
+}
