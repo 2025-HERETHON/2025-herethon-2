@@ -5,7 +5,12 @@
 
 <br><br>
 <h2>🌏 About Univearth</h2>
-추후 추가...
+
+“캠퍼스 환경을 지키는 첫걸음, 유니버스”
+<br><br>
+**‘유니버스(UNIVEARTH)’**는 대학을 의미하는** University**와 지구를 의미하는 **Earth**가 결합된 이름으로, 대학 캠퍼스의 환경 개선을 위한 친환경 활동 챌린지 플랫폼입니다. 친환경 활동에 관심을 가지는 대학생들은 많아졌으나, 개인적 공간이 아닌 대학 캠퍼스의 환경 문제는 날이 갈수록 심각해지고 있습니다. 캠퍼스 공간을 이용하는 학생들이 모여 직접 환경 문제를 해결할 수 있도록 돕고자 해당 서비스를 기획하게 되었습니다. 
+<br><br>
+‘유니버스’의 주요 타겟층은 **대학 캠퍼스를 이용하는 대학(원) 재학생**이며, 주요 기능은 **친환경 퀴즈, 그룹 챌린지, 친환경 상점 지도**입니다.
 
 <br><br>
 <h2>🛠️ Tech Stack</h2>
@@ -20,7 +25,7 @@
 
 |PM|FE|FE|FE|BE|BE|
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|<img src="https://github.com/skjjang124.png" width="100">|<img src="https://github.com/ruddmslee.png" width="100">|<img src="https://github.com/ruddmslee.png" width="100">|<img src="https://github.com/user-attachments/assets/b7a630b2-4c30-4120-93ac-53f92adc48e2" width="100">|<img width="100" alt="미모티콘2" src="https://github.com/user-attachments/assets/2786cc34-dd73-41ab-b953-1f8b9c13f2dc" />|<img src="https://github.com/ruddmslee.png" width="100">|
+|<img src="https://github.com/skjjang124.png" width="100">|<img src="https://github.com/ruddmslee.png" width="100">|<img src="https://github.com/ruddmslee.png" width="100">|<img src="https://github.com/user-attachments/assets/b7a630b2-4c30-4120-93ac-53f92adc48e2" width="100">|<img width="70" alt="미모티콘2" src="https://github.com/user-attachments/assets/2786cc34-dd73-41ab-b953-1f8b9c13f2dc" />|<img src="https://github.com/ruddmslee.png" width="100">|
 |동덕여대|성신여대|이화여대|서울여대|숙명여대|덕성여대|
 |장수경|김성연|서예린|최영|이경은|이영서|
 
