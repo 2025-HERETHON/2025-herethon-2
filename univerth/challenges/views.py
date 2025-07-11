@@ -147,10 +147,16 @@ def update_comment(request, id, comment_id):
     return JsonResponse({'error': 'POST 요청만 허용'}, status=405)
 
 #댓글 삭제
-def delete_comment(request, id):
-    comment = get_object_or_404(Comment, id=id)
-    comment.delete()
-    return redirect('challenges:feed_detail', comment.feed.id)
+
+@csrf_exempt
+def delete_comment(request, id, comment_id):
+    if request.method == "POST":
+        comment = get_object_or_404(Comment, id=comment_id)
+        comment.delete()
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({'status': 'success'})
+        return redirect('challenges:feed_detail', id)
+    return JsonResponse({'status': 'fail'}, status=400)
 
 #피드 상세 조회. JsonResponse로 데이터만 보냄
 def feed_data(request, id):
