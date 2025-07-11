@@ -1,6 +1,8 @@
-//import { loadNavbar } from "./main.js"; //html에 추가
+import { loadNavbar } from "./main.js"; //html에 추가
 
 document.addEventListener('DOMContentLoaded', function () {
+    loadNavbar(".home-container");
+
     // 가입 모달 열기/닫기
     function openModal() {
         document.getElementById('chjoinmodal').style.display = 'block';
@@ -14,22 +16,22 @@ document.addEventListener('DOMContentLoaded', function () {
         closeModal();
 
         fetch(`/challenges/join-challenge/${challengeId}/`, {
-                method: 'POST'
+            method: 'POST'
         })
-        .then(response => response.json().then(data => ({ok: response.ok, data})))
-        .then(({ok, data}) => {
-            if (!ok || data.error ) {
-                alert('알 수 없는 오류가 발생했습니다.')
-                return;
-            }
-            const btnText = document.getElementById("jointext");
-            btnText.innerText = "글쓰기";
-        
-            const actionBtn = document.getElementById("joinbtn");
-            actionBtn.onclick = function () {
-                location.href = `/challenges/create-feed/${challengeId}/`;
-            };
-        });
+            .then(response => response.json().then(data => ({ ok: response.ok, data })))
+            .then(({ ok, data }) => {
+                if (!ok || data.error) {
+                    alert('알 수 없는 오류가 발생했습니다.')
+                    return;
+                }
+                const btnText = document.getElementById("jointext");
+                btnText.innerText = "글쓰기";
+
+                const actionBtn = document.getElementById("joinbtn");
+                actionBtn.onclick = function () {
+                    location.href = `/challenges/create-feed/${challengeId}/`;
+                };
+            });
     }
 
 
@@ -60,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // slides[index].classList.add('active');
         // dots[index].classList.add('dotactive');
-          images.forEach((img, i) => {
+        images.forEach((img, i) => {
             img.classList.toggle("active", i === index);
         });
 
@@ -94,43 +96,43 @@ document.addEventListener('DOMContentLoaded', function () {
     function addComment(challengeId, feedId) {
         const input = document.getElementById(`c-input-${feedId}`)
         console.log(input.value);
-        if(input) {
+        if (input) {
             const formData = new FormData();
             formData.append('content', input.value.trim());
             fetch(`/challenges/feeds/${feedId}/create-comment/`, {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json().then(data => ({ok: response.ok, data})))
-            .then(({ok, data}) => {
-                if (!ok || data.error ) {
-                    alert('알 수 없는 오류가 발생했습니다.');
-                    return;
-                }
-                else {
-                    alert('댓글이 등록되었습니다.');
-                    window.location.reload();
-                }
-            })
+                .then(response => response.json().then(data => ({ ok: response.ok, data })))
+                .then(({ ok, data }) => {
+                    if (!ok || data.error) {
+                        alert('알 수 없는 오류가 발생했습니다.');
+                        return;
+                    }
+                    else {
+                        alert('댓글이 등록되었습니다.');
+                        window.location.reload();
+                    }
+                })
         }
     }
-    
+
     function addLike(feedId) {
         fetch(`/challenges/feeds/${feedId}/toggle-like/`, {
             method: 'POST'
         })
-        .then(response => response.json().then(data => ({ok: response.ok, data})))
-        .then(({ok, data}) => {
-            if (!ok || data.error ) {
-                alert('알 수 없는 오류가 발생했습니다.');
-                return;
-            }
-            else {
-                //alert('좋아요가 등록되었습니다.');
-                //window.location.href = `/challenges/challenge-detail/${challengeId}/`;
-                window.location.reload();
-            }
-        })
+            .then(response => response.json().then(data => ({ ok: response.ok, data })))
+            .then(({ ok, data }) => {
+                if (!ok || data.error) {
+                    alert('알 수 없는 오류가 발생했습니다.');
+                    return;
+                }
+                else {
+                    //alert('좋아요가 등록되었습니다.');
+                    //window.location.href = `/challenges/challenge-detail/${challengeId}/`;
+                    window.location.reload();
+                }
+            })
     }
 
     // 댓글 모달 외부 클릭 시 닫기
@@ -215,20 +217,20 @@ document.addEventListener('DOMContentLoaded', function () {
         confirmModal.style.display = 'flex';
     };
     window.cancelDelete = function () {
-    confirmModal.style.display = 'none';     // display 다시 none으로
+        confirmModal.style.display = 'none';     // display 다시 none으로
     };
 
     window.openConfirmModal = function () {
-    console.log('openConfirmModal called'); // 함수 호출 여부 체크
-    const editDeleteModal = document.getElementById('delete');
-    const confirmModal = document.getElementById('confirmModal');
-    console.log('editDeleteModal:', editDeleteModal);
-    console.log('confirmModal:', confirmModal);
+        console.log('openConfirmModal called'); // 함수 호출 여부 체크
+        const editDeleteModal = document.getElementById('delete');
+        const confirmModal = document.getElementById('confirmModal');
+        console.log('editDeleteModal:', editDeleteModal);
+        console.log('confirmModal:', confirmModal);
 
-    if(editDeleteModal) editDeleteModal.classList.add('hidden');
-    if(confirmModal) confirmModal.classList.remove('hidden');
-};
+        if (editDeleteModal) editDeleteModal.classList.add('hidden');
+        if (confirmModal) confirmModal.classList.remove('hidden');
+    };
 });
 
-    // 필요 시 추가로  confirmDelete, cancelDelete를 전역으로 등록할 수도 있으나
-    // 위 addEventListener로 처리되므로 HTML onclick 속성 대신 이벤트리스너 사용 권장
+// 필요 시 추가로  confirmDelete, cancelDelete를 전역으로 등록할 수도 있으나
+// 위 addEventListener로 처리되므로 HTML onclick 속성 대신 이벤트리스너 사용 권장

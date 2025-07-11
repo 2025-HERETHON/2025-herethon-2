@@ -31,7 +31,7 @@ body {
 
 .wrap {
     width: 393px;
-    max-height: 662px;
+    max-height: 100%;
     overflow: visible;
     background-color: #ffffff;
     display: flex;

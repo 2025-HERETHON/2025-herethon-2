@@ -367,7 +367,7 @@ button img {
 }
 
 .modal {
-  transform: translateY(-100px);
+  top: 10;
   background: #fff;
   width: 353px;
   height: auto;
