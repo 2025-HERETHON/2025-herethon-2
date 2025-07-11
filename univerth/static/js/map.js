@@ -1,6 +1,6 @@
 import { loadNavbar } from "./main.js";
 
-const imageSrc = "{% static 'images/map/custom_marker.png' %}";
+const imageSrc = "../static/images/map/custom_marker.png";
 const imageSize = new kakao.maps.Size(44, 54);
 const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
@@ -32,7 +32,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       map: map,
       title: "내 대학",
       image: new kakao.maps.MarkerImage(
-        "../static/images/home/ranking_myUniv.png",
+        "../static/images/challenges/img2.svg ",
         new kakao.maps.Size(40, 30)
       )
     });
@@ -46,7 +46,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         if (store.latitude == null || store.longitude == null) return;
 
         const coords = new kakao.maps.LatLng(store.latitude, store.longitude);
-        
+
         const marker = new kakao.maps.Marker({
           map: map,
           position: coords,
