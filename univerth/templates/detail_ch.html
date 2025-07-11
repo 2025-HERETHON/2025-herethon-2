@@ -56,9 +56,13 @@
               <div class="image">
                 {% for image in feed.images.all %}
                 <img
-                  class="carousel-img feed-{{ feed.id }} {% if forloop.first %}active{% endif %}"
                   src="{{ image.image.url }}"
-                />
+                  class="carousel-img feed-{{ feed.id }} {% if forloop.first %}active{% endif %}"
+                  onmousedown="startImagePress(event, {{ feed.id }})"
+  onmouseup="cancelImagePress()"
+  ontouchstart="startImagePress(event, {{ feed.id }})"
+  ontouchend="cancelImagePress()"
+/>
                 {% endfor %}
               </div>
               <div class="dots">
@@ -262,6 +266,15 @@
    </div>
     <script type="module" src="{% static 'js/main.js' %}"></script>
     <script type="module" src="{% static 'js/detail_ch.js' %}"></script>
+
+<div id="feedOverlay" class="overlay hidden" onclick="closeFeedOverlay(event)">
+  <div class="overlay-content" id="overlayFeedContent">
+    <!-- 여기 버튼이 반드시 있어야 함 -->
+    <button class="overlay-delete-btn" id="overlayDeleteBtn">삭제 🗑</button>
+    <h1>ㅇ나렁ㄴ</h1>
+  </div>
+</div>
+
 
   </body>
 </html>

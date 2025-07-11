@@ -522,3 +522,57 @@ button {
 .c-feed .nickname{
     margin-bottom: 5px;
 }
+
+
+/* 오버레이 전체 배경 */
+#feedOverlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#feedOverlay .feed {
+  transform: scale(0.95); /* 95% 크기로 축소 */
+  transform-origin: center center;
+}
+
+/* 피드가 뜨는 영역 */
+#overlayFeedContent {
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 365px;
+  width: 90%;
+  padding-bottom: 16px;
+}
+
+/* 삭제 버튼 */
+#overlayDeleteBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+  transition: background-color 0.2s ease;
+}
+
+#overlayDeleteBtn:hover {
+  background-color: #222;
+}
