@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <base href="/">
+    <base href="/" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-393, initial-scale=0.9" />
     <title>challenge_add</title>
@@ -14,45 +14,43 @@
     <div class="wrap">
       <div class="challenge-container">
         {% include "navbar.html" %}
-      
         <div class="container">
           <div class="header">
-              <img class="back" src="{% static 'images/map_add/Vector (1).svg' %}" alt="" onlick="window.location.href='{%  %}'" />
-              <span>챌린지 그룹 추가</span>
+            <span>챌린지 그룹 추가</span>
           </div>
 
-        <form method="post">
-          {% csrf_token %}
-          <div class="add_name">
-            <span class="ch_name">챌린지명</span>
-            <div class="ch_name_input">
-              <textarea id="name" name="name"></textarea>
+          <form method="post">
+            {% csrf_token %}
+            <div class="add_name">
+              <span class="ch_name">챌린지명</span>
+              <div class="ch_name_input">
+                <textarea id="name" name="name"></textarea>
+              </div>
             </div>
-          </div>
 
-          {% comment %}
-          <div class="add_cn">
-            <span class="ch_cn">관리자</span>
-            <div class="ch_cn_input">
-              <textarea id="creater_name" name="creater_name"></textarea>
+            {% comment %}
+            <div class="add_cn">
+              <span class="ch_cn">관리자</span>
+              <div class="ch_cn_input">
+                <textarea id="creater_name" name="creater_name"></textarea>
+              </div>
             </div>
-          </div>
-          {% endcomment %}
+            {% endcomment %}
 
-          <div class="add_detail">
-            <span class="ch_detail">상세 설명</span>
-            <div class="ch_detail_input">
-              <textarea id="challenge_detail" name="description"></textarea>
+            <div class="add_detail">
+              <span class="ch_detail">상세 설명</span>
+              <div class="ch_detail_input">
+                <textarea id="challenge_detail" name="description"></textarea>
+              </div>
             </div>
-          </div>
 
-          <button type="submit" id="add_group" disabled>
-            <span class="ch_add_group">그룹 추가</span>
-          </button>
-        </form>
+            <button type="submit" id="add_group" disabled>
+              <span class="ch_add_group">그룹 추가</span>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
 
     <script type="module" src="{% static 'js/ch_add.js' %}"></script>
   </body>
