@@ -44,9 +44,11 @@ document.querySelectorAll('.outbtntext').forEach(btn => {
     btn.addEventListener('click', (event) => {
         event.stopPropagation();
         const challengeId = btn.closest('.card').dataset.id;
-        openModal(challengeId);
     });
 });
+
+window.openModal = openModal;
+window.closeModal = closeModal;
 
 // const joining_challenges = [
 // 	{
