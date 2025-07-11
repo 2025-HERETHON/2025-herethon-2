@@ -15,19 +15,17 @@
   <body>
     {% csrf_token %}
     <div class="wrap">
-      <!-- 챌린지 정보 -->
       <div class="challenge-container">
         {% include "navbar.html" %}
+
+        <!-- 챌린지 정보 -->
         <div class="header">
           <div id="challenges">
             <div class="card-top">
               <h3 class="card-title">{{ challenge.challenge_name }}</h3>
               <div class="pn">
                 <div>
-                  <img
-                    class="img1"
-                    src="{% static 'images/challenges/img1.svg' %}"
-                  />
+                  <img src="{% static 'images/challenges/img1.svg' %}" class="img1" />
                 </div>
                 <div class="card-pn">{{ challenge.participant_num }}</div>
               </div>
@@ -37,38 +35,31 @@
             </div>
           </div>
         </div>
-        <!-- 챌린지 정보 끝 -->
 
-        <!-- 피드들 -->
+        <!-- 피드 리스트 -->
         <div class="scroll-area">
           {% for feed in feeds %}
           <div class="feed">
             <div class="feedheader">
               <div class="nickname">{{ feed.writer.nickname }}</div>
-              <div class="created_at">
-                {{ feed.created_at|date:"n월 j일 H:i" }}
-              </div>
+              <div class="created_at">{{ feed.created_at|date:"n월 j일 H:i" }}</div>
             </div>
 
+            <!-- 이미지 캐러셀 -->
             <div class="carousel" id="carousel-{{ feed.id }}">
               <div class="image">
                 {% for image in feed.images.all %}
-                <img
-                  class="carousel-img feed-{{ feed.id }} {% if forloop.first %}active{% endif %}"
-                  src="{{ image.image.url }}"
-                />
+                <img class="carousel-img feed-{{ feed.id }} {% if forloop.first %}active{% endif %}" src="{{ image.image.url }}" />
                 {% endfor %}
               </div>
               <div class="dots">
                 {% for image in feed.images.all %}
-                <span
-                  class="dot {% if forloop.first %}dotactive{% endif %}"
-                  onclick="showSlide({{ feed.id }}, {{ forloop.counter0 }})"
-                ></span>
+                <span class="dot {% if forloop.first %}dotactive{% endif %}" onclick="showSlide({{ feed.id }}, {{ forloop.counter0 }})"></span>
                 {% endfor %}
               </div>
             </div>
 
+            <!-- 좋아요/댓글 -->
             <div class="icon">
               <div class="like">
                 <div class="likeicon" onclick="addLike({{ feed.id }})">
@@ -81,133 +72,75 @@
                 <div class="like_count">{{ feed.like.count }}</div>
               </div>
               <div class="comment">
-                <div
-                  class="commenticon"
-                  onclick="openCommentModal({{ feed.id }})"
-                >
+                <div class="commenticon" onclick="openCommentModal({{ feed.id }})">
                   <img src="{% static 'images/challenges/img8.svg' %}" />
                 </div>
                 <div class="comment_count">{{ feed.comments.count }}</div>
               </div>
             </div>
 
-            <!-- 피드별 코멘트 모달 -->
-            <div
-              id="commentModal-{{ feed.id }}"
-              class="modal-overlay"
-              style="display: none"
-            >
-              <div class="commentmodal-box">
-                <div class="c-feed">
-                  <div class="feedheader">
-                    <div class="nickname">{{ feed.writer.nickname }}</div>
-                    <div class="created_at">
-                      {{ feed.created_at|date:"n월 j일 H:i" }}
-                    </div>
-                  </div>
-                  <span class="content">{{ feed.content }}</span>
-                  <div class="icon">
-                    <div class="like">
-                      <div class="likeicon" onclick="addLike({{ feed.id }})">
-                        {% if feed.is_liked %}
-                        <img src="{% static 'images/challenges/img13.svg' %}" />
-                        {% else %}
-                        <img src="{% static 'images/challenges/img7.svg' %}" />
-                        {% endif %}
-                      </div>
-                      <div class="like_count">{{ feed.like.count }}</div>
-                    </div>
-                    <div class="comment">
-                      <div class="commenticon">
-                        <img src="{% static 'images/challenges/img9.svg' %}" />
-                      </div>
-                      <div class="comment_count">{{ feed.comments.count }}</div>
-                    </div>
-                  </div>
-                </div>
+            <span class="content">{{ feed.content }}</span>
+          </div>
 
-                <div class="comment-scroll-area">
-                  {% for comment in feed.comments.all %}
-                  <div class="commentcard" data-comment-id="{{ comment.id }}">
-                    <hr
-                      style="border: none; height: 1px; background-color: #ccc"
-                    />
-                    <div class="c-cardheader">
-                      <div class="writerdot">
-                        <div class="writer">{{ comment.writer.nickname }}</div>
-                        {% if comment.writer == user %}
-                        <div class="c-dot" data-comment-id="{{comment.id}}"></div>
-                        
-                        <div id="delete-{{ comment.id }}" class="delete hidden">
-                          <div class="delete-content">
-                            <button class="edit-btn" onclick="editComment({{ comment.id }})">
-                              <span class="text1">수정</span>
-                              <img src="{% static 'images/challenges/img11.svg' %}" />
-                            </button>
-                            <button class="delete-btn" onclick="openConfirmModal({{ comment.id }})">
-                              <span class="text2">삭제</span>
-                              <img src="{% static 'images/challenges/img12.svg' %}" />
-                            </button>
-                          </div>
+          <!-- 댓글 모달 (댓글만!) -->
+          <div id="commentModal-{{ feed.id }}" class="modal-overlay" style="display: none">
+            <div class="commentmodal-box">
+              <div class="comment-scroll-area">
+                {% for comment in feed.comments.all %}
+                <div class="commentcard" data-comment-id="{{ comment.id }}">
+                  <hr style="border: none; height: 1px; background-color: #ccc" />
+                  <div class="c-cardheader">
+                    <div class="writerdot">
+                      <div class="writer">{{ comment.writer.nickname }}</div>
+                      {% if comment.writer == user %}
+                      <div class="c-dot" data-comment-id="{{ comment.id }}"></div>
+                      <div id="delete-{{ comment.id }}" class="delete hidden">
+                        <div class="delete-content">
+                          <button class="edit-btn" onclick="editComment({{ comment.id }})">
+                            <span class="text1">수정</span>
+                            <img src="{% static 'images/challenges/img11.svg' %}" />
+                          </button>
+                          <button class="delete-btn" onclick="openConfirmModal({{ comment.id }})">
+                            <span class="text2">삭제</span>
+                            <img src="{% static 'images/challenges/img12.svg' %}" />
+                          </button>
                         </div>
-                        {% endif %}
                       </div>
-                      <div class="date">
-                        {{ comment.created_at|date:"n월 j일 H:i" }}
-                      </div>
+                      {% endif %}
                     </div>
-                    <div class="c-content" id="comment-content-{{ comment.id }}">{{ comment.content }}</div>
+                    <div class="date">{{ comment.created_at|date:"n월 j일 H:i" }}</div>
                   </div>
-                  {% empty %}
-                  <p style="padding: 1rem; color: #999">
-                    아직 댓글이 없습니다.
-                  </p>
-                  {% endfor %}
-                  <div class="addcomment">
-                    <input
-                      class="c-input"
-                      id="c-input-{{ feed.id }}"
-                      type="text"
-                    />
-                    <button
-                      class="send-btn"
-                      onclick="addComment( {{ challenge.id }}, {{ feed.id }})"
-                    >
-                      <img src="{% static 'images/challenges/img10.svg' %}" />
-                    </button>
-                  </div>
+                  <div class="c-content" id="comment-content-{{ comment.id }}">{{ comment.content }}</div>
+                </div>
+                {% empty %}
+                <p style="padding: 1rem; color: #999;">아직 댓글이 없습니다.</p>
+                {% endfor %}
+                <div class="addcomment">
+                  <input class="c-input" id="c-input-{{ feed.id }}" type="text" />
+                  <button class="send-btn" onclick="addComment({{ challenge.id }}, {{ feed.id }})">
+                    <img src="{% static 'images/challenges/img10.svg' %}" />
+                  </button>
                 </div>
               </div>
             </div>
-            <span class="content">{{ feed.content }}</span>
           </div>
           {% endfor %}
         </div>
-        <!-- 피드 끝 -->
 
-        {% comment %}
-        <button id="joinbtn" class="joinbtn" onclick="openModal()">
-          <div id="jointext" class="jointext">가입하기</div>
-        </button>
-        {% endcomment %}
-        <button
-          id="joinbtn"
-          class="joinbtn"
-          onclick="{% if is_joined %}location.href='/challenges/create-feed/{{ challenge.id }}/'{% else %}openModal(){% endif %}"
-        >
+        <!-- 가입/글쓰기 버튼 -->
+        <button id="joinbtn" class="joinbtn" onclick="{% if is_joined %}location.href='/challenges/create-feed/{{ challenge.id }}/'{% else %}openModal(){% endif %}">
           <div id="jointext" class="jointext">
             {% if is_joined %}글쓰기{% else %}가입하기{% endif %}
           </div>
         </button>
 
+        <!-- 가입 모달 -->
         <div id="chjoinmodal" class="modal-overlay" style="display: none">
           <div class="modal-content">
-            <span class="chjoinmodaltext1"
-              >'{{ challenge.challenge_name }}' 그룹에</span
-            >
+            <span class="chjoinmodaltext1">'{{ challenge.challenge_name }}' 그룹에</span>
             <span class="chjoinmodaltext2">가입하시겠습니까?</span>
             <div class="mdjoinbtn">
-              <button class="okbtn" onClick="convertWrite({{ challenge.id }})">
+              <button class="okbtn" onclick="convertWrite({{ challenge.id }})">
                 <div class="oktext">확인</div>
               </button>
               <button class="ccbtn" onclick="closeModal()">
@@ -216,23 +149,10 @@
             </div>
           </div>
         </div>
-
-        {% comment %}
-        <div id="delete" class="delete hidden">
-          <div class="delete-content">
-            <button id="edit-btn">
-              <span class="text1">수정</span>
-              <img src="{% static 'images/challenges/img11.svg' %}" />
-            </button>
-            <button id="delete-btn" onclick="openConfirmModal()">
-              <span class="text2">삭제</span>
-              <img src="{% static 'images/challenges/img12.svg' %}" />
-            </button>
-          </div>
-        </div>
-        {% endcomment %}
       </div>
     </div>
+
+    <!-- 스크립트 -->
     <script type="module" src="{% static 'js/main.js' %}"></script>
     <script type="module" src="{% static 'js/detail_ch.js' %}"></script>
   </body>
