@@ -16,6 +16,7 @@ class Option(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="options")
     text = models.CharField(max_length=255)
 
+
     def __str__(self):
         return f'문제 {self.quiz.id} - {self.text}'
 
@@ -26,4 +27,5 @@ class UserQuiz(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="user_quiz")
     selected_option=models.ForeignKey(Option, on_delete=models.CASCADE, related_name="user_quiz", null=True)
     
-
+    def __str__(self):
+        return f'{self.quiz.question}'
