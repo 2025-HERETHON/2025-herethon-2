@@ -19,6 +19,12 @@
         <div class="header">
           <div class="cfheader">글쓰기</div>
         </div>
+
+        <form id="feedForm" method="POST" enctype="multipart/form-data" action="">
+        {% csrf_token %}
+
+        <div class="addphoto">
+
         <div class ="add_contents">
           <div class="addphoto">
             <div class="photo">사진</div>
@@ -48,12 +54,17 @@
             />
           </div>
 
-          <div class="addcontent">
-            <div class="content">캡션 내용</div>
-            <div class="content_input">
-              <textarea id="contenttext"></textarea>
-            </div>
+        <div class="addcontent">
+          <div class="content">캡션 내용</div>
+          <div class="content_input">
+            <textarea id="contenttext" name="content"></textarea>
           </div>
+        </div>
+
+        <button type="submit" id="addfeed" disabled>
+          <span class="addfeedtext">게시물 등록</span>
+        </button>
+        </form>
 
           <button id="addfeed" disabled>
             <span class="addfeedtext">게시물 등록</span>
