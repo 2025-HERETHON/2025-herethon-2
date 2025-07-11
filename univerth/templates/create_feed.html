@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <base href="/" />
+    <base href="/">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-393, initial-scale=0.9" />
     <title>create_feed</title>
@@ -25,34 +25,24 @@
 
         <div class="addphoto">
 
-        <div class ="add_contents">
-          <div class="addphoto">
             <div class="photo">사진</div>
 
             <div class="photo-row">
-              <label id="photo-box" for="photoInput">
-                <div class="photoicon">
-                  <img
-                    id="photoicon"
-                    src="{% static 'images/challenges/img5.svg' %}"
-                    data-icon-none="{% static 'images/challenges/img5.svg' %}"
-                    data-icon-added="{% static 'images/challenges/img6.svg' %}"
-                  />
-                </div>
-                <span id="photoCount">0/2</span>
-              </label>
+                <label id="photo-box" for="photoInput">
+                    <div class="photoicon">
+                        <img id="photoicon" src="{% static 'images/challenges/img5.svg' %}"
+                        data-icon-none="{% static 'images/challenges/img5.svg' %}"
+                        data-icon-added="{% static 'images/challenges/img6.svg' %}" />
+                    </div>
+                    <span id="photoCount">0/2</span>
+                </label>
 
-              <div id="preview" class="preview-box"></div>
+                <div id="preview" class="preview-box"></div>
             </div>
 
-            <input
-              type="file"
-              id="photoInput"
-              name="image"
-              accept="image/*"
-              multiple
-            />
-          </div>
+            <input type="file" id="photoInput" name="image" accept="image/*" multiple />
+
+        </div>
 
         <div class="addcontent">
           <div class="content">캡션 내용</div>
@@ -66,10 +56,6 @@
         </button>
         </form>
 
-          <button id="addfeed" disabled>
-            <span class="addfeedtext">게시물 등록</span>
-          </button>
-        </div>
         <script type="module" src="{% static 'js/create_feed.js' %}"></script>
       </div>
     </div>
