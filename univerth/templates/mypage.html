@@ -13,15 +13,15 @@
   <body>
     <div id="root">
       <div class="app-wrapper">
-        <button id="back-btn">
-          <img
-            src="{% static 'images/navbar/back_icon.png' %}"
-            alt="뒤로가기"
-          />
-        </button>
         <div class="mypage-container">
           {% include "navbar.html" %}
           <div class="mypage-header">
+            <button id="back-btn" class="back">
+              <img
+                src="{% static 'images/navbar/back_icon.png' %}"
+                alt="뒤로가기"
+              />
+            </button>
             <p class="my-page-title">마이페이지</p>
           </div>
 
