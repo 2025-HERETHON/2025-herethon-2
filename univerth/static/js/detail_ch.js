@@ -285,13 +285,40 @@ console.log('feedId:', feedId, 'editingCommentId:', editingCommentId);
     });
     
     // 삭제 버튼 클릭 시 삭제 확인 모달 열기
-    const deleteBtn = document.getElementById('delete-btn');
-    if (deleteBtn) {
-        deleteBtn.addEventListener('click', () => {
-            editDeleteModal.classList.add('hidden');  // 수정/삭제 모달 숨기기
-            confirmModal.classList.remove('hidden');  // 삭제 확인 모달 열기
-        });
+    /*
+    function deleteComment(commentId, feedId) {
+  const csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value;
+
+  fetch(`/challenges/feeds/${feedId}/delete-comment/${commentId}/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrfToken,
+      'X-Requested-With': 'XMLHttpRequest',
+    },
+  })
+  .then(response => {
+    if (response.ok) {
+      // 댓글 DOM 제거
+      const target = document.querySelector(`[data-comment-id="${commentId}"]`);
+      if (target) target.remove();
+
+      // 삭제 모달 숨기기
+      const popup = document.getElementById(`delete-${commentId}`);
+      if (popup) popup.classList.add('hidden');
+
+      alert('댓글이 삭제되었습니다.');
+    } else if (response.status === 403) {
+      alert('삭제 권한이 없습니다.');
+    } else {
+      alert("댓글 삭제에 실패했습니다.");
     }
+  })
+  .catch(error => {
+    console.error("삭제 요청 중 에러:", error);
+  });
+}
+*/
 
     // 댓글 수정 버튼 클릭 시 입력창
     window.editComment = function(commentId) {
@@ -359,6 +386,7 @@ console.log('feedId:', feedId, 'editingCommentId:', editingCommentId);
     window.showSlide = showSlide;
     window.addComment = addComment;
     window.addLike = addLike;
+    window.deleteComment = deleteComment;
     window.openConfirmModal = function () {
         editDeleteModal.classList.add('hidden'); // 수정/삭제 모달 숨기기
         confirmModal.classList.remove('hidden'); // 삭제 확인 모달 보이기
