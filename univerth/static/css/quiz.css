@@ -187,7 +187,9 @@ div .quiz-title {
     margin-bottom: 85px;
     transform: translateY(-16px);
 }
-
+form {
+    width: 100%;
+}
 .quiz-description {
     font-size: 14px;
     line-height: 1.4;
