@@ -55,6 +55,17 @@ textarea:focus {
     font-family: "NPSfont";
 }
 
+#back-btn {
+    border: none;
+    background-color: transparent;
+    margin-right: 9px;
+}
+
+#back-btn img {
+    width: 22px;
+    height: 16px;
+}
+
 .add_name {
     margin-bottom: 20px;
 }

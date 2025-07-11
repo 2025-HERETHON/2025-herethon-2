@@ -1,8 +1,19 @@
 import { loadNavbar } from "./main.js";
+const before = document.referrer;
 
 window.addEventListener("DOMContentLoaded", async () => {
     // navbar 불러오기
     loadNavbar(".challenge-container");
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const backBtn = document.querySelector('.back');
+  // 뒤로 가기 버튼 클릭 시
+  backBtn.addEventListener('click', () => {
+    // Django 프로젝트의 URL에 맞게 수정해주세요.
+    // 예: window.location.href = '/map/';
+        window.location.href = '/challenges/popular'; 
+  });
 });
 
 const textarea1 = document.getElementById("name");
