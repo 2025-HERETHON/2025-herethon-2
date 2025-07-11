@@ -254,6 +254,15 @@ body {
     overflow: hidden;
 }
 
+.feedheader {
+    padding-bottom: 10px;
+}
+
+.icon {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .commentmodal-box .c-feed {
     flex-shrink: 0;
     padding: 20px;
