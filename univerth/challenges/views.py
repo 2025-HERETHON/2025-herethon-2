@@ -11,7 +11,9 @@ def challenge_detail(request, id):
     is_joined = challenge.participants.filter(id=request.user.id).exists()
     for feed in feeds:
         feed.is_liked = feed.like.filter(id=request.user.id).exists()
-    return render(request, 'detail_ch.html', {'challenge':challenge, 'feeds':feeds, 'is_joined': is_joined})
+    feed_success = request.session.pop('feed_success', False)
+    request.session.modified = True
+    return render(request, 'detail_ch.html', {'challenge':challenge, 'feeds':feeds, 'is_joined': is_joined, 'feed_success': feed_success, })
 
 #챌린지 참여 함수
 @csrf_exempt
@@ -84,8 +86,8 @@ def create_feed(request, id):
                     student.user_point for student in request.user.univ.students.all()
                 )
                 request.user.univ.save()
-
-        return redirect('challenges:challenge_detail',id=challenge.id)
+        request.session['feed_success'] = True
+        return redirect(f'/challenges/challenge-detail/{challenge.id}/?success=1')
     return render(request, 'create_feed.html', {'challenge': challenge})
 
 #피드 수정
