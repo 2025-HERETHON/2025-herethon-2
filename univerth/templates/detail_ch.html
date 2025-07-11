@@ -137,19 +137,6 @@
                         <div class="writer">{{ comment.writer.nickname }}</div>
                         {% if comment.writer == user %}
                         <div class="c-dot" data-comment-id="{{comment.id}}"></div>
-                        
-                        <div id="delete-{{ comment.id }}" class="delete hidden">
-                          <div class="delete-content">
-                            <button class="edit-btn" onclick="editComment({{ comment.id }})">
-                              <span class="text1">수정</span>
-                              <img src="{% static 'images/challenges/img11.svg' %}" />
-                            </button>
-                            <button class="delete-btn" onclick="openConfirmModal({{ comment.id }})">
-                              <span class="text2">삭제</span>
-                              <img src="{% static 'images/challenges/img12.svg' %}" />
-                            </button>
-                          </div>
-                        </div>
                         {% endif %}
                       </div>
                       <div class="date">
@@ -163,6 +150,9 @@
                     아직 댓글이 없습니다.
                   </p>
                   {% endfor %}
+
+                  
+
                   <div class="addcomment">
                     <input
                       class="c-input"
@@ -183,6 +173,25 @@
           </div>
           {% endfor %}
         </div>
+        {% for feed in feeds %}
+          {% for comment in feed.comments.all %}
+            {% if comment.writer == user %}
+              <div id="delete-{{ comment.id }}" class="delete hidden">
+                <div class="delete-content">
+                  <button class="edit-btn" onclick="editComment({{ comment.id }})">
+                    <span class="text1">수정</span>
+                    <img src="{% static 'images/challenges/img11.svg' %}" />
+                  </button>
+                  <button class="delete-btn" onclick="openConfirmModal({{ comment.id }})">
+                    <span class="text2">삭제</span>
+                    <img src="{% static 'images/challenges/img12.svg' %}" />
+                  </button>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+
         <!-- 피드 끝 -->
 
         {% comment %}
