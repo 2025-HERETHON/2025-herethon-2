@@ -21,6 +21,12 @@
         </div>
         <div class ="add_contents">
           <div class="addphoto">
+
+        <form id="feedForm" method="POST" enctype="multipart/form-data" action="">
+        {% csrf_token %}
+
+        <div class="addphoto">
+
             <div class="photo">사진</div>
 
             <div class="photo-row">
@@ -46,6 +52,14 @@
               accept="image/*"
               multiple
             />
+            <input type="file" id="photoInput" name="image" accept="image/*" multiple />
+
+        </div>
+
+        <div class="addcontent">
+          <div class="content">캡션 내용</div>
+          <div class="content_input">
+            <textarea id="contenttext" name="content"></textarea>
           </div>
 
           <div class="addcontent">
@@ -54,6 +68,10 @@
               <textarea id="contenttext"></textarea>
             </div>
           </div>
+        <button type="submit" id="addfeed" disabled>
+          <span class="addfeedtext">게시물 등록</span>
+        </button>
+        </form>
 
           <button id="addfeed" disabled>
             <span class="addfeedtext">게시물 등록</span>
