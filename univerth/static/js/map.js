@@ -32,7 +32,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       map: map,
       title: "내 대학",
       image: new kakao.maps.MarkerImage(
-        "../static/images/home/ranking_myUniv.png",
+        "../static/images/challenges/img2.svg ",
         new kakao.maps.Size(40, 30)
       )
     });
