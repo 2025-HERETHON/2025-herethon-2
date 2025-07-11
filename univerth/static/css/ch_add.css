@@ -12,7 +12,7 @@ body {
 textarea:focus {
     outline: 1.5px solid #2CD7A6;
     border-color: transparent;
-    border: none;
+    border: none !important;
 }
 
 .wrap {
@@ -31,7 +31,7 @@ textarea:focus {
 }
 
 .header {
-    font-family: "NPSfont Bold", Helvetica;
+    font-family: "NPSfont-Bold";
     font-weight: 700;
     color: #000000;
     font-size: 25px;
@@ -40,6 +40,9 @@ textarea:focus {
     padding: 20px 0px 20px 0px;
 }
 
+.header span {
+    font-family: "NPSfont-Bold";
+}
 
 .header>.title {
     font-family: "NPSfont";
