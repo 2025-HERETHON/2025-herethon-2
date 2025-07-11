@@ -20,7 +20,7 @@
 
 |PM|FE|FE|FE|BE|BE|
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|<img src="https://github.com/skjjang124.png" width="100">|<img src="https://github.com/ruddmslee.png" width="100">|<img src="https://github.com/ruddmslee.png" width="100">|<img src="https://github.com/ruddmslee.png" width="100">|<img width="100" alt="미모티콘2" src="https://github.com/user-attachments/assets/2786cc34-dd73-41ab-b953-1f8b9c13f2dc" />|<img src="https://github.com/ruddmslee.png" width="100">|
+|<img src="https://github.com/skjjang124.png" width="100">|<img src="https://github.com/ruddmslee.png" width="100">|<img src="https://github.com/ruddmslee.png" width="100">|<img src="https://github.com/user-attachments/assets/a847a2a0-3b97-47c7-9018-984f0a7076d" width="100">|<img width="100" alt="미모티콘2" src="https://github.com/user-attachments/assets/2786cc34-dd73-41ab-b953-1f8b9c13f2dc" />|<img src="https://github.com/ruddmslee.png" width="100">|
 |동덕여대|성신여대|이화여대|서울여대|숙명여대|덕성여대|
 |장수경|김성연|서예린|최영|이경은|이영서|
 
